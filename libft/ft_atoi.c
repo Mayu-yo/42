@@ -3,7 +3,7 @@
 #include <stdio.h>
 int main()
 {
-	char str[] = "          +--+-+--++1234j234";
+	char str[] = "+1234j234";
 	int num;
 	num = ft_atoi(str);
 	printf("%d", num);
@@ -17,15 +17,16 @@ int	ft_atoi(const char *str)
 	int	fugou;
 
 	fugou = 1;
-	i = 0;
-	i = mojiretsu(str);
+	i = kuhaku(str);
 	num = 0;
-	while (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
 			fugou *= -1;
-		i++;
+			i++;
 	}
+	if ('0' <= str[i] && str[i] <= '9')
+		return 0;
 	while (str[i] >= '0' && '9' >= str[i])
 	{
 		num = num * 10;
@@ -36,12 +37,10 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-int	mojiretsu(char *str)
+int	kuhaku(char *str)
 {
 	int	i;
-	int	fugou;
 
-	fugou = 1;
 	i = 0;
 	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
 		i++;
