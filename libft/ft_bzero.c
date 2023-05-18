@@ -8,9 +8,9 @@ int main(){
 	return 0;
 }
 
-void *ft_bzero(void *buf, int ch, size_t n){
+void *ft_bzero(void *buf, size_t n){
 	unsigned char	*p = buf;
-	unsigned char uc = (unsigned char)ch;
+	unsigned char uc = 0;
 
     while(n != 0){
         *p = uc;

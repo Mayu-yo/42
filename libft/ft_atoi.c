@@ -3,11 +3,21 @@
 #include <stdio.h>
 int main()
 {
-	char str[] = "+1234j234";
+	char str[] = "-1234j234";
 	int num;
 	num = ft_atoi(str);
 	printf("%d", num);
 	return 0;
+}
+
+int	kuhaku(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
+		i++;
+	return (i);
 }
 
 int	ft_atoi(const char *str)
@@ -25,8 +35,8 @@ int	ft_atoi(const char *str)
 			fugou *= -1;
 			i++;
 	}
-	if ('0' <= str[i] && str[i] <= '9')
-		return 0;
+	if ('0' >= str[i] && str[i] <= '9')
+		return (num);
 	while (str[i] >= '0' && '9' >= str[i])
 	{
 		num = num * 10;
@@ -35,14 +45,4 @@ int	ft_atoi(const char *str)
 	}
 	num = num * fugou;
 	return (num);
-}
-
-int	kuhaku(char *str)
-{
-	int	i;
-
-	i = 0;
-	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-		i++;
-	return (i);
 }
