@@ -12,5 +12,8 @@ int ft_isprint(int c);
 size_t ft_strlen(const char *str);
 void *ft_memset(void *buf, int ch, size_t n);
 void *ft_bzero(void *buf, int ch, size_t n);
+void *ft_memcpy(void *dst, const void *src, size_t n);
+void *ft_memmove(void *dest, const void *src, size_t n);
+size_t ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif
