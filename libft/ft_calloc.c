@@ -5,7 +5,9 @@ int main(){
 }
 
 void *ft_calloc(size_t count, size_t size){
-	string = (string *)malloc(size);
-	ft_memset(string, 0, len);
-	return 
+	void *mem = (char *)malloc(count * size);
+	if(mem == NULL)
+		return NULL;
+	ft_memset(mem, 0, count * size);
+	return mem;
 }
