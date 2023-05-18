@@ -1,5 +1,5 @@
 #include "libft.h"
-char *ft_strchr(const char *s, int c);
+
 int main(){
 	char c[] = "asdfg";
 	char *ret;
@@ -8,12 +8,11 @@ int main(){
 	return 0;
 }
 
-char *ft_strchr(const char *s, int c){
+char *ft_strrchr(const char *s, int c){
 	const unsigned char *p = (const unsigned char *)s;
 
-	while(*p != c){
-		if(*p == '\0' && c != '\0')
-			return (0);
+	while(*p != '\0'){
+		
 		p++;
 	}
 	return (char *)p;
