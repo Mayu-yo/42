@@ -5,7 +5,7 @@ int main(){
 }
 
 int ft_tolower(int c){
-	if(66 <= c && c <= 90){
+	if('A' <= c && c <= 'Z'){
 		return (c + 32);
 	}
 	return c;
