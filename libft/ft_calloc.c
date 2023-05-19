@@ -1,6 +1,5 @@
 #include "libft.h"
 
-void *ft_calloc(size_t count, size_t size);
 #include <stdio.h>
 int main() {
     // テスト用の配列の要素数と要素のサイズ
