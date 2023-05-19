@@ -1,13 +1,13 @@
 #include "libft.h"
 
-#include <stdio.h>
-int main()
-{
-	int ret = 0;
-	ret = ft_memcmp("qwert", "qwertadf", 6);
-	printf("%d",ret);
-	return 0;
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	int ret = 0;
+// 	ret = ft_memcmp("qwert", "qwertadf", 6);
+// 	printf("%d",ret);
+// 	return 0;
+// }
 
 int ft_memcmp(const void *s1, const void *s2, size_t n)
 {

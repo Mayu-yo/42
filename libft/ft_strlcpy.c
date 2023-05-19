@@ -1,10 +1,6 @@
 #include "libft.h"
 
-int main(){
-	return 0;
-}
-
-int	copy(unsigned int mojisu, char *dest, char *src, unsigned int dstsize)
+int	copy(unsigned int mojisu, char *dest, const char *src, unsigned int dstsize)
 {
 	unsigned int	count;
 

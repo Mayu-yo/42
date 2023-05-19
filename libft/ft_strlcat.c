@@ -19,13 +19,11 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		i++;
 		j++;
 	}
-	dest[j] = '\0';
+	dest[d_len + i] = '\0';
 	return (d_len + s_len);
 }
 /*
 #include <stdio.h>
-#include <string.h>
-
 int main()
 {
     char dest[20] = "AE";

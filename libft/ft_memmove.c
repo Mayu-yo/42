@@ -1,14 +1,14 @@
 #include "libft.h"
 
-#include <stdio.h>
-int main(){
-	char a[] = "asdfg";
-	char b[] = "qw\0rt";
-	char *ret;
-	ret = ft_memmove(a+3,a,4);
-	printf("%s",ret);
-	return 0;
-}
+// #include <stdio.h>
+// int main(){
+// 	char a[] = "asdfg";
+// 	char b[] = "qw\0rt";
+// 	char *ret;
+// 	ret = ft_memmove(a+3,a,4);
+// 	printf("%s",ret);
+// 	return 0;
+// }
 
 void *ft_memmove(void *dest, const void *src, size_t n){
 	unsigned char *d = dest;

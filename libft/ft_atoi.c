@@ -1,14 +1,14 @@
 #include "libft.h"
 
-#include <stdio.h>
-int main()
-{
-	char str[] = "-1234j234";
-	int num;
-	num = ft_atoi(str);
-	printf("%d", num);
-	return 0;
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	char str[] = "-1234j234";
+// 	int num;
+// 	num = ft_atoi(str);
+// 	printf("%d", num);
+// 	return 0;
+// }
 
 int	kuhaku(const char *str)
 {
