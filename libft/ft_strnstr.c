@@ -26,6 +26,5 @@ char *ft_strnstr(const char *haystack, const char *needle, size_t len)
         if (ft_strncmp(haystack + i, needle, needle_len) == 0)
             return (char *)(haystack + i);
     }
-    
     return NULL;
 }

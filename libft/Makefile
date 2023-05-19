@@ -4,8 +4,7 @@ SRCS 			=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c int ft_isprint.c \
 INCS 			=	includes
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
-LIBC			=	ar -rc
-LIBR			=	ranlib
+LIBC			=	ar -rcs
 OBJS			=	${SRCS:.c=.o}
 
 
@@ -15,7 +14,6 @@ OBJS			=	${SRCS:.c=.o}
 
 ${NAME}: ${OBJS}
 	${LIBC} ${NAME} ${OBJS}
-	${LIBR} ${NAME}
 	
 all: ${NAME}
 
