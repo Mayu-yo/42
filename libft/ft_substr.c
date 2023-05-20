@@ -7,7 +7,7 @@ int main (){
 	return 0;
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len){//文字列sのstart文字目からlen文字分をmallocで確保したchar*に入れて返す
+char *ft_substr(char const *s, unsigned int start, size_t len){
 
 	const char *p = s;
 	char *ret;

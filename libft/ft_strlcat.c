@@ -1,53 +1,52 @@
 #include "libft.h"
 
-// unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
-// {
-// 	unsigned int	i;
-// 	unsigned int	j;
-// 	unsigned int	d_len;
-// 	unsigned int	s_len;
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
+{
+	unsigned int	i;
+	unsigned int	j;
 
-// 	i = 0;
-// 	j = 0;
-// 	d_len = ft_strlen(dest);
-// 	s_len = ft_strlen(src);
-// 	if (size <= d_len)
-// 		return (s_len + size);
-// 	while (src [i] != '\0' && i < size - d_len - 1)
-// 	{
-// 		dest[j] = src[i];
-// 		i++;
-// 		j++;
-// 	}
-// 	dest[d_len + j] = '\0';
-// 	return (d_len + s_len);
-// }
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	while (src[j] != '\0' && j < nb)
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
+}
+
 unsigned int ft_strlcat(char *dst, char *src, unsigned int size) {
+	unsigned int src_len = strlen(src);
+	if(dst == NULL)//本家はないけど、ないとせぐふぉ
+		return src_len;
     unsigned int dst_len = strlen(dst);
-    unsigned int src_len = strlen(src);
     unsigned int total_len = dst_len + src_len;
     
     if (size <= dst_len)
-        return src_len + size;
+        return (src_len + size);
     
     unsigned int copy_len = size - dst_len - 1;
-    strncat(dst + dst_len, src, copy_len);
+    ft_strncat(dst + dst_len, src, copy_len);
     dst[size - 1] = '\0';
     
     return total_len;
 }
 
-
-/*
-#include <stdio.h>
-int main()
-{
-    char dest[20] = "AE";
-    char src[] = "";
-    int x = 6;
+// #include <stdio.h>
+// int main()
+// {
+//     char dest[20] = "";
+//     char src[] = "qwy";
+//     int x = 0;
    
-    unsigned int result1 = strlcat(dest, src, x);
-    printf("%s: %u\n", dest, result1);
-    return(0);
-}
-*/
+//     unsigned int result = ft_strlcat(NULL, src, x);
+//     printf("自作%s: %u\n", dest, result);
+// 	unsigned int result1 = strlcat(NULL, src, x);
+//     printf("本物%s: %u\n", dest, result1);
+//     return(0);
+// }
