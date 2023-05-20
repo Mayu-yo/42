@@ -1,4 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/20 13:23:57 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/20 13:27:17 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*mem;
+
+	mem = (char *)malloc(count * size);
+	if (mem == NULL)
+		return (NULL);
+	ft_memset(mem, 0, count * size);
+	return (mem);
+}
 
 // #include <stdio.h>
 // int main() {
@@ -25,11 +48,3 @@
 
 //     return 0;
 // }
-
-void *ft_calloc(size_t count, size_t size){
-	void *mem = (char *)malloc(count * size);
-	if(mem == NULL)
-		return NULL;
-	ft_memset(mem, 0, count * size);
-	return mem;
-}

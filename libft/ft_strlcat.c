@@ -20,21 +20,22 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	return (dest);
 }
 
-unsigned int ft_strlcat(char *dst, char *src, unsigned int size) {
+unsigned int ft_strlcat(char *dst, char *src, unsigned int size)
+{
 	unsigned int src_len = strlen(src);
-	if(dst == NULL)//本家はないけど、ないとせぐふぉ
+	if (dst == NULL)
 		return src_len;
-    unsigned int dst_len = strlen(dst);
-    unsigned int total_len = dst_len + src_len;
-    
-    if (size <= dst_len)
-        return (src_len + size);
-    
-    unsigned int copy_len = size - dst_len - 1;
-    ft_strncat(dst + dst_len, src, copy_len);
-    dst[size - 1] = '\0';
-    
-    return total_len;
+	unsigned int dst_len = strlen(dst);
+	unsigned int total_len = dst_len + src_len;
+	
+	if (size <= dst_len)
+		return (src_len + size);
+	
+	unsigned int copy_len = size - dst_len - 1;
+	ft_strncat(dst + dst_len, src, copy_len);
+	dst[size - 1] = '\0';
+	
+	return total_len;
 }
 
 // #include <stdio.h>
