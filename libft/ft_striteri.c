@@ -1,21 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/21 14:47:04 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/21 16:11:57 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int i;
-	char *ret;
+	unsigned int	i;
 
 	i = 0;
-	ret = (char *)malloc(ft_strlen(s));
-	if (ret == NULL)
-		return (NULL);
 	while (s[i] != '\0')
 	{
-		f(i,&s[i]);
+		f(i, &s[i]);
 		i++;
 	}
-	ret[i] = '\0';
-	return (ret);
 }
 
 // #include <stdio.h>

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/21 13:53:50 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/21 14:08:56 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_reverse(char *str)
+char	*ft_reverse(char *str)
 {
-	size_t str_len;
-	size_t i;
-	char buf;
+	size_t	str_len;
+	size_t	i;
+	char	buf;
 
 	i = 0;
 	str_len = ft_strlen(str);
@@ -16,17 +28,36 @@ char *ft_reverse(char *str)
 		i++;
 	}
 	str[str_len] = '\0';
-	return str;
+	return (str);
 }
 
-char *ft_itoa(int n)
+char	*convert(int n, int flag)
 {
-	int flag;
-	int buf;
-	char *str;
-	int i;
+	char	buf;
+	char	*str;
+	int		i;
 
 	i = 0;
+	str = (char *)malloc(12);
+	if (str == NULL)
+		return (NULL);
+	while (n != 0)
+	{
+		buf = n % 10;
+		str[i] = buf + '0';
+		n /= 10;
+		i++;
+	}
+	if (flag == 1)
+		str[i] = '-';
+	return (str);
+}
+
+char	*ft_itoa(int n)
+{
+	int		flag;
+	char	*str;
+
 	flag = 0;
 	str = (char *)malloc(12);
 	if (str == NULL)
@@ -40,15 +71,7 @@ char *ft_itoa(int n)
 		n = -n;
 		flag = 1;
 	}
-	while (n != 0)
-	{
-		buf = n % 10;
-		str[i] = buf + '0';
-		n /= 10;
-		i++;
-	}
-	if(flag == 1)
-		str[i] = '-';
+	str = convert(n, flag);
 	return (ft_reverse(str));
 }
 
