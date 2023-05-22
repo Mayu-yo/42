@@ -5,7 +5,7 @@ char *ft_strrchr(const char *s, int c){
 	const unsigned char *ret = NULL;
 
 	while(*p != '\0'){
-		if(*p == c)
+		if(*p == (unsigned char)c)
 			ret = p;
 		p++;
 	}
@@ -18,7 +18,9 @@ char *ft_strrchr(const char *s, int c){
 // int main(){
 // 	char c[] = "asdfgda";
 // 	char *ret;
-// 	ret = ft_strrchr(c, 100);
+// 	ret = ft_strrchr(c, 'd' - 256);
+// 	printf("%s\n", ret);
+// 	ret = strrchr(c, 'd' - 256);
 // 	printf("%s", ret);
 // 	return 0;
 // }

@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:13:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 16:38:42 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:07:20 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_putstr_fd(char *s, int fd)
 	char	*str;
 
 	i = 0;
+	len = ft_strlen(s);
 	str = (char *)malloc(len + 1);
 	if (str == NULL)
 		return;
-	len = ft_strlen(s);
 	while (s[i] != '\0')
 	{
 		str[i] = s[i];
