@@ -5,7 +5,7 @@ char *ft_strrchr(const char *s, int c){
 	const unsigned char *ret = NULL;
 
 	while(*p != '\0'){
-		if(*p == c)
+		if(*p == (unsigned char)c)
 			ret = p;
 		p++;
 	}

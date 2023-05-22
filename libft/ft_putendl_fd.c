@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:11:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 14:11:49 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:07:38 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_putendl_fd(char *s, int fd)
 	len = ft_strlen(s);
 	str = (char *)malloc(len + 1);
 	if (str == NULL)
-		return (NULL);
+		return;
 	while (s[i] != '\0')
 	{
 		str[i] = s[i];

@@ -39,11 +39,11 @@ char *ft_strtrim(char const *s1, char const *set)
 	return ret;
 }
 
-// #include <stdio.h>
-// int main(){
-// 	char *ret;
-// 	ret = ft_strtrim("qtyuqwet", "tdu");
-// 	printf("%s",ret);
-// 	free (ret);
-// 	return 0;
-// }
+#include <stdio.h>
+int main(){
+	char *ret;
+	ret = ft_strtrim("hello world", "world");
+	printf("%s",ret);
+	free (ret);
+	return 0;
+}
