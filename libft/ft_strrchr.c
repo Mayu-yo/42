@@ -14,11 +14,13 @@ char *ft_strrchr(const char *s, int c){
 	return (char *)ret;
 }
 
-// #include <stdio.h>
-// int main(){
-// 	char c[] = "asdfgda";
-// 	char *ret;
-// 	ret = ft_strrchr(c, 100);
-// 	printf("%s", ret);
-// 	return 0;
-// }
+#include <stdio.h>
+int main(){
+	char c[] = "asdlfgda";
+	char *ret;
+	ret = ft_strrchr(c, 'l' - 256);
+	printf("自作：%s\n", ret);
+	ret = strrchr(c, 'l' - 256);
+	printf("本物：%s", ret);
+	return 0;
+}
