@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/23 12:34:31 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/23 15:19:41 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	ft_atoi(const char *str)
 	return (num * fugou);
 }
 
-#include <stdio.h>
-int main()
-{
-	char str[] = "-1j84467";
-	int num;
-	num = ft_atoi(str);
-	printf("%d\n", num);
-	num = atoi(str);
-	printf("%d", num);
-	return 0;
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	char str[] = "-1j84467";
+// 	int num;
+// 	num = ft_atoi(str);
+// 	printf("%d\n", num);
+// 	num = atoi(str);
+// 	printf("%d", num);
+// 	return 0;
+// }
