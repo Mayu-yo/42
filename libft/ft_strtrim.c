@@ -17,18 +17,18 @@ int	space_rev(const char *str, int i)
 	return (i);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	while (*str != '\0')
+// 	{
+// 		str++;
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 char *ft_strtrim(char const *s1, char const *set)
 {
@@ -41,13 +41,15 @@ char *ft_strtrim(char const *s1, char const *set)
 
 	j = 0;
 	i = 0;
+	start = 0;
+	// if(*s1 == '\0')
+	// 	ret = '\0';
+	len = ft_strlen(s1);
+	end = space_rev(s1, len - 1);
+	start = space(s1);
+	ret = (char *)malloc(end - start + 2);
 	while (s1[start] != '\0')
 	{
-		start = 0;
-		len = ft_strlen(s1);
-		end = space_rev(s1, len - 1);
-		start = space(s1);
-		ret = (char *)malloc(end - start + 2);
 		if (ret == NULL)
 	 		return NULL;
 		while (s1[start] != '\0')
@@ -57,8 +59,8 @@ char *ft_strtrim(char const *s1, char const *set)
 				i = 0;
 				while(s1[start + i] == set[i])//単語が一致してるか確かめる
 				{
-					if(set[i] == '\0')
-						start += i;
+					if(set[i + 1] == '\0')
+						start += i + 1;
 					i++;
 				}
 			}
@@ -69,16 +71,17 @@ char *ft_strtrim(char const *s1, char const *set)
 			start++;
 		}
 	}
+	ret[j] = '\0';
 	return ret;
 }
 
 #include <stdio.h>
 int main(){
 	char *ret;
-	char *str = "hello world";
+	char *str = "    hello world     ";
 
 	ret = (char *)malloc(strlen(str));
-	ret = ft_strtrim(str, "world");
+	ret = ft_strtrim(str, " ");
 	printf("%s",ret);
 	return 0;
 }
