@@ -1,13 +1,7 @@
 #include "libft.h"
 
-#include<stdio.h>
-int main (){
-	char *ret = ft_substr("qwertyuo", 3, 4);
-	printf("%s", ret);
-	return 0;
-}
-
-char *ft_substr(char const *s, unsigned int start, size_t len){
+char *ft_substr(char const *s, unsigned int start, size_t len)
+{
 
 	const char *p = s;
 	char *ret;
@@ -24,7 +18,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len){
 	ret = (char *)malloc(len + 1);
 	if(ret == NULL)
 		return NULL;
-	while(len != 0 && p != '\0'){//コピー
+	while(len != 0 && *p != '\0'){//コピー
 		*ret = *p;
 		p++;
 		ret++;
@@ -33,3 +27,10 @@ char *ft_substr(char const *s, unsigned int start, size_t len){
 	*ret = '\0';
 	return (ret-len1);
 }
+
+// #include<stdio.h>
+// int main (){
+// 	char *ret = ft_substr("qwertyuo", 3, 4);
+// 	printf("%s", ret);
+// 	return 0;
+// }
