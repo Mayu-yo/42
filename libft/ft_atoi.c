@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/23 15:19:41 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:42:50 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	kuhaku(const char *str)
 		i++;
 	return (i);
 }
-
+#include <limits.h>
 int	ft_atoi(const char *str)
 {
 	int	i;
-	int	num;
+	long	num;
 	int	fugou;
 
 	fugou = 1;
@@ -41,6 +41,10 @@ int	ft_atoi(const char *str)
 		i++;
 	while ('0' <= str[i] && str[i] <= '9')
 	{
+		if(num > ((LONG_MAX - (str[i] - '0')) / 10) && fugou == 1)
+			return (int)(LONG_MAX);
+		if(num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && fugou == -1)
+			return (int)(LONG_MIN);
 		num = num * 10;
 		num += str[i] - '0';
 		i++;
@@ -51,7 +55,7 @@ int	ft_atoi(const char *str)
 // #include <stdio.h>
 // int main()
 // {
-// 	char str[] = "-1j84467";
+// 	char str[] = "9223372036854775806";
 // 	int num;
 // 	num = ft_atoi(str);
 // 	printf("%d\n", num);

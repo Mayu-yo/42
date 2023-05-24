@@ -6,11 +6,24 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 15:11:25 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:53:00 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (*str != '\0')
+// 	{
+// 		str++;
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 char	**ft_split(char const *s, char c)
 {
@@ -28,6 +41,8 @@ char	**ft_split(char const *s, char c)
 		free(ret);
 		return NULL;
 	}
+	if(s[0] == c || s[0] == '\0')
+		flag = 1;
 	while (*s != '\0')
 	{
 		if (*s == c && flag == 0)
@@ -47,17 +62,24 @@ char	**ft_split(char const *s, char c)
 		}
 		s++;
 	}
-	ret[i][j] = '\0';
-	ret[i + 1] = NULL;
+	if(flag == 1)
+		ret[i] = NULL;
+	else
+	{
+		ret[i][j] = '\0';
+		ret[i + 1] = NULL;
+	}
 	return (ret);
 }
 
 // #include <stdio.h>
 // int main(){
 // 	char **ret;
-// 	ret = ft_split("a1sg112sd21", 49);
+// 	ret = ft_split(",,,hello,,,world,,,42,,,tokyo,,,,", ',');
 // 	printf("%s\n", ret[0]);
 // 	printf("%s\n", ret[1]);
 // 	printf("%s\n", ret[2]);
+// 	printf("%s\n", ret[3]);
+// 	printf("%s\n", ret[4]);
 // 	return 0;
 // }

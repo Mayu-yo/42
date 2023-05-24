@@ -1,36 +1,36 @@
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-    size_t	srclen = 0;
-    size_t	i;
+// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+// {
+//     size_t	srclen = 0;
+//     size_t	i;
 
-    while (src[srclen] != '\0')
-        srclen++;
-    if (dstsize == 0)
-        return (srclen);
-    i = 0;
-    while (i < dstsize - 1 && src[i] != '\0')
-    {
-        dst[i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
-    return (srclen);
-}
+//     while (src[srclen] != '\0')
+//         srclen++;
+//     if (dstsize == 0)
+//         return (srclen);
+//     i = 0;
+//     while (i < dstsize - 1 && src[i] != '\0')
+//     {
+//         dst[i] = src[i];
+//         i++;
+//     }
+//     dst[i] = '\0';
+//     return (srclen);
+// }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	while (*str != '\0')
+// 	{
+// 		str++;
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 int	is_trim_char(char c, const char *set)
 {
@@ -70,14 +70,14 @@ char *ft_strtrim(char const *s1, char const *set)
 	return ret;
 }
 
-#include <stdio.h>
-int main(){
-	char *ret;
-	char *str = "    hello world     ";
+// #include <stdio.h>
+// int main(){
+// 	char *ret;
+// 	char *str = "    hello world     ";
 
-	ret = (char *)malloc(strlen(str));
-	ret = ft_strtrim(str, " ");
-	printf("%s",ret);
-	return 0;
-}
+// 	ret = (char *)malloc(strlen(str));
+// 	ret = ft_strtrim(str, " ");
+// 	printf("%s",ret);
+// 	return 0;
+// }
 
