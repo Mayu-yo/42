@@ -1,77 +1,72 @@
 #include "libft.h"
 
-int	space(const char *str)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+    size_t	srclen = 0;
+    size_t	i;
+
+    while (src[srclen] != '\0')
+        srclen++;
+    if (dstsize == 0)
+        return (srclen);
+    i = 0;
+    while (i < dstsize - 1 && src[i] != '\0')
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return (srclen);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
 
 	i = 0;
-	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
+	while (*str != '\0')
+	{
+		str++;
 		i++;
+	}
 	return (i);
 }
 
-int	space_rev(const char *str, int i)
+int	is_trim_char(char c, const char *set)
 {
-	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-		i--;
-	return (i);
+	while (*set != '\0')
+	{
+		if (c == *set)
+			return 1;
+		set++;
+	}
+	return 0;
 }
-
-// size_t	ft_strlen(const char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (*str != '\0')
-// 	{
-// 		str++;
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 char *ft_strtrim(char const *s1, char const *set)
 {
-	int start;
-	int len;
-	int end;
-	int i;
-	int j;
+	size_t start;
+	size_t len;
 	char *ret;
 
-	j = 0;
-	i = 0;
+	if (s1 == NULL)
+		return NULL;
+
 	start = 0;
-	// if(*s1 == '\0')
-	// 	ret = '\0';
 	len = ft_strlen(s1);
-	end = space_rev(s1, len - 1);
-	start = space(s1);
-	ret = (char *)malloc(end - start + 2);
-	while (s1[start] != '\0')
-	{
-		if (ret == NULL)
-	 		return NULL;
-		while (s1[start] != '\0')
-		{
-			if (s1[start] == set[0])//setの１文字目と同じ文字を探す
-			{
-				i = 0;
-				while(s1[start + i] == set[i])//単語が一致してるか確かめる
-				{
-					if(set[i + 1] == '\0')
-						start += i + 1;
-					i++;
-				}
-			}
-			if(s1[start] == '\0')
-				break;
-			ret[j] = s1[start];
-			j++;
-			start++;
-		}
-	}
-	ret[j] = '\0';
+
+	while (is_trim_char(s1[start], set))
+		start++;
+
+	while (len > start && is_trim_char(s1[len - 1], set))
+		len--;
+
+	ret = (char *)malloc(len - start + 1);
+	if (ret == NULL)
+		return NULL;
+
+	ft_strlcpy(ret, s1 + start, len - start + 1);
+
 	return ret;
 }
 
@@ -86,26 +81,3 @@ int main(){
 	return 0;
 }
 
-	// while (*s1 != '\0'){
-	// 	i = 0;
-	// 	while(set[i] != '\0')
-	// 	{
-	// 		if(*s1 == set[i])
-	// 		{
-	// 			flag = 0;
-	// 			break;
-	// 		}
-	// 		else if(set[i + 1] == '\0')
-	// 		{
-	// 			ret[j] = *s1;
-	// 			j++;
-	// 			flag = 1;
-	// 		}
-	// 		i++;
-	// 	}
-	// 	s1++;
-	// }
-	// if(flag == 1)
-	// 	ret[j] = '\0';
-	// else
-	// 	ret[j + 1] = '\0';

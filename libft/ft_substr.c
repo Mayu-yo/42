@@ -2,15 +2,16 @@
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-
+	int i;
 	const char *p = s;
 	char *ret;
-	size_t len1 = len;
 
-	if(len == 0)
-		return NULL;
-	if(start >= ft_strlen(s))
-		return NULL;
+	i = 0;
+	if(len == 0 || start >= ft_strlen(s))
+	{
+		ret = (char *)malloc(1);
+		return (ret);
+	}
 	while(start != 0){//startまでずらす
 		start--;
 		p++;
@@ -19,18 +20,19 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	if(ret == NULL)
 		return NULL;
 	while(len != 0 && *p != '\0'){//コピー
-		*ret = *p;
+		ret[i] = *p;
 		p++;
-		ret++;
+		i++;
 		len--;
 	}
-	*ret = '\0';
-	return (ret-len1);
+	ret[i] = '\0';
+	return (ret);
 }
 
 // #include<stdio.h>
 // int main (){
-// 	char *ret = ft_substr("qwertyuo", 3, 4);
+// 	char *s = "libft-test-tokyo";
+// 	char *ret = ft_substr(s, 0, 100);
 // 	printf("%s", ret);
 // 	return 0;
 // }
