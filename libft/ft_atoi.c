@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/24 19:42:50 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:17:43 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	ft_atoi(const char *str)
 			return (int)(LONG_MAX);
 		if(num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && fugou == -1)
 			return (int)(LONG_MIN);
-		num = num * 10;
-		num += str[i] - '0';
+		num = num * 10 + str[i] - '0';
 		i++;
 	}
 	return (num * fugou);

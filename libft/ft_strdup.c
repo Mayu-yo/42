@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:58:36 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/24 11:37:32 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/24 22:42:36 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,19 @@ char	*ft_strdup(const char *s)
 	return (dst);
 }
 
-// #include <stdio.h>
-// char *ft_strdup(const char *s);
-// int main() {
-//     const char* original = "";
-//     char* duplicate = ft_strdup(original);
+#include <stdio.h>
+int main() {
+    const char* original = "";
+    char* duplicate = ft_strdup(original);
 
-//         printf("Original: %s\n", original);
-//         printf("Duplicate: %s\n", duplicate);
-//         free(duplicate);  // メモリの解放
+        printf("Original: %s\n", original);
+        printf("Duplicate: %s\n", duplicate);
+        free(duplicate);  // メモリの解放
     
-// 	 	duplicate = strdup(original);
-// 		printf("Original: %s\n", original);
-//         printf("Duplicate: %s\n", duplicate);
-//         free(duplicate);  // メモリの解放
+	 	duplicate = strdup(original);
+		printf("Original: %s\n", original);
+        printf("Duplicate: %s\n", duplicate);
+        free(duplicate);  // メモリの解放
 
-//     return 0;
-// }
+    return 0;
+}
