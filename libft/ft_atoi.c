@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/24 20:17:43 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:47:24 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,29 @@ int	ft_atoi(const char *str)
 {
 	int	i;
 	long	num;
-	int	fugou;
+	int	minus;
 
-	fugou = 1;
+	minus = 1;
 	i = kuhaku(str);
 	num = 0;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			fugou *= -1;
+			minus *= -1;
 		i++;
 	}
 	while (str[i] == '0')
 		i++;
 	while ('0' <= str[i] && str[i] <= '9')
 	{
-		if(num > ((LONG_MAX - (str[i] - '0')) / 10) && fugou == 1)
+		if(num > ((LONG_MAX - (str[i] - '0')) / 10) && minus == 1)
 			return (int)(LONG_MAX);
-		if(num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && fugou == -1)
+		if(num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && minus == -1)
 			return (int)(LONG_MIN);
 		num = num * 10 + str[i] - '0';
 		i++;
 	}
-	return (num * fugou);
+	return (num * minus);
 }
 
 // #include <stdio.h>

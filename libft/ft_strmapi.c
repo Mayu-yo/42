@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 15:04:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 16:10:03 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:57:47 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*ret;
 
 	i = 0;
-	ret = (char *)malloc(ft_strlen(s));
+	ret = (char *)malloc(ft_strlen(s) + 1);
 	if (ret == NULL)
 		return (NULL);
 	while (s[i] != '\0')

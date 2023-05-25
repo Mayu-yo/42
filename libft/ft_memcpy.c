@@ -7,6 +7,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	d = dst;
 	s = src;
+
+	if(dst == NULL && src == NULL)
+		return NULL;
 	while (n > 0)
 	{
 		*d = *s;
@@ -17,14 +20,11 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
+// #include <stdio.h>
 // int main(){
-// 	char a[] = "asdfg";
-// 	char b[] = "qwert";
-// 	write(1,a,sizeof(a));
-// 	write(1,b,sizeof(b));
-// 	write(1,"\n",1);
-// 	ft_memcpy(a,b,3);
-// 	write(1,a,sizeof(a));
-// 	write(1,b,sizeof(b));
+// 	char *ret = ft_memcpy(((void *)0), ((void *)0), 3);
+// 	printf("%s", ret);
+// 	char *ret2 = memcpy(((void *)0), ((void *)0), 3);
+// 	printf("%s", ret2);
 // 	return 0;
 // }

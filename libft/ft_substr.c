@@ -1,12 +1,26 @@
 #include "libft.h"
 
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (*str != '\0')
+// 	{
+// 		str++;
+// 		i++;
+// 	}
+// 	return (i);
+// }
+
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
 	int i;
-	const char *p = s;
+	const char *p;
 	char *ret;
 
 	i = 0;
+	p = s;
 	if(len == 0 || start >= ft_strlen(s))
 	{
 		ret = (char *)malloc(1);
@@ -32,7 +46,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 // #include<stdio.h>
 // int main (){
 // 	char *s = "libft-test-tokyo";
-// 	char *ret = ft_substr(s, 0, 100);
+// 	char *ret = ft_substr("42", 0, 0);
 // 	printf("%s", ret);
 // 	return 0;
 // }

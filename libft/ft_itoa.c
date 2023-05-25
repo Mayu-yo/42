@@ -6,11 +6,24 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:53:50 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 14:08:56 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:53:51 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (*str != '\0')
+// 	{
+// 		str++;
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 char	*ft_reverse(char *str)
 {
@@ -31,14 +44,17 @@ char	*ft_reverse(char *str)
 	return (str);
 }
 
-char	*convert(int n, int flag)
+char	*convert(long n, int flag, size_t len)
 {
 	char	buf;
 	char	*str;
 	int		i;
 
 	i = 0;
-	str = (char *)malloc(12);
+	if (flag == 0)
+		str = (char *)malloc(len + 1);
+	if (flag == 1)
+		str = (char *)malloc(len + 2);
 	if (str == NULL)
 		return (NULL);
 	while (n != 0)
@@ -49,29 +65,52 @@ char	*convert(int n, int flag)
 		i++;
 	}
 	if (flag == 1)
+	{
 		str[i] = '-';
+		i++;
+	}
+	str[i] = '\0';
 	return (str);
+}
+int count_len(int n)
+{
+	int	count;
+	count = 0;
+	while (n / 10)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count + 1);
 }
 
 char	*ft_itoa(int n)
 {
 	int		flag;
 	char	*str;
+	int len;
+	long n1 = n;
 
 	flag = 0;
-	str = (char *)malloc(12);
-	if (str == NULL)
-		return (NULL);
-	if (n == 0)
-		return ("0");
-	if (n == -2147483648)
-		return ("-2147483648");
-	if (n < 0)
+	len = count_len(n1);
+	if (n1 == 0)
 	{
-		n = -n;
+		str = (char *)malloc(len + 1);
+		*str = '0';
+		return (str);
+	}
+	if (n1 < 0)
+	{
+		n1 = -n1;
 		flag = 1;
 	}
-	str = convert(n, flag);
+	if (flag == 0)
+		str = (char *)malloc(len + 1);
+	if (flag == 1)
+		str = (char *)malloc(len + 2);
+	if (str == NULL)
+		return (NULL);
+	str = convert(n1, flag, len);
 	return (ft_reverse(str));
 }
 
@@ -82,7 +121,7 @@ char	*ft_itoa(int n)
 // 	str = (char *)malloc(12);
 // 	if (str == NULL)
 // 		return 0;
-// 	str = ft_itoa(-234567);
+// 	str = ft_itoa(0);
 // 	printf("%s", str);
 // 	return 0;
 // }

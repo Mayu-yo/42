@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:49:19 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 14:59:41 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:38:50 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	return (dest);
 }
 
-unsigned int	ft_strlcat(char *dst, char *src, unsigned int size)
+unsigned int	ft_strlcat(char *dst, char *src, size_t size)
 {
 	unsigned int	src_len;
 	unsigned int	dst_len;
@@ -55,12 +55,15 @@ unsigned int	ft_strlcat(char *dst, char *src, unsigned int size)
 // #include <stdio.h>
 // int main()
 // {
-//     char dest[20] = "";
-//     char src[] = "qwy";
-//     int x = 0;   
-//     unsigned int result = ft_strlcat(NULL, src, x);
-//     printf("自作%s: %u\n", dest, result);
-// 	unsigned int result1 = strlcat(NULL, src, x);
-//     printf("本物%s: %u\n", dest, result1);
+//     // char dest[20] = "CCCCC";
+//     // char src[] = "AAAAA";
+//     // int x = -1;
+// 	char b[0xF] = "nyan !";
+// 	unsigned int result = ft_strlcat(((void *)0), b, 2);
+//     //unsigned int result = ft_strlcat(dest, src, x);
+//     printf("自作 %u\n", result);
+// 	unsigned int result1 = strlcat(((void *)0), b, 2);
+// 	//unsigned int result1 = strlcat(dest, src, x);
+//     printf("本物 %u\n", result1);
 //     return(0);
 // }
