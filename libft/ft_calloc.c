@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:23:57 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/24 17:00:46 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 08:07:35 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_calloc(size_t count, size_t size)
 	mem = (char *)malloc(count * size);
 	if (mem == NULL)
 		return (NULL);
-	ft_memset(mem, 0, count * size);
+	ft_bzero(mem, count * size);
 	return (mem);
 }
 

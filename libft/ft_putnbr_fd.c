@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:12:54 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/22 11:07:51 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 08:55:38 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int		len;
-	char	*ret;
+	char	c;
+	long	num;
 
-	ret = (char *)malloc(12);
-	if (ret == NULL)
-		return;
-	ret = ft_itoa(n);
-	len = ft_strlen(ret);
-	write(fd, ret, len);
+	num = n;
+	if (num < 0)
+	{
+		write(fd, "-", 1);
+		num = -num;
+	}
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	c = '0' + (num % 10);
+	write(fd, &c, 1);
 }
 
 // int main (){
