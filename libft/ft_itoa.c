@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:53:50 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/26 15:04:43 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:38:35 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,28 +78,25 @@ char	*ft_itoa(int n)
 	int		flag;
 	char	*str;
 	int		len;
-	long	n1;
+	long	n_long;
 
-	n1 = n;
+	n_long = n;
 	flag = 0;
-	len = count_len(n1);
-	if (n1 == 0)
+	len = count_len(n_long);
+	if (n_long == 0)
 	{
 		str = (char *)malloc(len + 1);
 		*str = '0';
 		return (str);
 	}
-	if (n1 < 0)
+	if (n_long < 0)
 	{
-		n1 = -n1;
+		n_long = -n_long;
 		flag = 1;
 	}
-	if (flag == 0)
-		str = (char *)malloc(len + 1);
-	if (flag == 1)
-		str = (char *)malloc(len + 2);
+	str = (char *)malloc(len + 1 + flag);
 	if (str == NULL)
 		return (NULL);
-	str = convert(n1, flag, len);
+	str = convert(n_long, flag, len);
 	return (ft_reverse(str));
 }
