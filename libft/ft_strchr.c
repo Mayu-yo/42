@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:49 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/20 13:56:51 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:29:56 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return ((char *)p);
 }
-
-// int main(){
-// 	char c[] = "asdfg";
-// 	char *ret;
-// 	ret = ft_strchr(c, 100);
-// 	write(1, ret, sizeof(c));
-// 	return 0;
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:10:11 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/21 14:10:52 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:29:19 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,3 @@ void	ft_putchar_fd(char c, int fd)
 	ch[0] = c;
 	write(fd, ch, 1);
 }
-
-// int main(){
-// 	ft_putchar_fd('z', 1);
-// 	return 0;
-// }

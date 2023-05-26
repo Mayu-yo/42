@@ -1,26 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/26 14:53:45 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/26 15:03:48 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c){
-	const unsigned char *p = (const unsigned char *)s;
-	const unsigned char *ret = NULL;
+char	*ft_strrchr(const char *s, int c)
+{
+	const unsigned char	*p;
+	const unsigned char	*ret;
 
-	while(*p != '\0'){
-		if(*p == (unsigned char)c)
+	p = (const unsigned char *)s;
+	ret = NULL;
+	while (*p != '\0')
+	{
+		if (*p == (unsigned char)c)
 			ret = p;
 		p++;
 	}
-	if(c == '\0')
-		return (char *)p;
-	return (char *)ret;
+	if (c == '\0')
+		return ((char *)p);
+	return ((char *)ret);
 }
-
-// #include <stdio.h>
-// int main(){
-// 	char *c = "libft-test-tokyo";
-// 	char *ret;
-// 	ret = ft_strrchr(c, 'l' - 256);
-// 	printf("自作：%s\n", ret);
-// 	ret = strrchr(c, 'l' - 256);
-// 	printf("本物：%s", ret);
-// 	return 0;
-// }

@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 15:06:45 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 15:33:30 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:31:53 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	i;
-	int	ret;
+	int				ret;
 
 	i = 0;
 	ret = 0;
@@ -28,18 +28,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-// #include <stdio.h>
-// int main() {
-// 	char *str = "libft-test-tokyo";
-// 	int len = strlen(str);
-// 	char *cmp2 = calloc(10, 1);
-// 	strlcpy(cmp2, "libft", 10);
-// 	//cmp2[5] = (-__SCHAR_MAX__-1);
-// 	cmp2[5] = (-42);
-// 	int ret = ft_strncmp(str, cmp2, len);
-// 	printf("%d\n", ret);
-// 	ret = strncmp(str, cmp2, len);
-// 	printf("%d", ret);
-// 	return 0;
-// }

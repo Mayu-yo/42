@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:13:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 22:02:30 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/26 15:02:09 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,8 @@ void	ft_putstr_fd(char *s, int fd)
 
 	len = 0;
 	if (s == NULL)
-		return;
+		return ;
 	while (s[len] != '\0')
 		len++;
 	write(fd, s, len);
 }
-
-
-// int main (){
-// 	ft_putstr_fd("asdfg",1);
-// 	return 0;
-// }

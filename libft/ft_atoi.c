@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 14:47:24 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:56:15 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	kuhaku(const char *str)
 		i++;
 	return (i);
 }
-#include <limits.h>
+
 int	ft_atoi(const char *str)
 {
-	int	i;
+	int		i;
 	long	num;
-	int	minus;
+	int		minus;
 
 	minus = 1;
 	i = kuhaku(str);
@@ -41,24 +41,12 @@ int	ft_atoi(const char *str)
 		i++;
 	while ('0' <= str[i] && str[i] <= '9')
 	{
-		if(num > ((LONG_MAX - (str[i] - '0')) / 10) && minus == 1)
-			return (int)(LONG_MAX);
-		if(num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && minus == -1)
-			return (int)(LONG_MIN);
+		if (num > ((LONG_MAX - (str[i] - '0')) / 10) && minus == 1)
+			return ((int)(LONG_MAX));
+		if (num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && minus == -1)
+			return ((int)(LONG_MIN));
 		num = num * 10 + str[i] - '0';
 		i++;
 	}
 	return (num * minus);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	char str[] = "9223372036854775806";
-// 	int num;
-// 	num = ft_atoi(str);
-// 	printf("%d\n", num);
-// 	num = atoi(str);
-// 	printf("%d", num);
-// 	return 0;
-// }

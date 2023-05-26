@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:48:21 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 21:57:52 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/26 14:30:31 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s[i + j] = '\0';
 	return (s);
 }
-
-// #include <stdio.h>
-// int main(){
-// 	char *ret;
-// 	ret = ft_strjoin("qwert","asdfg");
-// 	printf("%s",ret);
-// 	return 0;
-// }

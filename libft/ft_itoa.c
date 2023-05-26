@@ -6,24 +6,11 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:53:50 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 16:53:51 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:04:43 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// size_t	ft_strlen(const char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (*str != '\0')
-// 	{
-// 		str++;
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 char	*ft_reverse(char *str)
 {
@@ -72,9 +59,11 @@ char	*convert(long n, int flag, size_t len)
 	str[i] = '\0';
 	return (str);
 }
-int count_len(int n)
+
+int	count_len(int n)
 {
 	int	count;
+
 	count = 0;
 	while (n / 10)
 	{
@@ -88,9 +77,10 @@ char	*ft_itoa(int n)
 {
 	int		flag;
 	char	*str;
-	int len;
-	long n1 = n;
+	int		len;
+	long	n1;
 
+	n1 = n;
 	flag = 0;
 	len = count_len(n1);
 	if (n1 == 0)
@@ -113,15 +103,3 @@ char	*ft_itoa(int n)
 	str = convert(n1, flag, len);
 	return (ft_reverse(str));
 }
-
-// #include <stdio.h>
-// int main() {
-// 	char *str;
-
-// 	str = (char *)malloc(12);
-// 	if (str == NULL)
-// 		return 0;
-// 	str = ft_itoa(0);
-// 	printf("%s", str);
-// 	return 0;
-// }

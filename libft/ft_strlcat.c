@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:49:19 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 21:50:22 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/26 14:30:42 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,3 @@ unsigned int	ft_strlcat(char *dst, char *src, size_t size)
 	dst[size - 1] = '\0';
 	return (total_len);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-//     // char dest[20] = "CCCCC";
-//     // char src[] = "AAAAA";
-//     // int x = -1;
-// 	char b[0xF] = "nyan !";
-// 	unsigned int result = ft_strlcat(((void *)0), b, 2);
-//     //unsigned int result = ft_strlcat(dest, src, x);
-//     printf("自作 %u\n", result);
-// 	unsigned int result1 = strlcat(((void *)0), b, 2);
-// 	//unsigned int result1 = strlcat(dest, src, x);
-//     printf("本物 %u\n", result1);
-//     return(0);
-// }

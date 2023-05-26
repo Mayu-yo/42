@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 11:09:22 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:31:20 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,3 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
-
-// int main(){
-// 	int ret = 0;
-// 	char *str = "asdf";
-
-// 	ret = ft_strlen(str);
-// 	printf("%d", ret);
-// }
