@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:13:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 08:57:21 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/25 22:02:30 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr_fd(char *s, int fd)
 	int		len;
 
 	len = 0;
+	if (s == NULL)
+		return;
 	while (s[len] != '\0')
 		len++;
 	write(fd, s, len);

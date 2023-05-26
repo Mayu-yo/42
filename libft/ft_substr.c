@@ -1,18 +1,5 @@
 #include "libft.h"
 
-// size_t	ft_strlen(const char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (*str != '\0')
-// 	{
-// 		str++;
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
 	int i;
@@ -21,6 +8,8 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	p = s;
+	if (s == NULL)
+		return (NULL);
 	if(len == 0 || start >= ft_strlen(s))
 	{
 		ret = (char *)malloc(1);

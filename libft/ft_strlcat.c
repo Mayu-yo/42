@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:49:19 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/25 13:38:50 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:50:22 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ unsigned int	ft_strlcat(char *dst, char *src, size_t size)
 	src_len = ft_strlen(src);
 	if (dst == NULL)
 		return (src_len);
-	dst_len = strlen(dst);
+	dst_len = ft_strlen(dst);
 	total_len = dst_len + src_len;
 	if (size <= dst_len)
 		return (src_len + size);
