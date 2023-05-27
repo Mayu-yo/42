@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 15:19:05 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/26 15:03:34 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:06:56 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *h, const char *n, size_t len)
 	size_t	h_len;
 	size_t	i;
 
-	if (h == NULL)
+	if (h == NULL && len == 0)
 		return (NULL);
 	n_len = ft_strlen(n);
 	h_len = ft_strlen(h);
@@ -35,3 +35,10 @@ char	*ft_strnstr(const char *h, const char *n, size_t len)
 	}
 	return (NULL);
 }
+
+// #include <stdio.h>
+// int main (){
+// 	printf("%s\n",ft_strnstr(((void *)0), "fake", 3));
+// 	printf("%s\n",strnstr(((void *)0), "fake", 3));
+// 	return 0;
+// }
