@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   tester.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: susami <susami@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 14:50:28 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/28 14:26:11 by mayyamad         ###   ########.fr       */
+/*   Created: 2022/05/02 09:47:36 by susami            #+#    #+#             */
+/*   Updated: 2022/05/30 12:25:38 by susami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef TESTER_H
+# define TESTER_H
 
-void	ft_lstadd_back(t_list **lst, t_list*new)
-{
-	t_list	*last_p;
+# include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <ctype.h>
+# include <fcntl.h>
+# include "libft.h"
+# include "libassert.h"
 
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	last_p = *lst;
-	while (last_p->next != NULL)
-		last_p = last_p->next;
-	last_p->next = new;
-}
+#endif

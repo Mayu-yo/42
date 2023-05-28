@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/05/28 10:49:02 by mayu             ###   ########.fr       */
+/*   Created: 2023/05/28 14:24:15 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/28 14:25:13 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strnstr(const char *h, const char *n, size_t len)
+char	*ft_strnstr(const char *h, const char *n, size_t len)
 {
 	size_t	n_len;
 	size_t	h_len;
@@ -33,6 +33,5 @@ char *ft_strnstr(const char *h, const char *n, size_t len)
 			return ((char *)(h + i));
 		i++;
 	}
-
 	return (NULL);
 }

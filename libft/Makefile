@@ -42,7 +42,7 @@ BONUS			=	ft_lstnew.c\
 					ft_lstclear.c\
 					ft_lstiter.c\
 					ft_lstmap.c
-INCS 			=	includes
+
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
 LIBC			=	ar -rcs
@@ -52,7 +52,7 @@ BONUS_OBJS		=	${BONUS:.c=.o}
 
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@ -I ${INCS}
+	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
 	${LIBC} ${NAME} ${OBJS}

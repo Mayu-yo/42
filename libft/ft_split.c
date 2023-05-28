@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/28 10:27:43 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/28 14:25:38 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ char	**ft_split2(char const *s, char c, char **ret, int flag)
 	return (null_terminate_array(ret, i, j, flag));
 }
 
-int count_word_len(const char *s, char c)
+int	count_word_len(const char *s, char c)
 {
 	int	count;
-	
+
 	count = 0;
 	while (*s != c)
 	{
