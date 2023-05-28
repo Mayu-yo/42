@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 14:54:21 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/28 09:39:03 by mayu             ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/05/28 10:49:02 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char *ft_strnstr(const char *h, const char *n, size_t len)
 {
-	int			i;
-	char		*ret;
+	size_t	n_len;
+	size_t	h_len;
+	size_t	i;
 
+	if (h == NULL && len == 0)
+		return (NULL);
+	n_len = ft_strlen(n);
+	h_len = ft_strlen(h);
+	if (n_len == 0)
+		return ((char *)h);
+	if (len < n_len || h_len < n_len)
+		return (NULL);
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (len == 0 || start >= ft_strlen(s))
+	while (i <= h_len - n_len && i <= len - n_len)
 	{
-		ret = (char *)malloc(1);
-		return (ret);
-	}
-	ret = (char *)malloc(len + 1);
-	if (ret == NULL)
-		return (NULL);
-	while (len != 0 && s[start + i] != '\0')
-	{
-		ret[i] = s[start + i];
+		if (ft_strncmp(h + i, n, n_len) == 0)
+			return ((char *)(h + i));
 		i++;
-		len--;
 	}
-	ret[i] = '\0';
-	return (ret);
+
+	return (NULL);
 }

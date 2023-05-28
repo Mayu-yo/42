@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/26 14:56:15 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/28 09:41:14 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	kuhaku(const char *str)
+int	skip_space(const char *str)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 	int		minus;
 
 	minus = 1;
-	i = kuhaku(str);
+	i = skip_space(str);
 	num = 0;
 	if (str[i] == '-' || str[i] == '+')
 	{

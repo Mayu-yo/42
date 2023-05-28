@@ -32,8 +32,8 @@ SRCS 			=	ft_isalpha.c\
 					ft_putchar_fd.c\
 					ft_putstr_fd.c\
 					ft_putendl_fd.c\
-					ft_putnbr_fd.c\
-					ft_lstnew.c\
+					ft_putnbr_fd.c
+BONUS			=	ft_lstnew.c\
 					ft_lstadd_front.c\
 					ft_lstsize.c\
 					ft_lstlast.c\
@@ -46,8 +46,9 @@ INCS 			=	includes
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
 LIBC			=	ar -rcs
+rm				=	rm -f
 OBJS			=	${SRCS:.c=.o}
-
+BONUS_OBJS		=	${BONUS:.c=.o}
 
 
 .c.o:
@@ -59,9 +60,12 @@ ${NAME}: ${OBJS}
 all: ${NAME}
 
 clean:
-	rm -f ${OBJS}
+	${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean: clean
-	rm -f ${NAME}
+	${RM} ${NAME}
 
 re: fclean all
+
+bonus: ${BONUS_OBJS}
+	${LIBC} ${NAME} ${BONUS_OBJS}
