@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:52:06 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/29 15:05:02 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/30 11:45:05 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*current;
 
 	new_list = NULL;
-	if (lst == NULL)
+	if (lst == NULL || f == NULL)
 		return (NULL);
 	while (lst != NULL)
 	{

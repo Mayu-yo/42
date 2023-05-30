@@ -42,17 +42,17 @@ BONUS			=	ft_lstnew.c\
 					ft_lstclear.c\
 					ft_lstiter.c\
 					ft_lstmap.c
-INCS 			=	includes
+
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
 LIBC			=	ar -rcs
-rm				=	rm -f
+RM				=	rm -f
 OBJS			=	${SRCS:.c=.o}
 BONUS_OBJS		=	${BONUS:.c=.o}
 
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@ -I ${INCS}
+	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
 	${LIBC} ${NAME} ${OBJS}
@@ -67,5 +67,5 @@ fclean: clean
 
 re: fclean all
 
-bonus: ${BONUS_OBJS}
-	${LIBC} ${NAME} ${BONUS_OBJS}
+bonus: ${OBJS} ${BONUS_OBJS}
+	${LIBC} ${NAME} ${OBJS} ${BONUS_OBJS}
