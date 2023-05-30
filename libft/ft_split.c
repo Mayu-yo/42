@@ -6,27 +6,13 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 12:59:51 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:11:09 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
-
-
-int	count_word_len(const char *s, char c)
+int	count_word_len(const char *s, char c, int which_len)
 {
 	int	count;
 
@@ -36,6 +22,7 @@ int	count_word_len(const char *s, char c)
 		s++;
 		count++;
 	}
+	
 	return (count);
 }
 
