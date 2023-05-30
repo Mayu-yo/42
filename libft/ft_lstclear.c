@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:51:14 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/26 14:59:16 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/30 10:48:18 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*p;
-	t_list	*p_next;
+	t_list	*current;
+	t_list	*next;
 
 	if (lst == NULL || *lst == NULL)
 		return ;
-	p = *lst;
-	p_next = p->next;
-	while (p_next != NULL)
+	current = *lst;
+	next = current->next;
+	while (next != NULL)
 	{
-		p_next = p->next;
-		del(p->content);
-		free(p);
-		p = p_next;
+		next = current->next;
+		del(current->content);
+		free(current);
+		current = next;
 	}
 	*lst = NULL;
 }

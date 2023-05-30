@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/28 10:27:43 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/30 11:06:15 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,34 @@ char	**ft_split2(char const *s, char c, char **ret, int flag)
 	return (null_terminate_array(ret, i, j, flag));
 }
 
-int count_word_len(const char *s, char c)
+int count_word_len(const char *s, char c, int which_len)
 {
 	int	count;
+	int flag;
 	
 	count = 0;
-	while (*s != c)
+	if (which_len == 0)
 	{
-		s++;
-		count++;
+		while (*s != c)
+		{
+			s++;
+			count++;
+		}
+	}
+	else
+	{
+		flag = 0;
+		while (*s != '\0')
+		{
+			if (*s == c && flag == 0)
+			{
+				count++;
+				flag = 1;
+			}
+			if(*s != c)
+				flag = 0;
+			s++;
+		}
 	}
 	return (count);
 }
@@ -76,18 +95,14 @@ int count_word_len(const char *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**ret;
-	int		len;
 	int		flag;
-	int		word_len;
 
 	if (s == NULL)
 		return (NULL);
-	len = ft_strlen(s);
-	word_len = count_word_len(s, c);
-	ret = (char **)malloc((len + 1) * sizeof(char *));
+	ret = (char **)malloc((count_word_len(s, c, 1) + 1) * sizeof(char *));
 	if (ret == NULL)
 		return (NULL);
-	ret[0] = (char *)malloc((word_len + 1) * sizeof(char));
+	ret[0] = (char *)malloc((count_word_len(s, c, 0) + 1) * sizeof(char));
 	if (ret[0] == NULL)
 	{
 		free(ret);
