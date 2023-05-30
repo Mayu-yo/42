@@ -1,13 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
-
-int ft_printf(const char *, ...);
-int format_check(va_list argd, const char format);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	count_hex_len(int n);
-int ft_puthex(long long n);
+#include "printf.h"
 
 int	ft_putchar_fd(char c)
 {
@@ -21,8 +12,10 @@ int	ft_putchar_fd(char c)
 int format_check(va_list args, const char format)
 {
 	int len;
+	int	*num_count;
 
 	len = 0;
+	num_count = NULL;
 	if (format == 'c')
 		len += ft_putchar(va_arg(args, int));
 	else if (format == 's')
@@ -30,9 +23,15 @@ int format_check(va_list args, const char format)
 	else if (format == 'p')//void pointer hexadecimal format
 		len += ft_puthex(va_arg(args, unsigned long long));//ここの型の意味がわからん
 	else if (format == 'd')
-		len += ft_putnbr(va_arg(args, int));
+	{
+		len += ft_putnbr((va_arg(args, int)), num_count);
+		len += *num_count;
+	}
 	else if (format == 'i')
-		len += ft_putnbr(va_arg(args, int));//再起の数え方がわからない
+	{
+		ft_putnbr((va_arg(args, int)), num_count);
+		len += *num_count;
+	}
 	else if (format == 'u')//unsigned decimal
 		len += ft_puthex(va_arg(args, unsigned int));
 	else if (format == 'x')//hexadecimal
@@ -65,6 +64,6 @@ int ft_printf(const char *arg_1, ...)
 }
 int main()
 {
-	ft_printf("%s","asdf");
+	ft_printf("%s","4512345");
 	return 0;
 }

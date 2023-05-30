@@ -30,15 +30,15 @@ int	ft_putnbr(int n, int *count)
 	long	num;
 
 	num = n;
+	*count += 1;
 	if (num < 0)
 	{
 		write(1, "-", 1);
 		num = -num;
 	}
 	if (num >= 10)
-		ft_putnbr(num / 10);
+		ft_putnbr(num / 10, count);
 	c = '0' + (num % 10);
-	*count++;
 	write(1, &c, 1);
 	return 0;
 }

@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 14:12:54 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 14:08:55 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/05/28 14:28:01 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/30 16:08:24 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-long	is_minus(long num, int fd)
-{
-	if (num < 0)
-	{
-		write(fd, "-", 1);
-		num = -num;
-	}
-	return (num);
-}
+# include <stdlib.h>
+# include <unistd.h>
+# include <strings.h>
+# include <limits.h>
+# include <stdarg.h>
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	char	c;
-	long	num;
+int ft_printf(const char *, ...);
+int format_check(va_list argd, const char format);
+int	ft_putchar(char c);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n, int *count);
+int	count_hex_len(int n);
+int ft_puthex(long long n);
 
-	num = n;
-	num = is_minus(n, fd);
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	c = '0' + (num % 10);
-	write(fd, &c, 1);
-}
+#endif

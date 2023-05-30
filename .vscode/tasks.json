@@ -8,8 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-				"/Users/mayyamad/Desktop/42/printf/ft_put.c",
-				"/Users/mayyamad/Desktop/42/printf/ft_basetoa.c",
+				"libftprintf.a",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

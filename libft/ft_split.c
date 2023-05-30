@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 13:12:38 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:09:07 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,31 @@ char	**ft_split2(char const *s, char c, char **ret, int flag)
 	return (null_terminate_array(ret, i, j, flag));
 }
 
-int count_word_len(const char *s, char c, int which_len)
+int	count_word_len(const char *s, char c, int which_len)
 {
 	int	count;
-	int flag;
-	
+	int	flag;
+
 	count = 0;
-	if (which_len == 0)
+	flag = 0;
+	while (*s != '\0')
 	{
-		while (*s != c)
-		{
-			s++;
-			count++;
-		}
-	}
-	else
-	{
-		flag = 0;
-		while (*s != '\0')
+		if (which_len == 0)
+			if (*s != c)
+				count++;
+		if (which_len == 1)
 		{
 			if (*s == c && flag == 0)
 			{
 				count++;
 				flag = 1;
 			}
-			if(*s != c)
+			if (*s != c)
 				flag = 0;
-			s++;
 		}
+		s++;
 	}
-	return (count);
+	return (count + which_len);
 }
 
 char	**ft_split(char const *s, char c)

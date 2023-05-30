@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:52:06 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 11:45:05 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/30 13:31:51 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_list = NULL;
 	if (lst == NULL || f == NULL)
 		return (NULL);
+	new_list = NULL;
 	while (lst != NULL)
 	{
 		new_node = ft_lstnew((*f)(lst->content));
@@ -30,15 +31,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			return (NULL);
 		}
 		if (new_list == NULL)
-		{
 			new_list = new_node;
-			current = new_list;
-		}
 		else
-		{
 			current->next = new_node;
-			current = current->next;
-		}
+		current = new_node;
 		lst = lst->next;
 	}
 	current->next = NULL;
