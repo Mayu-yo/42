@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/01 15:51:26 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:06:01 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ char	**free_all(char **ret, int count)
 	}
 	free(ret);
 	return (NULL);
+}
+
+char	**null_terminate_array(char **ret, int i, int j, int flag)
+{
+	if (flag == 0)
+		ret[i++][j] = '\0';
+	ret[i] = NULL;
+	return (ret);
 }
 
 int	count_word_len(const char *s, char c, size_t i, int which_len)
@@ -55,8 +63,8 @@ int	count_word_len(const char *s, char c, size_t i, int which_len)
 
 char	**ft_split2(char const *s, char c, size_t k, char **ret)
 {
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;
@@ -69,10 +77,7 @@ char	**ft_split2(char const *s, char c, size_t k, char **ret)
 			ret[i++][j] = '\0';
 			j = 0;
 			if (k == ft_strlen(s))
-			{
-				ret[i] = NULL;
-				return (ret);
-			}
+				return (null_terminate_array(ret, i, j, 1));
 			else
 				ret[i] = (char *)malloc(count_word_len(s, c, k, 0) + 1);
 			if (ret[i] == NULL)
@@ -82,9 +87,7 @@ char	**ft_split2(char const *s, char c, size_t k, char **ret)
 			ret[i][j++] = s[k];
 		k++;
 	}
-	ret[i++][j] = '\0';
-	ret[i] = NULL;
-	return (ret);
+	return (null_terminate_array(ret, i, j, 0));
 }
 
 char	**ft_split(char const *s, char c)
@@ -95,28 +98,18 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (s[0] == '\0')
-	{
-		ret = malloc(sizeof(char *) * 1);
-		ret[0] = NULL;
-		return (ret);
-	}
 	ret = malloc((count_word_len(s, c, i, 1) + 1) * sizeof(char *));
+	if (s[0] == '\0')
+		return (null_terminate_array(ret, 0, 0, 1));
 	if (ret == NULL)
 		return (NULL);
 	while (s[i] == c)
 		i++;
 	if (i == ft_strlen(s))
-	{
-		ret[0] = NULL;
-		return (ret);
-	}
+		return (null_terminate_array(ret, 0, 0, 1));
 	ret[0] = malloc((count_word_len(s, c, i, 0) + 1) * sizeof(char));
 	if (ret[0] == NULL)
-	{
-		free(ret);
-		return (NULL);
-	}
+		return (free_all(ret, 0));
 	ret = ft_split2(s, c, i, ret);
 	return (ret);
 }
