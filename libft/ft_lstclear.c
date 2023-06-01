@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:51:14 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 10:48:18 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/30 22:45:09 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	t_list	*current;
 	t_list	*next;
 
-	if (lst == NULL || *lst == NULL)
+	if (lst == NULL || *lst == NULL || del == NULL)
 		return ;
 	current = *lst;
 	next = current->next;

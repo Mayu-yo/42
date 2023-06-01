@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:51:40 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 11:44:43 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/30 22:44:45 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (lst == NULL || f == NULL)
 		return ;
-	while (lst->next != NULL)
+	while (lst != NULL)
 	{
 		(*f)(lst->content);
 		lst = lst->next;
 	}
-	(*f)(lst->content);
 }

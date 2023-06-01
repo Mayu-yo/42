@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:53:50 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/26 15:38:35 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/05/31 00:40:21 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,12 @@ char	*ft_reverse(char *str)
 	return (str);
 }
 
-char	*convert(long n, int flag, size_t len)
+char	*convert(long n, int flag, char *str)
 {
 	char	buf;
-	char	*str;
 	int		i;
 
 	i = 0;
-	if (flag == 0)
-		str = (char *)malloc(len + 1);
-	if (flag == 1)
-		str = (char *)malloc(len + 2);
-	if (str == NULL)
-		return (NULL);
 	while (n != 0)
 	{
 		buf = n % 10;
@@ -73,6 +66,14 @@ int	count_len(int n)
 	return (count + 1);
 }
 
+char *if_zero(char *str)
+{
+	str = (char *)malloc(2);
+	str[0] = '0';
+	str[1] = '\0';
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	int		flag;
@@ -82,21 +83,19 @@ char	*ft_itoa(int n)
 
 	n_long = n;
 	flag = 0;
+	str = NULL;
 	len = count_len(n_long);
 	if (n_long == 0)
-	{
-		str = (char *)malloc(len + 1);
-		*str = '0';
-		return (str);
-	}
+		return (if_zero(str));
 	if (n_long < 0)
 	{
 		n_long = -n_long;
 		flag = 1;
+		len++;
 	}
-	str = (char *)malloc(len + 1 + flag);
+	str = (char *)malloc(len + 1);
 	if (str == NULL)
 		return (NULL);
-	str = convert(n_long, flag, len);
+	str = convert(n_long, flag, str);
 	return (ft_reverse(str));
 }

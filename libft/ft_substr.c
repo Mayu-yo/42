@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:54:21 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/28 09:39:03 by mayu             ###   ########.fr       */
+/*   Updated: 2023/05/30 23:18:03 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (len == 0 || start >= ft_strlen(s))
 	{
-		ret = (char *)malloc(1);
+		ret = ft_calloc(1, 1);
 		return (ret);
 	}
-	ret = (char *)malloc(len + 1);
+	if (len > ft_strlen(s))
+		ret = (char *)malloc(ft_strlen(s));
+	else
+		ret = (char *)malloc(len + 1);
 	if (ret == NULL)
 		return (NULL);
 	while (len != 0 && s[start + i] != '\0')
