@@ -22,10 +22,12 @@ BONUS			=	ft_lstnew.c\
 
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
-LIBC			=	ar -rcs
+LIBC			=	ar -rc
 RM				=	rm -f
 OBJS			=	${SRCS:.c=.o}
-BONUS_OBJS		=	${BONUS:.c=.o}
+ifdef WITH_BONUS
+OBJS		+=	${BONUS:.c=.o}
+endif
 
 
 .c.o:
@@ -37,12 +39,12 @@ ${NAME}: ${OBJS}
 all: ${NAME}
 
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS}
+	${RM} ${OBJS} ${BONUS:.c=.o}
 
 fclean: clean
 	${RM} ${NAME}
 
 re: fclean all
 
-bonus: ${OBJS} ${BONUS_OBJS}
-	${LIBC} ${NAME} ${OBJS} ${BONUS_OBJS}
+bonus:
+	make WITH_BONUS=1
