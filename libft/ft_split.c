@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/01 15:47:04 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:51:26 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ int	count_word_len(const char *s, char c, size_t i, int which_len)
 	{
 		if (which_len == 0)
 		{
-			while (s[i++] != c && i < ft_strlen(s))
-			{
-				// i++;
+			while (s[i++] != c && i < ft_strlen(s) && which_len == 0)
 				count++;
-			}
 			break ;
 		}
 		if (which_len == 1)
