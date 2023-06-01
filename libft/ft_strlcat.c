@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:49:19 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/27 15:02:14 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:35:35 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t nb)
+static char	*ft_strncat(char *dest, const char *src, size_t nb)
 {
 	size_t	i;
 	size_t	j;

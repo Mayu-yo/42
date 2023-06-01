@@ -6,13 +6,13 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/01 18:06:01 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:35:19 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**free_all(char **ret, int count)
+static char	**free_all(char **ret, int count)
 {
 	while (count >= 0)
 	{
@@ -23,7 +23,7 @@ char	**free_all(char **ret, int count)
 	return (NULL);
 }
 
-char	**null_terminate_array(char **ret, int i, int j, int flag)
+static char	**null_terminate_array(char **ret, int i, int j, int flag)
 {
 	if (flag == 0)
 		ret[i++][j] = '\0';
@@ -31,7 +31,7 @@ char	**null_terminate_array(char **ret, int i, int j, int flag)
 	return (ret);
 }
 
-int	count_word_len(const char *s, char c, size_t i, int which_len)
+static int	count_word_len(const char *s, char c, size_t i, int which_len)
 {
 	int	count;
 	int	flag;
@@ -46,22 +46,19 @@ int	count_word_len(const char *s, char c, size_t i, int which_len)
 				count++;
 			break ;
 		}
-		if (which_len == 1)
+		if (which_len == 1 && s[i] != c && flag == 0)
 		{
-			if (s[i] != c && flag == 0)
-			{
-				count++;
-				flag = 1;
-			}
-			if (s[i] == c)
-				flag = 0;
+			count++;
+			flag = 1;
 		}
+		if (which_len == 1 && s[i] == c)
+			flag = 0;
 		i++;
 	}
 	return (count);
 }
 
-char	**ft_split2(char const *s, char c, size_t k, char **ret)
+static char	**ft_split2(char const *s, char c, size_t k, char **ret)
 {
 	size_t		i;
 	size_t		j;
@@ -113,9 +110,3 @@ char	**ft_split(char const *s, char c)
 	ret = ft_split2(s, c, i, ret);
 	return (ret);
 }
-
-// int main() {
-//     char *invalidPointer = NULL;
-//     ft_split("     ", ' ');
-//     return 0;
-// }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:53:50 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/31 00:40:21 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:42:06 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_reverse(char *str)
+static char	*ft_reverse(char *str)
 {
 	size_t	str_len;
 	size_t	i;
@@ -31,7 +31,7 @@ char	*ft_reverse(char *str)
 	return (str);
 }
 
-char	*convert(long n, int flag, char *str)
+static char	*convert(long n, int flag, char *str)
 {
 	char	buf;
 	int		i;
@@ -53,7 +53,7 @@ char	*convert(long n, int flag, char *str)
 	return (str);
 }
 
-int	count_len(int n)
+static int	count_len(int n)
 {
 	int	count;
 
@@ -66,7 +66,7 @@ int	count_len(int n)
 	return (count + 1);
 }
 
-char *if_zero(char *str)
+static char	*if_zero(char *str)
 {
 	str = (char *)malloc(2);
 	str[0] = '0';

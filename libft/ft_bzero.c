@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:17:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 22:48:48 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:28:38 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	*ft_bzero(void *buf, size_t n)
 {
-	memset(buf, 0, n);
+	ft_memset(buf, 0, n);
 	return (buf);
 }

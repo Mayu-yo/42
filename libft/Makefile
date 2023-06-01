@@ -24,10 +24,10 @@ CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
 LIBC			=	ar -rc
 RM				=	rm -f
-OBJS			=	${SRCS:.c=.o}
 ifdef WITH_BONUS
-OBJS		+=	${BONUS:.c=.o}
+SRCS		+=	${BONUS}
 endif
+OBJS			=	${SRCS:.c=.o}
 
 
 .c.o:
@@ -47,4 +47,4 @@ fclean: clean
 re: fclean all
 
 bonus:
-	make WITH_BONUS=1
+	make WITH_BONUS=1 ${NAME}

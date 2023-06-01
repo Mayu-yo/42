@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:54:07 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/26 14:54:08 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:35:55 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_trim_char(char c, const char *set)
+static int	is_trim_char(char c, const char *set)
 {
 	while (*set != '\0')
 	{

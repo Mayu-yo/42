@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/28 09:41:14 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:31:50 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	skip_space(const char *str)
+static int	skip_space(const char *str)
 {
 	int	i;
 

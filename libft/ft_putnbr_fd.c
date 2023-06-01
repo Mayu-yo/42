@@ -6,13 +6,13 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:12:54 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/05/30 14:08:55 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:33:33 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	is_minus(long num, int fd)
+static long	is_minus(long num, int fd)
 {
 	if (num < 0)
 	{
