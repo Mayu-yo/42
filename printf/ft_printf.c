@@ -4,7 +4,7 @@ static int	ft_putnbr(long long num, int *count)
 {
 	char	c;
 
-	count[0] += 1;
+	*count = *count + 1;
 	if (num < 0)
 	{
 		write(1, "-", 1);
@@ -35,7 +35,7 @@ int	ft_atoi_print(const char *str, int *count)
 
 	minus = 1;
 	if (!str)
-		return (count[0]);
+		return (*count);
 	//str = malloc(ft_strlen(str));//sippaisyori poinntadeatsukau?
 	str = skip_space(str);
 	num = 0;
@@ -44,7 +44,7 @@ int	ft_atoi_print(const char *str, int *count)
 		if (*str == '-')
 		{
 			minus *= -1;
-			count[0] += 1;
+			*count += 1;
 		}
 		str++;
 	}
@@ -56,17 +56,19 @@ int	ft_atoi_print(const char *str, int *count)
 		str++;
 	}
 	ft_putnbr(num * minus, count);
-	return (count[0]);
+	return (*count);
 }
 
 /*-------------------------------------------------------*/
 static int format_check(va_list args, const char format)
 {
 	int len;
-	int	num_count[1];
+	int	*num_count;
+	int num;
 
 	len = 0;
-	num_count[0] = 0;
+	num = 0;
+	num_count = &num;
 	if (!args)
 	{
 		write(1, "(null)", 6);
@@ -77,9 +79,9 @@ static int format_check(va_list args, const char format)
 	else if (format == 's')
 		len += ft_putstr(va_arg(args, char *));
 	else if (format == 'p')
-		len += ft_putaddress(va_arg(args, unsigned long long), 0);
+		len += ft_putaddress(va_arg(args, void *), 0);
 	else if (format == 'd' || format == 'i')
-		len += ft_atoi_print(va_arg(args, char *), num_count);
+		len += ft_atoi_print(va_arg(args, int), num_count);
 	else if (format == 'u')//unsigned decimal
 		len += ft_puthex(va_arg(args, unsigned long), 0);
 	else if (format == 'x')//hexadecimal
@@ -130,9 +132,14 @@ int main()
 	// puts("\n");
 	// len = printf("%d",12345);
 	// printf("\nlen: %d", len);
-	int *count;
-	count = NULL;
-	ft_atoi_print(a, count);
+
+
+	int	*num_count;
+	int num;
+
+	num = 0;
+	num_count = &num;
+	ft_atoi_print(a, num_count);
 
 	return 0;
 }
