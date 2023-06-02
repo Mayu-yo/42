@@ -8,7 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-				"libft.a",
+				"libftprintf.a",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

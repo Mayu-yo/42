@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/01 18:35:19 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:23:43 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	ret = malloc((count_word_len(s, c, i, 1) + 1) * sizeof(char *));
-	if (s[0] == '\0')
-		return (null_terminate_array(ret, 0, 0, 1));
 	if (ret == NULL)
 		return (NULL);
+	if (s[0] == '\0')
+		return (null_terminate_array(ret, 0, 0, 1));
 	while (s[i] == c)
 		i++;
 	if (i == ft_strlen(s))

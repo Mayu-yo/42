@@ -1,8 +1,7 @@
 #include <stdio.h>
 
 int main(){
-	printf("%s", "Hello\nWorld");
-	puts("\n");
-	printf("%#s", "Hello\nWorld");
+	printf("%d",      -123456);
+	puts("");
 	return 0;
 }

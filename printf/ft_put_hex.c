@@ -1,13 +1,11 @@
-#include "printf.h"
+#include "ft_printf.h"
 
-static char	*ft_reverse(char *str)
+static char	*ft_reverse(char *str, size_t str_len)
 {
-	size_t	str_len;
 	size_t	i;
 	char	buf;
 
 	i = 0;
-	str_len = ft_strlen(str);
 	while (str_len / 2 > i)
 	{
 		buf = str[i];
@@ -19,7 +17,7 @@ static char	*ft_reverse(char *str)
 	return (str);
 }
 
-static char	*convert(long n, int flag, size_t len, int uporlow)
+static char	*convert(long long n, int flag, size_t len, int uporlow)
 {
 	char	buf;
 	char	*str;
@@ -32,9 +30,9 @@ static char	*convert(long n, int flag, size_t len, int uporlow)
 	else
 		ch = 'A';
 	if (flag == 0)
-		str = (char *)malloc(len + 1);
+		str = malloc(len + 1);
 	if (flag == 1)
-		str = (char *)malloc(len + 2);
+		str = malloc(len + 2);
 	if (str == NULL)
 		return (NULL);
 	while (n != 0)
@@ -56,42 +54,44 @@ static char	*convert(long n, int flag, size_t len, int uporlow)
 	return (str);
 }
 
-static char	*convert_hex(long long n, int uporlow)
+static char	*convert_hex(long long n, int uporlow, size_t hex_len)
 {
 	int		flag;
 	char	*str;
-	int		len;
 
 	flag = 0;
-	len = ft_count_len(n, 16);
 	if (n == 0)
 	{
-		str = (char *)malloc(len + 1);
+		str = (char *)malloc(hex_len + 1);
 		*str = '0';
 		return (str);
 	}
-	str = (char *)malloc(len + 1 + flag);
+	str = (char *)malloc(hex_len + 1 + flag);
 	if (str == NULL)
 		return (NULL);
-	str = convert(n, flag, len, uporlow);
-	return (ft_reverse(str));
+	str = convert(n, flag, hex_len, uporlow);
+	return (ft_reverse(str, hex_len));
 }
 
 int ft_puthex(long long n, int uporlow)
 {
 	char *ret;
-	int hex_len;
+	size_t hex_len;
 
 	if (n < 0)
 		return (-1);
 	hex_len = ft_count_len(n, 16);
 	ret = (char *)malloc(hex_len);
-	ret = convert_hex(n, uporlow);
+	ret = convert_hex(n, uporlow, hex_len);
 	write(1, ret, hex_len);
 	return (hex_len);
 }
 
-// int main(){
-// 	ft_puthex(-1234567, 1);
-// 	return 0;
-// }
+int ft_putaddress(long long n, int uporlow)
+{
+	if (uporlow == 0)
+		write(1, "0x", 2);
+	else
+		write(1, "0X", 2);
+	return (ft_puthex(n, uporlow) + 2);
+}

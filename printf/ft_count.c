@@ -13,7 +13,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_count_len(int n, size_t base)
+size_t	ft_count_len(long long n, size_t base)
 {
 	int	count;
 
