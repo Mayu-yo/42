@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/03 14:41:12 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/03 14:51:45 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	ret = malloc((count_word_len(s, c, i, 1) + 1) * sizeof(char *));
-	if (s[0] == '\0')
-		return (null_terminate_array(ret, 0, 0, 1));
 	if (ret == NULL)
 		return (NULL);
+	if (s[0] == '\0')
+		return (null_terminate_array(ret, 0, 0, 1));
 	while (s[i] == c)
 		i++;
 	if (i == ft_strlen(s))
