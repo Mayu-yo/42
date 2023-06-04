@@ -17,10 +17,9 @@ static char	*ft_reverse(char *str, size_t str_len)
 	return (str);
 }
 
-static char	*convert(long long n, int flag, size_t len, int uporlow)
+static char	*convert(long long n, char *str, int uporlow)
 {
 	char	buf;
-	char	*str;
 	int		i;
 	char	ch;
 
@@ -29,10 +28,6 @@ static char	*convert(long long n, int flag, size_t len, int uporlow)
 		ch = 'a';
 	else
 		ch = 'A';
-	if (flag == 0)
-		str = malloc(len + 1);
-	if (flag == 1)
-		str = malloc(len + 2);
 	if (str == NULL)
 		return (NULL);
 	while (n != 0)
@@ -45,53 +40,36 @@ static char	*convert(long long n, int flag, size_t len, int uporlow)
 		n /= 16;
 		i++;
 	}
-	// if (flag == 1)
-	// {
-	// 	str[i] = '-';
-	// 	i++;
-	// }
 	str[i] = '\0';
 	return (str);
 }
 
-static char	*convert_hex(long long n, int uporlow, size_t hex_len)
+static char	*convert_hex(long long n, int uporlow, size_t hex_len, char *str)
 {
-	int		flag;
-	char	*str;
-
-	flag = 0;
 	if (n == 0)
 	{
-		str = (char *)malloc(hex_len + 1);
+		str = malloc(hex_len + 1);
 		*str = '0';
 		return (str);
 	}
-	str = (char *)malloc(hex_len + 1 + flag);
+	str = malloc(hex_len + 1);
 	if (str == NULL)
 		return (NULL);
-	str = convert(n, flag, hex_len, uporlow);
+	str = convert(n, str, uporlow);
 	return (ft_reverse(str, hex_len));
 }
 
-int ft_puthex(long long n, int uporlow)
+int ft_puthex(unsigned long long n, int uporlow)
 {
 	char *ret;
 	size_t hex_len;
 
+	ret = NULL;
 	if (n < 0)
 		return (-1);
 	hex_len = ft_count_len(n, 16);
-	ret = (char *)malloc(hex_len);
-	ret = convert_hex(n, uporlow, hex_len);
+	ret = convert_hex(n, uporlow, hex_len, ret);
 	write(1, ret, hex_len);
+	free (ret);
 	return (hex_len);
-}
-
-int ft_putaddress(long long n, int uporlow)
-{
-	if (uporlow == 0)
-		write(1, "0x", 2);
-	else
-		write(1, "0X", 2);
-	return (ft_puthex(n, uporlow) + 2);
 }

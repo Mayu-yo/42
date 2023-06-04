@@ -1,59 +1,39 @@
-// #include "ft_printf.h"
+#include "ft_printf.h"
 
-// static int	ft_putnbr(int n, int *count)
-// {
-// 	char	c;
-// 	long	num;
+static void ft_put_only(long num)
+{
+	char	c;
 
-// 	num = n;
-// 	count[0] += 1;
-// 	if (num < 0)
-// 	{
-// 		write(1, "-", 1);
-// 		num = -num;
-// 	}
-// 	if (num >= 10)
-// 		ft_putnbr(num / 10, count);
-// 	c = '0' + (num % 10);
-// 	write(1, &c, 1);
-// 	return 0;
-// }
+	if (num >= 10)
+		ft_putnbr(num / 10);
+	c = '0' + (num % 10);
+	write(1, &c, 1);
+}
 
-// static int	skip_space(const char *str)
-// {
-// 	int	i;
+int	ft_putnbr(int n)
+{
+	long	num;
+	size_t	count;
 
-// 	i = 0;
-// 	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-// 		i++;
-// 	return (i);
-// }
+	count = 0;
+	num = n;
+	if (num < 0)
+	{
+		write(1, "-", 1);
+		num = -num;
+		count += 1;
+	}
+	ft_put_only(num);
+	count += ft_count_len(num, 10);
+	return (count);
+}
 
-// int	ft_atoi_print(const char *str, int *count)
-// {
-// 	int		i;
-// 	long	num;
-// 	int		minus;
+int ft_put_unsigned(unsigned int n)
+{
+	size_t	count;
 
-// 	minus = 1;
-// 	i = skip_space(str);
-// 	num = 0;
-// 	if (str[i] == '-' || str[i] == '+')
-// 	{
-// 		if (str[i] == '-')
-// 		{
-// 			minus *= -1;
-// 			count[0] += 1;
-// 		}
-// 		i++;
-// 	}
-// 	while (str[i] == '0')
-// 		i++;
-// 	while ('0' <= str[i] && str[i] <= '9')
-// 	{
-// 		num = num * 10 + str[i] - '0';
-// 		i++;
-// 	}
-// 	ft_putnbr(num * minus, count);
-// 	return (count[0]);
-// }
+	count = 0;
+	ft_put_only(n);
+	count += ft_count_len(n, 10);
+	return (count);
+}

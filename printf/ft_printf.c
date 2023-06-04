@@ -1,145 +1,78 @@
 #include "ft_printf.h"
-// #include <stdio.h>
-static int	ft_putnbr(long long num, int *count)
-{
-	char	c;
 
-	*count = *count + 1;
-	if (num < 0)
-	{
-		write(1, "-", 1);
-		num = -num;
-	}
-	if (num >= 10)
-		ft_putnbr(num / 10, count);
-	c = '0' + (num % 10);
-	write(1, &c, 1);
-	return 0;
-}
+/*-----------------------------------------------------*/
 
-static const char	*skip_space(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while ((9 <= *str && *str <= 13) || *str == 32)
-		str++;
-	return (str);
-}
-
-int	ft_atoi_print(const char *str, int *count)
-{
-	int		i;
-	long long	num;
-	int		minus;
-
-	minus = 1;
-	if (!str)
-		return (*count);
-	//str = malloc(ft_strlen(str));//sippaisyori poinntadeatsukau?
-	str = skip_space(str);
-	num = 0;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-		{
-			minus *= -1;
-			*count += 1;
-		}
-		str++;
-	}
-	while (*str == '0')
-		str++;
-	while ('0' <= *str && *str <= '9')
-	{
-		num = num * 10 + *str - '0';
-		str++;
-	}
-	ft_putnbr(num * minus, count);
-	return (*count);
-}
-
-/*-------------------------------------------------------*/
 static int format_check(va_list args, const char format)
 {
 	int len;
-	int	*num_count;
-	int num;
 
 	len = 0;
-	num = 0;
-	num_count = &num;
-	if (!args)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
 	if (format == 'c')
-		len += ft_putchar(va_arg(args, int));
+		len += ft_print_char(va_arg(args, int));
 	else if (format == 's')
 		len += ft_putstr(va_arg(args, char *));
 	else if (format == 'p')
 		len += ft_putaddress(va_arg(args, void *), 0);
 	else if (format == 'd' || format == 'i')
-		len += ft_atoi_print(va_arg(args, int), num_count);
+		len += ft_putnbr(va_arg(args, int));
 	else if (format == 'u')//unsigned decimal
-		len += ft_puthex(va_arg(args, unsigned long), 0);
+		len += ft_put_unsigned(va_arg(args, unsigned int));
 	else if (format == 'x')//hexadecimal
-		len += ft_puthex(va_arg(args, unsigned long), 1);
+		len += ft_puthex(va_arg(args, unsigned int), 0);
+	else if (format == 'X')//hexadecimal
+		len += ft_puthex(va_arg(args, unsigned int), 1);
 	else if (format == '%')
-		len += ft_putchar(ft_putchar('%'));
+	{
+		len += ft_putchar('%');
+		va_arg(args, int);
+	}
 	return (len) ;
 }
 
-int ft_printf(const char *arg_1, ...)
+int ft_printf(const char *format, ...)
 {
-	size_t i;
+	// size_t i;
 	size_t len;
-	int var_len;
-	va_list	ap;
-	va_start(ap, arg_1);
+	va_list	args;
+	va_start(args, format);
 
-	i = 0;
+	// i = 0;
 	len = 0;
-	while (arg_1[i] != '\0')
+	while (*format)
 	{
-		if (arg_1[i] == '%')
+		if (*format == '%')
 		{
-			i++;
-			var_len = format_check(ap, arg_1[i]);
-			// if (var_len == -1)
-			// 	return (-1);
-			len += var_len;
+			format++;
+			len += format_check(args, *format++);
+			va_arg(args, int);//aをインクリメントする方法がわからんくて使わんのに呼び出してる
 		}
 		else
-			len += ft_putchar(arg_1[i]);
-		i++;
+			len += ft_putchar(*format++);
+		// i++;
 	}
-	va_end(ap);
+	va_end(args);
 	return (len);//出力した文字数
 }
 
-#include <stdio.h>
-int main()
-{
-	int len;
-	char *a;
+// #include <stdio.h>
+// int main()
+// {
+// 	int len;
+// // 	// char *a;
 
-	a = malloc(5);
-	a = "hello";
-	// len = ft_printf("%d", 12345);
-	// printf("\nlen: %d", len);
-	// puts("\n");
-	// len = printf("%d",12345);
-	// printf("\nlen: %d", len);
+// // 	// a = malloc(5);
+// // 	// a = "hello";
+// // 	len = ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+// // 	printf("\nlen: %d", len);
+// // 	puts("\n");
+// // 	len = printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+// // 	printf("\nlen: %d", len);
 
+// 	len = ft_printf("%%%c", 'A');
+// 	printf("\nlen: %d", len);
+// 	// puts("\n");
+// 	// len = printf("%%%c%%%s", 'A',42);
+// 	// printf("\nlen: %d", len);
 
-	int	*num_count;
-	int num;
-
-	num = 0;
-	num_count = &num;
-	ft_atoi_print(a, num_count);
-
-	return 0;
-}
+// 	return 0;
+// }

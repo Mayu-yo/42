@@ -3,7 +3,8 @@ SRCS 			=	ft_printf.c\
 					ft_put_hex.c\
 					ft_put_num.c\
 					ft_put_str.c\
-					ft_count.c
+					ft_count.c\
+					ft_put_address.c
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
 LIBC			=	ar -rcs
