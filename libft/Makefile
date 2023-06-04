@@ -9,7 +9,7 @@ SRCS 			=	ft_toupper.c ft_tolower.c\
 					ft_atoi.c ft_itoa.c\
 					ft_calloc.c ft_bzero.c\
 					ft_substr.c ft_split.c
-					
+
 BONUS			=	ft_lstnew.c\
 					ft_lstadd_front.c\
 					ft_lstsize.c\

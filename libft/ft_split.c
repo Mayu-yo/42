@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/03 14:51:45 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/03 17:25:14 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	**ft_split2(char const *s, char c, size_t k, char **ret)
 			if (k == ft_strlen(s))
 				return (null_terminate_array(ret, i, j, 1));
 			else
-				ret[i] = (char *)malloc(count_word_len(s, c, k, 0) + 1);
+				ret[i] = malloc(count_word_len(s, c, k, 0) + 2);
 			if (ret[i] == NULL)
 				return (free_all(ret, i - 1));
 		}
@@ -104,9 +104,14 @@ char	**ft_split(char const *s, char c)
 		i++;
 	if (i == ft_strlen(s))
 		return (null_terminate_array(ret, 0, 0, 1));
-	ret[0] = malloc((count_word_len(s, c, i, 0) + 1) * sizeof(char));
+	ret[0] = malloc((count_word_len(s, c, i, 0) + 2) * sizeof(char));
 	if (ret[0] == NULL)
 		return (free_all(ret, 0));
 	ret = ft_split2(s, c, i, ret);
 	return (ret);
 }
+
+// int main (){
+// 	ft_split("lorem i.", 'z');
+// 	return 0;
+// }
