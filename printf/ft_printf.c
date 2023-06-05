@@ -54,10 +54,10 @@ int ft_printf(const char *format, ...)
 	return (len);//出力した文字数
 }
 
-// #include <stdio.h>
-// int main()
-// {
-// 	int len;
+#include <stdio.h>
+int main()
+{
+	int len;
 // // 	// char *a;
 
 // // 	// a = malloc(5);
@@ -68,11 +68,11 @@ int ft_printf(const char *format, ...)
 // // 	len = printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
 // // 	printf("\nlen: %d", len);
 
-// 	len = ft_printf("%%%c", 'A');
-// 	printf("\nlen: %d", len);
-// 	// puts("\n");
-// 	// len = printf("%%%c%%%s", 'A',42);
-// 	// printf("\nlen: %d", len);
+	len = ft_printf("%p", (void *)-1);
+	printf("\nlen: %d", len);
+	// puts("\n");
+	// len = printf("%%%c%%%s", 'A',42);
+	// printf("\nlen: %d", len);
 
-// 	return 0;
-// }
+	return 0;
+}
