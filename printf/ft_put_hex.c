@@ -17,7 +17,7 @@ static char	*ft_reverse(char *str, size_t str_len)
 	return (str);
 }
 
-static char	*convert(long long n, char *str, int uporlow)
+static char	*convert(unsigned long n, char *str, int uporlow)
 {
 	char	buf;
 	int		i;
@@ -44,7 +44,7 @@ static char	*convert(long long n, char *str, int uporlow)
 	return (str);
 }
 
-static char	*convert_hex(long long n, int uporlow, size_t hex_len, char *str)
+static char	*convert_hex(unsigned long n, int uporlow, size_t hex_len, char *str)
 {
 	if (n == 0)
 	{
@@ -59,7 +59,7 @@ static char	*convert_hex(long long n, int uporlow, size_t hex_len, char *str)
 	return (ft_reverse(str, hex_len));
 }
 
-int ft_puthex(unsigned long long n, int uporlow)
+int ft_puthex(unsigned long n, int uporlow)
 {
 	char *ret;
 	size_t hex_len;
