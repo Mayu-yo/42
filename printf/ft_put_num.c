@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_put_num.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 15:06:58 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/06/05 15:10:11 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static void ft_put_only(long num)
+static void	ft_put_only(long num)
 {
 	char	c;
 
@@ -28,7 +40,7 @@ int	ft_putnbr(int n)
 	return (count);
 }
 
-int ft_put_unsigned(unsigned int n)
+int	ft_put_unsigned(unsigned int n)
 {
 	size_t	count;
 

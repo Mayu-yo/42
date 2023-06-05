@@ -1,5 +1,16 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_put_str.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 15:07:13 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/06/05 15:10:22 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {
@@ -9,7 +20,7 @@ int	ft_putchar(char c)
 
 int	ft_putstr(char *s)
 {
-	int		len;
+	int	len;
 
 	len = 0;
 	if (!s)
@@ -23,13 +34,13 @@ int	ft_putstr(char *s)
 	return (len);
 }
 
-int ft_print_char(int num)
+int	ft_print_char(int num)
 {
-	int len;
-    char c;
+	int		len;
+	char	c;
 
 	len = 0;
 	c = (char)num;
-    len += ft_putchar(c);
+	len += ft_putchar(c);
 	return (len);
 }

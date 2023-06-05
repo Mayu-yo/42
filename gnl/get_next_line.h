@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 14:28:01 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/05 16:41:05 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:08:02 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdlib.h>
 # include <unistd.h>
-# include <strings.h>
-# include <stdarg.h>
 
-int		ft_printf(const char *arg_1, ...);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_putnbr(int n);
-int		ft_putaddress(unsigned long n, int uporlow);
-size_t	ft_strlen(const char *str);
-size_t	ft_count_len(long long n, size_t base);
-int		ft_puthex(unsigned long n, int uporlow);
-char	*ft_itoa(int n);
-int		ft_print_char(int num);
-int		ft_put_unsigned(unsigned int n);
+size_t BUFFER_SIZE = 1000;
+
+char		*get_next_line(int fd);
+char		*ft_strjoin(char const *s1, char const *s2);
+// size_t		ft_strlen(const char *str);
+// void		*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
