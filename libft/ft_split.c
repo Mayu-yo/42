@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/07 12:42:40 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/08 16:05:49 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,12 @@ static size_t	ft_count_len(const char *str, char c)
 	return (len);
 }
 
-char	**ft_split(const char *s, char c)
+static char	**ft_split_helper(size_t words, const char *s, char c, char **ret)
 {
 	size_t	k;
 	size_t	word_len;
-	size_t	words;
-	char	**ret;
 
 	k = 0;
-	if (!s)
-		return (NULL);
-	words = count_words(s, c);
-	ret = malloc((words + 1) * sizeof(char *));
-	if (!ret)
-		return (NULL);
 	while (k < words)
 	{
 		while (*s == c && *s)
@@ -79,5 +71,20 @@ char	**ft_split(const char *s, char c)
 		k++;
 	}
 	ret[k] = NULL;
+	return (ret);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	size_t	words;
+	char	**ret;
+
+	if (!s)
+		return (NULL);
+	words = count_words(s, c);
+	ret = malloc((words + 1) * sizeof(char *));
+	if (!ret)
+		return (NULL);
+	ret = ft_split_helper(words, s, c, ret);
 	return (ret);
 }
