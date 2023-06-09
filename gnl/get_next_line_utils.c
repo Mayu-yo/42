@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:48:21 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/06 01:24:52 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/09 03:08:35 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	else
 		len1 = ft_strlen(s1);
 	if (s2 == NULL)
-		len2 = 0;
-	else
-		len2 = ft_strlen(s2);
+		return (NULL);
+	len2 = ft_strlen(s2);
 	s = (char *)malloc(len1 + len2 + 1);
 	if (s == NULL)
 		return (NULL);
@@ -84,26 +83,22 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)p);
 }
 
-// char	*new_func(const char *s1, const char *s2)
-// {
-// 	size_t		len1;
-// 	size_t		len2;
-// 	const unsigned char	*p;
-// 	char *ret;
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	srclen;
+	size_t	i;
 
-// 	p = (const unsigned char *)s2;
-// 	if (s1 == NULL || s2 == NULL)
-// 		return (NULL);
-// 	len1 = ft_strlen(s1);
-// 	len2 = ft_strlen(s2);
-// 	ret = (char *)malloc(len1 + len2 + 1);
-// 	if (ret == NULL)
-// 		return (NULL);
-// 	while (*s2 != '\n' && *s2 != '\0')
-// 	{
-// 		*s1 = *s2;
-// 		s1++;
-// 		s2++;
-// 	}
-// 	return (s1);
-// }
+	srclen = 0;
+	while (src[srclen] != '\0')
+		srclen++;
+	if (dstsize == 0)
+		return (srclen);
+	i = 0;
+	while (i < dstsize - 1 && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (srclen);
+}

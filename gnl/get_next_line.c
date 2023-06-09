@@ -1,9 +1,9 @@
 #include "get_next_line.h"
 
 #include <stdio.h>
-size_t BUFFER_SIZE = 1000;
+// size_t BUFFER_SIZE = 1000;
 
-static char *ft_read_line(int fd)
+static char *ft_read_all(int fd)
 {
 	ssize_t read_byte;
 	char *buf;
@@ -17,35 +17,75 @@ static char *ft_read_line(int fd)
 		if (buf == NULL)
 			return (NULL);
 		read_byte = read(fd, buf, BUFFER_SIZE); // bufにBUFFER _SIZE分読み込み
-		if (read_byte == -1)
+		if (read_byte == -1 ||read_byte == 0)
 		{
 			free(buf);
 			return (NULL);
 		}
 		line = ft_strjoin(line, buf);
+		free(buf);
 		line[read_byte] = '\0';
 	}
 	return (line);
 }
 
-char *get_next_line(int fd)
+char *ft_get_line(char *buf, char *ret)
 {
-	char *line;
-	static char *save;
+	size_t i;
+	size_t len;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	i = 0;
+	len = 0;
+	if(!buf || buf[0] == '\0')
 		return (NULL);
-	if (!save)
+	if (buf[0] == '\n')
 	{
-		line = save;
-		save = ft_strchr(line, '\n');
-		return (line);
+		ret = malloc(1);
+		return (ret);
 	}
-	line = ft_read_line(fd);
-	save = ft_strchr(line, '\n');
-	return (line);
+	while (buf[i] != '\n' && buf[i])
+	{
+		len++;
+		i++;
+	}
+	ret = malloc((len + 1) * sizeof(char));
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, buf, len + 1);
+	return (ret);
 }
 
+char *get_next_line(int fd)
+{
+	char *buf;
+	char *line;
+	char *p;
+	static char *save;
+
+	line = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (save && *save != '\0')
+	{
+		buf = ft_strjoin(buf, save + 1);
+		line = ft_get_line(buf, line);
+		p = ft_strchr(buf, '\n');
+		free (save);
+		if(p)
+			save = ft_strjoin(save, p);
+		free(buf);
+		return (line);
+	}
+	buf = ft_read_all(fd);
+	if (!buf)
+		return (NULL);
+	line = ft_get_line(buf, line);
+	p = ft_strchr(buf, '\n');
+	save = ft_strjoin(save, p);
+	free(buf);
+	return (line);
+}
+/*
 #include <fcntl.h>
 int main(void)
 {
@@ -61,7 +101,7 @@ int main(void)
 	while (i < 7)
 	{
 		line = get_next_line(fd1);
-		printf("line [%02d]: %s", i, line);
+		printf("line [%02d]: %s\n", i, line);
 		free(line);
 		// line = get_next_line(fd2);
 		// printf("line [%02d]: %s", i, line);
@@ -76,3 +116,4 @@ int main(void)
 	// close(fd3);
 	return (0);
 }
+/*/
