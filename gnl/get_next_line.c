@@ -1,7 +1,7 @@
 #include "get_next_line.h"
 
 #include <stdio.h>
-// size_t BUFFER_SIZE = 1000;
+size_t BUFFER_SIZE = 1000;
 
 static char *ft_read_all(int fd)
 {
@@ -16,11 +16,11 @@ static char *ft_read_all(int fd)
 		buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 		if (buf == NULL)
 			return (NULL);
-		read_byte = read(fd, buf, BUFFER_SIZE); // bufにBUFFER _SIZE分読み込み
+		read_byte = read(fd, buf, BUFFER_SIZE);
 		if (read_byte == -1 ||read_byte == 0)
 		{
 			free(buf);
-			return (NULL);
+			return (line);
 		}
 		line = ft_strjoin(line, buf);
 		free(buf);
@@ -71,21 +71,23 @@ char *get_next_line(int fd)
 		line = ft_get_line(buf, line);
 		p = ft_strchr(buf, '\n');
 		free (save);
+		save = NULL;
 		if(p)
 			save = ft_strjoin(save, p);
 		free(buf);
 		return (line);
 	}
-	buf = ft_read_all(fd);
+	buf = ft_read_all(fd);//malloc
 	if (!buf)
 		return (NULL);
-	line = ft_get_line(buf, line);
+	line = ft_get_line(buf, line);//malloc
 	p = ft_strchr(buf, '\n');
-	save = ft_strjoin(save, p);
+	if(p)
+		save = ft_strjoin(save, p);//malloc
 	free(buf);
 	return (line);
 }
-/*
+
 #include <fcntl.h>
 int main(void)
 {
@@ -116,4 +118,3 @@ int main(void)
 	// close(fd3);
 	return (0);
 }
-/*/
