@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 02:40:56 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/11 13:46:03 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/06/10 02:40:41 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/06/11 13:46:15 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_read_all(int fd, char *line)
 {
@@ -90,14 +90,14 @@ char	*get_next_line(int fd)
 	char		*buf;
 	char		*line;
 	char		*p;
-	static char	*save;
+	static char	*save[OPEN_MAX];
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= OPEN_MAX)
 		return (NULL);
-	if (save && *save != '\0')
+	if (save[fd] && *save[fd] != '\0')
 	{
-		if (get_next_line_second(&save, &line))
+		if (get_next_line_second(&save[fd], &line))
 			return (line);
 	}
 	buf = ft_read_all(fd, line);
@@ -106,7 +106,7 @@ char	*get_next_line(int fd)
 	line = ft_get_line(buf, line);
 	p = ft_strchr(buf, '\n');
 	if (p)
-		save = ft_strjoin(save, p);
+		save[fd] = ft_strjoin(save[fd], p);
 	free(buf);
 	return (line);
 }
