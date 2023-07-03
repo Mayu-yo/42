@@ -1,45 +1,26 @@
 #include "push_swap.h"
 
-void ft_lstnew(t_list **new, int content)
+void ft_lstnew(t_list **new, int content, int num)
 {
-	if (!new)
-		return ;
 	*new = malloc(sizeof(t_list) * 1);
 	if (!(*new))
 		return ;
-	// (*new)->index = 0;
+	(*new)->index = num;
 	(*new)->value = content;
 	(*new)->next = NULL;
 	(*new)->prev = NULL;
 }
 
-void ft_lstdelone(t_list **node)
-{
-	t_list *new_head;
-
-	if (!(*node))
-		return ;
-	if ((*node)->next == NULL || (*node)->prev == NULL)
-	{
-		free (*node);
-		*node = NULL;
-		return ;
-	}
-	new_head = (*node)->next;
-	(*node)->next->prev = (*node)->prev;
-	(*node)->prev->next = (*node)->next;
-	free (*node);
-	*node = new_head;
-}
 
 int ft_lstsize (t_list *head)
 {
 	size_t count;
-	t_list *tmp = head;
+	t_list *tmp;
 
 	if (!head)
 		return (0);
 	count = 1;
+	tmp = head;
 	if (tmp->next == NULL)
 		return (count);
 	while (tmp->next != head)

@@ -1,8 +1,8 @@
-NAME 			=	push_swap.a
+NAME 			=	push_swap
 SRCS 			=	main.c\
 					ft_sort.c\
 					ft_swap.c ft_rotate.c ft_push.c ft_reverse_rotate.c\
-					ft_list.c\
+					ft_list.c ft_assign_index.c\
 					ft_atoi.c ft_isdigit.c ft_strlen.c\
 					ft_putendl_fd.c ft_putstr_fd.c
 

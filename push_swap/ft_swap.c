@@ -9,6 +9,8 @@ void ft_swap (t_list *node)
 	tmp = *node;
 	node->value = node->next->value;
 	node->next->value = tmp.value;
+	node->index = node->next->index;
+	node->next->index = tmp.index;
 }
 
 int sa (t_list **a)

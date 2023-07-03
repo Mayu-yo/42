@@ -27,7 +27,4 @@ void ft_sort_three(t_list **list)
 	}
 }
 
-void ft_sort_six_or_less(t_list **list, int argc)
-{
 
-}
