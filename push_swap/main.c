@@ -78,12 +78,12 @@ int main (int argc ,char** argv)
 	list = NULL;
 	stack_b = NULL;
 	argc = 7;
-	argv[1]	= "6";
-	argv[2] = "5";
-	argv[3] = "4";
-	argv[4] = "1";
-	argv[5] = "2";
-	argv[6] = "3";
+	argv[1]	= "1";
+	argv[2] = "3";
+	argv[3] = "2";
+	argv[4] = "5";
+	argv[5] = "6";
+	argv[6] = "4";
 	argv[argc] = NULL;
 
 	if (argc < 2)

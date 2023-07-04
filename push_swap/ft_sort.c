@@ -68,6 +68,6 @@ void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
 		pa(stack_a, stack_b);
 }
 
-void ft_sort() {
-	
-}
+// void ft_sort() {
+
+// }
