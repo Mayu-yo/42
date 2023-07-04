@@ -18,9 +18,15 @@ OBJS			=	${SRCS:.c=.o}
 	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+	${CC} -o ${NAME} ${OBJS}
+
+NAME_A = push_swap.a
+${NAME_A}: ${OBJS}
+	${LIBC} ${NAME_A} ${OBJS}
 	
 all: ${NAME}
+
+a: ${NAME_A}
 
 clean:
 	${RM} ${OBJS} ${BONUS:.c=.o}

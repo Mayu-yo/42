@@ -27,4 +27,47 @@ void ft_sort_three(t_list **list)
 	}
 }
 
+// void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
+// {
+// 	int i;
 
+// 	i = 0;
+// 	while (i < argc - 4)
+// 	{
+// 		if ((*stack_a)->index == i)
+// 		{
+// 			pb(stack_a, stack_b);
+// 			i++;
+// 		}
+// 		else
+// 			ra(stack_a);
+// 	}
+// 	ft_sort_three(stack_a);
+// 	while (*stack_b)
+// 		pa(stack_a, stack_b);
+// }
+
+void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
+{
+	int i;
+
+	i = 0;
+	while (i < argc - 4)
+	{
+		if ((*stack_a)->index < argc - 4)
+		{
+			pb(stack_a, stack_b);
+			i++;
+		}
+		else
+			ra(stack_a);
+	}
+	ft_sort_three(stack_a);
+	ft_sort_three(stack_b);
+	while (*stack_b)
+		pa(stack_a, stack_b);
+}
+
+void ft_sort() {
+	
+}

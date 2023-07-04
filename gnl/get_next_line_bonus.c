@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 02:40:41 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/11 13:46:15 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:11:24 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,6 @@ char	*ft_get_line(char *buf, char *ret)
 	len = 1;
 	if (!buf || buf[0] == '\0')
 		return (NULL);
-	if (buf[0] == '\n')
-	{
-		ret = malloc(2);
-		ret[0] = '\n';
-		ret[1] = '\0';
-		return (ret);
-	}
 	while (buf[i - 1] != '\n' && buf[i])
 	{
 		len++;

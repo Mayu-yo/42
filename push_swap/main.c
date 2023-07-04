@@ -1,74 +1,5 @@
 #include "push_swap.h"
 
-int pa(t_list **a, t_list **b)
-{
-	t_list *new;
-
-	if (!b || !(*b))
-		return (-1);
-	if (!(*a))
-	{
-		ft_lstnew(a, (*b)->value, (*b)->index);
-		if (!a)
-			return (-1);
-	}
-	else
-	{
-		ft_lstnew(&new, (*b)->value, (*b)->index);
-		if (!new)
-			return (-1);
-		ft_addfront(a, new);
-	}
-	ft_lstdelone(b);
-	ft_putendl_fd("pa", 1);
-	return (0);
-}
-
-
-
-void ft_lstdelone(t_list **node)//ぐちゃった
-{
-	t_list *prev_node;
-	t_list *next_node;
-
-	if (!(*node))
-		return ;
-	prev_node = (*node)->prev;
-	next_node = (*node)->next;
-	// printf("delone: %p\n", *node);
-	free(*node);
-	if (next_node->next != next_node)
-	{
-		prev_node->next = next_node;
-		next_node->prev = prev_node;
-		*node = next_node;
-	}
-	else
-		*node = NULL;
-}
-
-
-void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
-{
-	int i;
-
-	i = 0;
-	while (i < argc - 4)
-	{
-		if ((*stack_a)->index == i)
-		{
-			pb(stack_a, stack_b);
-			i++;
-		}
-		else
-			ra(stack_a);
-	}
-	ft_sort_three(stack_a);
-	while (*stack_b)
-		pa(stack_a, stack_b);
-}
-
-
 static int ft_create_list(t_list **list, int argc, char **argv)
 {
 	t_list *new;
@@ -146,12 +77,13 @@ int main (int argc ,char** argv)
 
 	list = NULL;
 	stack_b = NULL;
-	argc = 6;
-	argv[1]	= "3";
-	argv[2] = "2";
-	argv[3] = "1";
-	argv[4] = "5";
-	argv[5] = "4";
+	argc = 7;
+	argv[1]	= "6";
+	argv[2] = "5";
+	argv[3] = "4";
+	argv[4] = "1";
+	argv[5] = "2";
+	argv[6] = "3";
 	argv[argc] = NULL;
 
 	if (argc < 2)
@@ -179,7 +111,7 @@ int main (int argc ,char** argv)
 	else if (argc - 1 == 3)
 		ft_sort_three(&list);
 	else if (4 <= argc - 1 && argc - 1 <= 6)
-		ft_sort_six_or_less(&list, &stack_b, argc);
+		ft_sort_six_or_less	(&list, &stack_b, argc);
 	// else if (7 <= argc - 1 && argc - 1 <= 100)
 	ft_print_list(list, argc);
 	while (argc - 1 > 0)
@@ -187,7 +119,7 @@ int main (int argc ,char** argv)
 		ft_lstdelone(&(list));
 		argc--;
 	}
-	system("leaks -q a.out");
+	system("leaks -q push_swap");
 	return (0);
 }
 

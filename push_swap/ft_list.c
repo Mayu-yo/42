@@ -11,6 +11,25 @@ void ft_lstnew(t_list **new, int content, int num)
 	(*new)->prev = NULL;
 }
 
+void ft_lstdelone(t_list **node)//ぐちゃった
+{
+	t_list *prev_node;
+	t_list *next_node;
+
+	if (!(*node))
+		return ;
+	prev_node = (*node)->prev;
+	next_node = (*node)->next;
+	free(*node);
+	if (next_node->next != next_node)
+	{
+		prev_node->next = next_node;
+		next_node->prev = prev_node;
+		*node = next_node;
+	}
+	else
+		*node = NULL;
+}
 
 int ft_lstsize (t_list *head)
 {
