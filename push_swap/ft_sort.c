@@ -105,3 +105,44 @@ void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
 // 		pa(stack_a, stack_b);
 // 	ft_sort(stack_a, stack_b, stack_size / 2);
 // }
+
+
+//quick sort example
+void	ft_quick_sort(int *array, int start, int end)
+{
+	int q;
+
+	if (start < end)
+	{
+		q = ft_partition(array, start, end);
+		ft_quick_sort(array, start, q - 1);
+		ft_quick_sort(array, q + 1, end);
+	}
+}
+
+int		ft_partition(int *array, int start, int end)
+{
+	int pivot;
+	int i;
+	int temp;
+	int j;
+
+	pivot = array[end];
+	i = start - 1;
+	j = start;
+	while (j < end)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
+			temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+		j++;
+	}
+	temp = array[i + 1];
+	array[i + 1] = array[end];
+	array[end] = temp;
+	return (i + 1);
+}

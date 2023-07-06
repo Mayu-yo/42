@@ -99,33 +99,6 @@ void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
 	ft_return(stack_a, stack_b, stack_size);
 }
 
-// void ft_split_array(t_list **stack_b, int stack_size)
-// {
-// 	int pibot;
-// 	int lst_size;
-
-// 	pibot = stack_size/2
-// 	lst_size = ft_lstsize(stack_b);
-// 	while (stack_b->index < pibot)
-// 	{
-// 		if (lst_size == 1)
-// 			pa(stack_a, stack_b);
-// 		else
-// 			ft_split_array(stack_b, )
-// 	}
-// }
-
-// void ft_return(t_list **stack_a, t_list stack_b)
-// {
-// 	while (*stack_b)
-// 	{
-// 		if ((*stack_b)->index < (*stack_b)->prev->index)
-// 			rrb(stack_b);
-// 		else
-// 			pa(stack_a, stack_b);
-// 	}
-// }
-
 //--------------------------------------------------------
 //モッティソート
 
@@ -137,17 +110,17 @@ void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
 	int distance;
 
 	i = lstsize - 1;
-	while (i > 0)
+	while (*stack_b)
 	{
 		distance = count_distance(*stack_b, i);
 		if (distance < lstsize / 2)
 		{
-			while ((*stack_b)->index == i)
+			while ((*stack_b)->index != i)
 				rb(stack_b);
 		}
 		else
 		{
-			while ((*stack_b)->index == i)
+			while ((*stack_b)->index != i)
 				rrb(stack_b);
 		}
 		pa(stack_a, stack_b);
@@ -258,7 +231,7 @@ int main (int argc ,char** argv)
 	if (ft_create_list(&list, argc, argv) == -1)
 		return (0);
 	ft_assign_index(&list, argc);
-	ft_print_list(list, argc);
+	// ft_print_list(list, argc);
 	if (ft_lstsize(list) != argc - 1)
 		return (0);
 	if (argc - 1 == 1)
@@ -274,8 +247,8 @@ int main (int argc ,char** argv)
 		// ft_sort2(&list, &stack_b, argc);
 		ft_sort(&list, &stack_b, argc);
 	}
-	ft_print_list(list, argc);
-	ft_print_list(stack_b, argc);
+	// ft_print_list(list, argc);
+	// ft_print_list(stack_b, argc);
 	while (argc - 1 > 0)
 	{
 		ft_lstdelone(&(list));
@@ -287,20 +260,20 @@ int main (int argc ,char** argv)
 
 /*--------------------------------------------------------*/
 
-void ft_print_list(t_list *head, int argc)
-{
-    if (!head)
-    {
-        printf("List is empty.\n");
-        return;
-    }
-    printf("List contents: ");
-    while (argc > 1)
-    {
-        printf("%d", head->value);
-		printf("[%d] ", head->index);
-        head = head->next;
-		argc--;
-    }
-    printf("\n");
-}
+// void ft_print_list(t_list *head, int argc)
+// {
+//     if (!head)
+//     {
+//         printf("List is empty.\n");
+//         return;
+//     }
+//     printf("List contents: ");
+//     while (argc > 1)
+//     {
+//         printf("%d", head->value);
+// 		printf("[%d] ", head->index);
+//         head = head->next;
+// 		argc--;
+//     }
+//     printf("\n");
+// }
