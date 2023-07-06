@@ -1,5 +1,99 @@
 #include "push_swap.h"
 
+// void ft_sort2(t_list **stack_a, t_list **stack_b, int argc)//copilot
+// {
+// 	int i;
+// 	int j;
+// 	int count;
+// 	int distance;
+// 	int flag;
+
+// 	i = 0;
+// 	while (i < argc - 1)
+// 	{
+// 		j = 0;
+// 		flag = 0;
+// 		while (j < argc - 1)
+// 		{
+// 			if ((*stack_a)->index == i)
+// 			{
+// 				pb(stack_a, stack_b);
+// 				i++;
+// 				flag = 1;
+// 				break;
+// 			}
+// 			else
+// 				ra(stack_a);
+// 			j++;
+// 		}
+// 		if (flag == 0)
+// 		{
+// 			count = 0;
+// 			distance = 0;
+// 			while (count < argc - 1)
+// 			{
+// 				if ((*stack_a)->index == i)
+// 				{
+// 					pb(stack_a, stack_b);
+// 					i++;
+// 					break;
+// 				}
+// 				else
+// 				{
+// 					ra(stack_a);
+// 					distance++;
+// 				}
+// 				count++;
+// 			}
+// 			count = 0;
+// 			while (count < distance)
+// 			{
+// 				rra(stack_a);
+// 				count++;
+// 			}
+// 		}
+// 	}
+// 	while(*stack_b)
+// 		pa(stack_a, stack_b);
+// }
+
+void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
+	// int num;
+	int count;
+
+	count = 0;
+	stack_size = stack_size - 1;
+	while (count < 20 && *stack_a)
+	{
+		if ((*stack_a)->index < 20)//20の部分を引数の数に応じてどう設定するか
+		{
+			pb(stack_a, stack_b);
+			count++;
+		}
+		else
+			ra(stack_a);
+	}
+	// num = 1;
+	while (count < 60 && *stack_a)
+	{
+		if ((*stack_a)->index < 40)
+		{
+			pb(stack_a, stack_b);
+			count++;
+		}
+		else if ((*stack_a)->index < 60)
+		{
+			pb(stack_a, stack_b);
+			rrb(stack_b);
+			count++;
+		}
+		else
+			ra(stack_a);
+	}
+}
+
+//--------------------------------------------------------
+
 static int ft_create_list(t_list **list, int argc, char **argv)
 {
 	t_list *new;
@@ -77,25 +171,26 @@ int main (int argc ,char** argv)
 
 	list = NULL;
 	stack_b = NULL;
-	argc = 7;
-	argv[1]	= "1";
-	argv[2] = "3";
-	argv[3] = "2";
-	argv[4] = "5";
-	argv[5] = "6";
-	argv[6] = "4";
-	argv[argc] = NULL;
+	// argc = 8;
+	// argv[1] = "1";
+	// argv[2] = "3";
+	// argv[3] = "2";
+	// argv[4] = "5";
+	// argv[5] = "4";
+	// argv[6] = "6";
+	// argv[7] = "7";
+	// argv[8] = NULL;
 
 	if (argc < 2)
 		return (0);
 	i = ft_arg_check(argc, argv);
 	if (i == -1)
 	{
-		printf("Error\n");
+		// printf("Error\n");
 		return (0);
 	} else if (i == 1)
 	{
-		printf("already sorted\n");
+		// printf("already sorted\n");
 		return (0);
 	}
 	if (ft_create_list(&list, argc, argv) == -1)
@@ -112,14 +207,19 @@ int main (int argc ,char** argv)
 		ft_sort_three(&list);
 	else if (4 <= argc - 1 && argc - 1 <= 6)
 		ft_sort_six_or_less	(&list, &stack_b, argc);
-	// else if (7 <= argc - 1 && argc - 1 <= 100)
+	else if (7 <= argc - 1 && argc - 1 <= 100)
+	{
+		// ft_sort2(&list, &stack_b, argc);
+		ft_sort(&list, &stack_b, argc);
+	}
 	ft_print_list(list, argc);
+	ft_print_list(stack_b, argc);
 	while (argc - 1 > 0)
 	{
 		ft_lstdelone(&(list));
 		argc--;
 	}
-	system("leaks -q push_swap");
+	// system("leaks -q push_swap");
 	return (0);
 }
 

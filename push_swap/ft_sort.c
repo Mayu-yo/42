@@ -47,27 +47,61 @@ void ft_sort_three(t_list **list)
 // 		pa(stack_a, stack_b);
 // }
 
+size_t count_distance(t_list *stack_a, int i)
+{
+	int count;
+	t_list *tmp;
+
+	count = 0;
+	tmp = stack_a;
+	while (tmp->index != i)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
+}
+
 void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
 {
 	int i;
+	int distance;
 
 	i = 0;
+	distance = count_distance(*stack_a, i);
 	while (i < argc - 4)
 	{
-		if ((*stack_a)->index < argc - 4)
+		if ((*stack_a)->index == i)
 		{
 			pb(stack_a, stack_b);
 			i++;
+			distance = count_distance(*stack_a, i);
 		}
-		else
+		else if (distance <= ft_lstsize(*stack_a) / 2)
 			ra(stack_a);
+		else
+			rra(stack_a);
 	}
 	ft_sort_three(stack_a);
-	ft_sort_three(stack_b);
 	while (*stack_b)
 		pa(stack_a, stack_b);
 }
 
-// void ft_sort() {
+// void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
+// 	int count;
 
+// 	count = 0;
+// 	if (stack_size - 1 == 1)
+// 		return ;
+// 	while (stack_size - 1 > count)
+// 	{
+// 		if ((*stack_a)->index < stack_size / 2)
+// 			pb(stack_a, stack_b);
+// 		else
+// 			ra(stack_a);
+// 		count++;
+// 	}
+// 	while (*stack_b)
+// 		pa(stack_a, stack_b);
+// 	ft_sort(stack_a, stack_b, stack_size / 2);
 // }

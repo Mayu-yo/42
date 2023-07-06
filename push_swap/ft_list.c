@@ -20,15 +20,16 @@ void ft_lstdelone(t_list **node)//ぐちゃった
 		return ;
 	prev_node = (*node)->prev;
 	next_node = (*node)->next;
-	free(*node);
-	if (next_node->next != next_node)
+	if (next_node == (*node))
 	{
-		prev_node->next = next_node;
-		next_node->prev = prev_node;
-		*node = next_node;
-	}
-	else
+		free(*node);
 		*node = NULL;
+		return ;
+	}
+	prev_node->next = next_node;
+	next_node->prev = prev_node;
+	free(*node);
+	*node = next_node;
 }
 
 int ft_lstsize (t_list *head)

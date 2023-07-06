@@ -37,6 +37,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *str);
 void	ft_sort_three(t_list **list);
+void	ft_sort(t_list **stack_a, t_list **stack_b, int argc);
 void ft_assign_index(t_list **list, int argc);
 void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc);
 
