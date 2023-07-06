@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "push_swap.h" //statictuketenaiya
 
 // void ft_sort2(t_list **stack_a, t_list **stack_b, int argc)//copilot
 // {
@@ -57,15 +57,22 @@
 // 		pa(stack_a, stack_b);
 // }
 
+//--------------------------------------------------------------------
+//quick sort
+
+void ft_return(t_list **stack_a, t_list **stack_b, int lstsize);
+size_t count_distance(t_list *stack_a, int i);
+
 void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
-	// int num;
+	int num;
 	int count;
 
+	num = 20;
 	count = 0;
-	stack_size = stack_size - 1;
-	while (count < 20 && *stack_a)
+	stack_size = stack_size - 1;//
+	while (count < num && *stack_a)
 	{
-		if ((*stack_a)->index < 20)//20の部分を引数の数に応じてどう設定するか
+		if ((*stack_a)->index < num)
 		{
 			pb(stack_a, stack_b);
 			count++;
@@ -73,15 +80,14 @@ void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
 		else
 			ra(stack_a);
 	}
-	// num = 1;
-	while (count < 60 && *stack_a)
+	while (count < (num + num * 2) && *stack_a)
 	{
-		if ((*stack_a)->index < 40)
+		if ((*stack_a)->index < (num * 2))
 		{
 			pb(stack_a, stack_b);
 			count++;
 		}
-		else if ((*stack_a)->index < 60)
+		else if ((*stack_a)->index < (num + num * 2))
 		{
 			pb(stack_a, stack_b);
 			rrb(stack_b);
@@ -90,9 +96,65 @@ void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
 		else
 			ra(stack_a);
 	}
+	ft_return(stack_a, stack_b, stack_size);
 }
 
+// void ft_split_array(t_list **stack_b, int stack_size)
+// {
+// 	int pibot;
+// 	int lst_size;
+
+// 	pibot = stack_size/2
+// 	lst_size = ft_lstsize(stack_b);
+// 	while (stack_b->index < pibot)
+// 	{
+// 		if (lst_size == 1)
+// 			pa(stack_a, stack_b);
+// 		else
+// 			ft_split_array(stack_b, )
+// 	}
+// }
+
+// void ft_return(t_list **stack_a, t_list stack_b)
+// {
+// 	while (*stack_b)
+// 	{
+// 		if ((*stack_b)->index < (*stack_b)->prev->index)
+// 			rrb(stack_b);
+// 		else
+// 			pa(stack_a, stack_b);
+// 	}
+// }
+
 //--------------------------------------------------------
+//モッティソート
+
+void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
+{
+	//lstsize は距離を測るためにスタックの大きさが欲しいから
+	//argcは返す対象を確認するために
+	int i;
+	int distance;
+
+	i = lstsize - 1;
+	while (i > 0)
+	{
+		distance = count_distance(*stack_b, i);
+		if (distance < lstsize / 2)
+		{
+			while ((*stack_b)->index == i)
+				rb(stack_b);
+		}
+		else
+		{
+			while ((*stack_b)->index == i)
+				rrb(stack_b);
+		}
+		pa(stack_a, stack_b);
+		i--;
+	}
+}
+
 
 static int ft_create_list(t_list **list, int argc, char **argv)
 {

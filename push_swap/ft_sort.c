@@ -47,7 +47,7 @@ void ft_sort_three(t_list **list)
 // 		pa(stack_a, stack_b);
 // }
 
-size_t count_distance(t_list *stack_a, int i)
+size_t count_distance(t_list *stack_a, int i)//前から数えた距離を返す
 {
 	int count;
 	t_list *tmp;
