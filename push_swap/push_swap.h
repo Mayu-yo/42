@@ -40,6 +40,8 @@ void	ft_sort_three(t_list **list);
 void	ft_sort(t_list **stack_a, t_list **stack_b, int argc);
 void ft_assign_index(t_list **list, int argc);
 void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc);
-
+size_t count_distance(t_list *stack_a, int i);
+void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size);
+void ft_return(t_list **stack_a, t_list **stack_b, int lstsize);
 
 #endif

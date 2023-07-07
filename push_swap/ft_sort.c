@@ -1,52 +1,5 @@
 #include "push_swap.h"
 
-void ft_sort_three(t_list **list)
-{
-	int a;
-	int b;
-	int c;
-
-	a = (*list)->value;
-	b = (*list)->next->value;
-	c = (*list)->next->next->value;
-	if (a < b && b > c && c > a)//132
-	{
-		sa(list);
-		ra(list);
-	}
-	else if (a > b && b < c && c > a)//213
-		sa(list);
-	else if (a < b && b > c && c < a)//231
-		rra(list);
-	else if (a > b && b < c && c < a)//312
-		ra(list);
-	else if (a > b && b > c && c < a)//321
-	{
-		sa(list);
-		rra(list);
-	}
-}
-
-// void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (i < argc - 4)
-// 	{
-// 		if ((*stack_a)->index == i)
-// 		{
-// 			pb(stack_a, stack_b);
-// 			i++;
-// 		}
-// 		else
-// 			ra(stack_a);
-// 	}
-// 	ft_sort_three(stack_a);
-// 	while (*stack_b)
-// 		pa(stack_a, stack_b);
-// }
-
 size_t count_distance(t_list *stack_a, int i)//前から数えた距離を返す
 {
 	int count;
@@ -62,87 +15,90 @@ size_t count_distance(t_list *stack_a, int i)//前から数えた距離を返す
 	return (count);
 }
 
-void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc)
-{
-	int i;
-	int distance;
+void ft_push_to_stackb(t_list **stack_a, t_list **stack_b, int i, int num)
+{//numはとりあえず20, iは何回呼び出したか
+	static int count;
 
-	i = 0;
-	distance = count_distance(*stack_a, i);
-	while (i < argc - 4)
+	while (count < (num * (i + 1)) && *stack_a)
 	{
-		if ((*stack_a)->index == i)
+		if ((*stack_a)->index < (num * i))
 		{
 			pb(stack_a, stack_b);
-			i++;
-			distance = count_distance(*stack_a, i);
+			count++;
 		}
-		else if (distance <= ft_lstsize(*stack_a) / 2)
-			ra(stack_a);
+		else if ((*stack_a)->index < (num * (i + 1)))
+		{
+			pb(stack_a, stack_b);
+			rb(stack_b);
+			count++;
+		}
 		else
-			rra(stack_a);
+			ra(stack_a);
 	}
-	ft_sort_three(stack_a);
-	while (*stack_b)
-		pa(stack_a, stack_b);
 }
 
-// void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
-// 	int count;
+void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size)
+{
+	int num;
+	int count;
 
-// 	count = 0;
-// 	if (stack_size - 1 == 1)
-// 		return ;
-// 	while (stack_size - 1 > count)
+	num = 20;
+	count = 1;
+	stack_size = stack_size - 1;//
+	while (*stack_a)
+	{
+		ft_push_to_stackb(stack_a, stack_b, count, num);
+		count += 2;
+	}
+	ft_return(stack_a, stack_b, stack_size);
+}
+
+// void ft_tsuika(t_list **stack_a, t_list **stack_b, int i)
+// {
+// 	int j;
+
+// 	j = i;
+// 	while (i > 1)
 // 	{
-// 		if ((*stack_a)->index < stack_size / 2)
-// 			pb(stack_a, stack_b);
-// 		else
-// 			ra(stack_a);
-// 		count++;
+// 		ra(stack_a);
+// 		i--;
 // 	}
-// 	while (*stack_b)
-// 		pa(stack_a, stack_b);
-// 	ft_sort(stack_a, stack_b, stack_size / 2);
+// 	pa(stack_a, stack_b);
+// 	// while ((*stack_a)->index > (*stack_a)->prev->index)
+// 	while (j > 1)
+// 	{
+// 		rra(stack_a);
+// 		j--;
+// 	}
 // }
 
+// void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
+// {
+// 	int distance;
+// 	int i;
 
-//quick sort example
-void	ft_quick_sort(int *array, int start, int end)
-{
-	int q;
-
-	if (start < end)
-	{
-		q = ft_partition(array, start, end);
-		ft_quick_sort(array, start, q - 1);
-		ft_quick_sort(array, q + 1, end);
-	}
-}
-
-int		ft_partition(int *array, int start, int end)
-{
-	int pivot;
-	int i;
-	int temp;
-	int j;
-
-	pivot = array[end];
-	i = start - 1;
-	j = start;
-	while (j < end)
-	{
-		if (array[j] <= pivot)
-		{
-			i++;
-			temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-		}
-		j++;
-	}
-	temp = array[i + 1];
-	array[i + 1] = array[end];
-	array[end] = temp;
-	return (i + 1);
-}
+// 	i = 1;
+// 	lstsize = lstsize - 1;
+// 	while (*stack_b)
+// 	{
+// 		distance = count_distance(*stack_b, lstsize);
+// 		while ((*stack_b)->index != lstsize)
+// 		{
+// 			if ((*stack_b)->index != lstsize - i)
+// 			{
+// 				pa(stack_a, stack_b);
+// 				i++;
+// 			}
+// 			if (distance <= ft_lstsize(*stack_b) / 2)
+// 				rb(stack_b);
+// 			else
+// 				rrb(stack_b);
+// 		}
+// 		if (i > 1)
+// 			ft_tsuika(stack_a, stack_b, i);
+// 		else
+// 			pa(stack_a, stack_b);
+// 		i = 1;
+// 		lstsize--;
+// 	}
+// }

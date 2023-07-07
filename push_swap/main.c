@@ -1,133 +1,61 @@
 #include "push_swap.h" //statictuketenaiya
 
-// void ft_sort2(t_list **stack_a, t_list **stack_b, int argc)//copilot
-// {
-// 	int i;
-// 	int j;
-// 	int count;
-// 	int distance;
-// 	int flag;
+void ft_tsuika(t_list **stack_a, t_list **stack_b, int i)
+{
+	int j;
 
-// 	i = 0;
-// 	while (i < argc - 1)
-// 	{
-// 		j = 0;
-// 		flag = 0;
-// 		while (j < argc - 1)
-// 		{
-// 			if ((*stack_a)->index == i)
-// 			{
-// 				pb(stack_a, stack_b);
-// 				i++;
-// 				flag = 1;
-// 				break;
-// 			}
-// 			else
-// 				ra(stack_a);
-// 			j++;
-// 		}
-// 		if (flag == 0)
-// 		{
-// 			count = 0;
-// 			distance = 0;
-// 			while (count < argc - 1)
-// 			{
-// 				if ((*stack_a)->index == i)
-// 				{
-// 					pb(stack_a, stack_b);
-// 					i++;
-// 					break;
-// 				}
-// 				else
-// 				{
-// 					ra(stack_a);
-// 					distance++;
-// 				}
-// 				count++;
-// 			}
-// 			count = 0;
-// 			while (count < distance)
-// 			{
-// 				rra(stack_a);
-// 				count++;
-// 			}
-// 		}
-// 	}
-// 	while(*stack_b)
-// 		pa(stack_a, stack_b);
-// }
-
-//--------------------------------------------------------------------
-//quick sort
-
-void ft_return(t_list **stack_a, t_list **stack_b, int lstsize);
-size_t count_distance(t_list *stack_a, int i);
-
-void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size) {
-	int num;
-	int count;
-
-	num = 20;
-	count = 0;
-	stack_size = stack_size - 1;//
-	while (count < num && *stack_a)
+	j = i;
+	while (i > 1)
 	{
-		if ((*stack_a)->index < num)
-		{
-			pb(stack_a, stack_b);
-			count++;
-		}
-		else
-			ra(stack_a);
+		ra(stack_a);
+		i--;
 	}
-	while (count < (num + num * 2) && *stack_a)
+	pa(stack_a, stack_b);
+	// while ((*stack_a)->index > (*stack_a)->prev->index)
+	while (j > 1)
 	{
-		if ((*stack_a)->index < (num * 2))
-		{
-			pb(stack_a, stack_b);
-			count++;
-		}
-		else if ((*stack_a)->index < (num + num * 2))
-		{
-			pb(stack_a, stack_b);
-			rrb(stack_b);
-			count++;
-		}
-		else
-			ra(stack_a);
+		rra(stack_a);
+		j--;
 	}
-	ft_return(stack_a, stack_b, stack_size);
 }
-
-//--------------------------------------------------------
-//モッティソート
 
 void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
 {
-	//lstsize は距離を測るためにスタックの大きさが欲しいから
-	//argcは返す対象を確認するために
-	int i;
 	int distance;
+	int i;
 
-	i = lstsize - 1;
+	i = 1;
+	lstsize = lstsize - 1;
 	while (*stack_b)
 	{
-		distance = count_distance(*stack_b, i);
-		if (distance < lstsize / 2)
+		distance = count_distance(*stack_b, lstsize);
+		while ((*stack_b)->index != lstsize)
 		{
-			while ((*stack_b)->index != i)
-				rb(stack_b);
+			if ((*stack_b)->index == lstsize - i)
+			{
+				pa(stack_a, stack_b);
+				i++;
+			}
+			else
+			{
+				if (distance <= lstsize / 2)
+					rb(stack_b);
+				else
+					rrb(stack_b);
+			}
+		}
+		if (i > 1)
+		{
+			ft_tsuika(stack_a, stack_b, i);
+			lstsize = lstsize - i + 1;
 		}
 		else
-		{
-			while ((*stack_b)->index != i)
-				rrb(stack_b);
-		}
-		pa(stack_a, stack_b);
-		i--;
+			pa(stack_a, stack_b);
+		i = 1;
+		lstsize--;
 	}
 }
-
+//--------------------------------------------------------
 
 static int ft_create_list(t_list **list, int argc, char **argv)
 {
@@ -206,16 +134,29 @@ int main (int argc ,char** argv)
 
 	list = NULL;
 	stack_b = NULL;
-	// argc = 8;
-	// argv[1] = "1";
-	// argv[2] = "3";
+	// argc = 21;
+	// argv[0] = "push_swap";
+	// argv[1] = "13";
+	// argv[2] = "31";
 	// argv[3] = "2";
-	// argv[4] = "5";
-	// argv[5] = "4";
-	// argv[6] = "6";
-	// argv[7] = "7";
-	// argv[8] = NULL;
-
+	// argv[4] = "1";
+	// argv[5] = "5";
+	// argv[6] = "4";
+	// argv[7] = "3";
+	// argv[8] = "6";
+	// argv[9] = "76";
+	// argv[10] = "35";
+	// argv[11] = "23";
+	// argv[12] = "12";
+	// argv[13] = "11";
+	// argv[14] = "66";
+	// argv[15] = "77";
+	// argv[16] = "88";
+	// argv[17] = "48";
+	// argv[18] = "63";
+	// argv[19] = "99";
+	// argv[20] = "100";
+	// argv[21] = NULL;
 	if (argc < 2)
 		return (0);
 	i = ft_arg_check(argc, argv);
@@ -242,11 +183,8 @@ int main (int argc ,char** argv)
 		ft_sort_three(&list);
 	else if (4 <= argc - 1 && argc - 1 <= 6)
 		ft_sort_six_or_less	(&list, &stack_b, argc);
-	else if (7 <= argc - 1 && argc - 1 <= 100)
-	{
-		// ft_sort2(&list, &stack_b, argc);
+	else if (7 <= argc - 1 && argc - 1 <= 500)
 		ft_sort(&list, &stack_b, argc);
-	}
 	// ft_print_list(list, argc);
 	// ft_print_list(stack_b, argc);
 	while (argc - 1 > 0)
