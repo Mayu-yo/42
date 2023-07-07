@@ -1,22 +1,15 @@
 #include "push_swap.h" //statictuketenaiya
 
-void ft_tsuika(t_list **stack_a, t_list **stack_b, int i)
+void ft_temporary_relocation(t_list **stack_a, t_list **stack_b, int i)
 {
-	int j;
-
-	j = i;
 	while (i > 1)
 	{
 		ra(stack_a);
 		i--;
 	}
 	pa(stack_a, stack_b);
-	// while ((*stack_a)->index > (*stack_a)->prev->index)
-	while (j > 1)
-	{
+	while ((*stack_a)->index > (*stack_a)->prev->index)
 		rra(stack_a);
-		j--;
-	}
 }
 
 void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
@@ -46,7 +39,7 @@ void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
 		}
 		if (i > 1)
 		{
-			ft_tsuika(stack_a, stack_b, i);
+			ft_temporary_relocation(stack_a, stack_b, i);
 			lstsize = lstsize - i + 1;
 		}
 		else
@@ -183,7 +176,8 @@ int main (int argc ,char** argv)
 		ft_sort_three(&list);
 	else if (4 <= argc - 1 && argc - 1 <= 6)
 		ft_sort_six_or_less	(&list, &stack_b, argc);
-	else if (7 <= argc - 1 && argc - 1 <= 500)
+	// else if (7 <= argc - 1 && argc - 1 <= 500)
+	else if (7 <= argc - 1)
 		ft_sort(&list, &stack_b, argc);
 	// ft_print_list(list, argc);
 	// ft_print_list(stack_b, argc);
