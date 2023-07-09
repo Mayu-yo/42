@@ -7,8 +7,8 @@ void ft_lstnew(t_list **new, int content, int num)
 		return ;
 	(*new)->index = num;
 	(*new)->value = content;
-	(*new)->next = NULL;
-	(*new)->prev = NULL;
+	(*new)->next = (*new);
+	(*new)->prev = (*new);
 }
 
 void ft_lstdelone(t_list **node)
@@ -41,7 +41,7 @@ int ft_lstsize (t_list *head)
 		return (0);
 	count = 1;
 	tmp = head;
-	if (tmp->next == NULL)
+	if (tmp->next == tmp)
 		return (count);
 	while (tmp->next != head)
 	{
@@ -55,7 +55,7 @@ void ft_addfront(t_list **head, t_list *new)
 {
 	if (head == NULL || new == NULL)
 		return ;
-	if ((*head)->next == NULL)
+	if ((*head)->next == (*head))
 	{
 		(*head)->next = new;
 		(*head)->prev = new;

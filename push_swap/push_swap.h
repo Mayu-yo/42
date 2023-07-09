@@ -36,6 +36,7 @@ int		ft_isdigit(int c);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *str);
+char	**ft_split(const char *s, char c);
 void	ft_sort_three(t_list **list);
 void	ft_sort(t_list **stack_a, t_list **stack_b, int argc);
 void	ft_assign_index(t_list **list, int argc);
@@ -44,5 +45,10 @@ size_t	count_distance(t_list *stack_a, int i);
 void	ft_sort(t_list **stack_a, t_list **stack_b, int stack_size);
 void	ft_return(t_list **stack_a, t_list **stack_b, int lstsize);
 void	ft_push_to_stackb(t_list **stack_a, t_list **stack_b, int count, int num);
+int ft_arg_check(int argc, char **argv);
+int ft_is_sorted(t_list *list, int argc);
+int ft_is_duplicated(int argc, char **argv);
+int ft_is_integer(int argc, char **argv);
+void ft_doublequoted_arguments(int argc, char **argv);
 
 #endif
