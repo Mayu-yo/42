@@ -14,12 +14,10 @@ RM				=	rm -f
 OBJS			=	${SRCS:.c=.o}
 
 
-NAME_A = push_swap.a
-${NAME_A}: ${OBJS}
-	${LIBC} ${NAME_A} ${OBJS}
-a: ${NAME_A}
-
-
+# NAME_A = push_swap.a
+# ${NAME_A}: ${OBJS}
+# 	${LIBC} ${NAME_A} ${OBJS}
+# a: ${NAME_A}
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o $@
