@@ -125,7 +125,7 @@ int main (int argc, char **argv)
 	if (ft_create_list(&list, argc, argv) == -1)
 		return (0);
 	ft_assign_index(&list, argc);
-	ft_print_list(list, argc);
+	// ft_print_list(list, argc);
 	// if (argc - 1 == 1)
 	// 	return (0);
 	if (ft_lstsize(list) != argc - 1)
@@ -140,30 +140,30 @@ int main (int argc, char **argv)
 		ft_sort_five_or_less (&list, &stack_b, argc);
 	else if (7 <= argc - 1)
 		ft_sort(&list, &stack_b, argc);
-	ft_print_list(list, argc);
+	// ft_print_list(list, argc);
 	while (argc - 1 > 0)
 	{
 		ft_lstdelone(&(list));
 		argc--;
 	}
-	// system("leaks -q push_swap");
+	system("leaks -q push_swap");
 	return (0);
 }
 
-void ft_print_list(t_list *head, int argc)
-{
-    if (!head)
-    {
-        printf("List is empty.\n");
-        return;
-    }
-    printf("List contents: ");
-    while (argc > 1)
-    {
-        printf("%d", head->value);
-		printf("[%d] ", head->index);
-        head = head->next;
-		argc--;
-    }
-    printf("\n");
-}
+// void ft_print_list(t_list *head, int argc)
+// {
+//     if (!head)
+//     {
+//         printf("List is empty.\n");
+//         return;
+//     }
+//     printf("List contents: ");
+//     while (argc > 1)
+//     {
+//         printf("%d", head->value);
+// 		printf("[%d] ", head->index);
+//         head = head->next;
+// 		argc--;
+//     }
+//     printf("\n");
+// }
