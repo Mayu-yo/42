@@ -43,5 +43,6 @@ void ft_sort_six_or_less(t_list **stack_a, t_list **stack_b, int argc);
 size_t count_distance(t_list *stack_a, int i);
 void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size);
 void ft_return(t_list **stack_a, t_list **stack_b, int lstsize);
+void ft_push_to_stackb(t_list **stack_a, t_list **stack_b, int count, int num);
 
 #endif

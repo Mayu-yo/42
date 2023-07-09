@@ -2,34 +2,50 @@
 
 void ft_temporary_relocation(t_list **stack_a, t_list **stack_b, int i)
 {
-	while (i > 1)
+	if (i == 2)
 	{
-		ra(stack_a);
-		i--;
+		pa(stack_a, stack_b);
+		sa(stack_a);
 	}
-	pa(stack_a, stack_b);
-	while ((*stack_a)->index > (*stack_a)->prev->index)
-		rra(stack_a);
+	else
+	{
+		while (i > 1)
+		{
+			ra(stack_a);
+			i--;
+		}
+		pa(stack_a, stack_b);
+		while ((*stack_a)->index > (*stack_a)->prev->index)
+			rra(stack_a);
+	}
 }
 
 void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
 {
 	int distance;
 	int i;
+	// int j;
 
 	i = 1;
+	// j = 0;
 	lstsize = lstsize - 1;
 	while (*stack_b)
 	{
 		distance = count_distance(*stack_b, lstsize);
 		while ((*stack_b)->index != lstsize)
 		{
-			if ((*stack_b)->index == lstsize - i)
+			if ((*stack_b)->index == lstsize - i)//一個先から順に
 			{
 				pa(stack_a, stack_b);
 				i++;
 			}
-			else
+			// else if ((*stack_b)->index == lstsize - 20 + j)//20個先から逆順に
+			// {
+			// 	pa(stack_a, stack_b);
+			// 	ra(stack_a);
+			// 	j++;
+			// }
+			else//大きい方からstack_aに戻す
 			{
 				if (distance <= lstsize / 2)
 					rb(stack_b);
@@ -46,8 +62,18 @@ void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
 			pa(stack_a, stack_b);
 		i = 1;
 		lstsize--;
+		// if (20 - j == i){
+		// 	while (j > 0)
+		// 	{
+		// 		rra(stack_a);
+		// 		j--;
+		// 	}
+		// }
 	}
 }
+
+
+
 //--------------------------------------------------------
 
 static int ft_create_list(t_list **list, int argc, char **argv)
@@ -127,29 +153,9 @@ int main (int argc ,char** argv)
 
 	list = NULL;
 	stack_b = NULL;
-	// argc = 21;
-	// argv[0] = "push_swap";
-	// argv[1] = "13";
-	// argv[2] = "31";
-	// argv[3] = "2";
-	// argv[4] = "1";
-	// argv[5] = "5";
-	// argv[6] = "4";
-	// argv[7] = "3";
-	// argv[8] = "6";
-	// argv[9] = "76";
-	// argv[10] = "35";
-	// argv[11] = "23";
-	// argv[12] = "12";
-	// argv[13] = "11";
-	// argv[14] = "66";
-	// argv[15] = "77";
-	// argv[16] = "88";
-	// argv[17] = "48";
-	// argv[18] = "63";
-	// argv[19] = "99";
-	// argv[20] = "100";
-	// argv[21] = NULL;
+	// int argc = 41;
+	// char *argv[] = {"push_swap", "5", "98", "72", "14", "36", "61", "83", "27", "49", "88", "33", "10", "55", "79", "17", "92", "43", "68", "31", "75", "21", "96", "52", "80", "65", "40", "23", "47", "87", "11", "59", "77", "29", "70", "46", "63", "16", "93", "38", "84", NULL};
+
 	if (argc < 2)
 		return (0);
 	i = ft_arg_check(argc, argv);

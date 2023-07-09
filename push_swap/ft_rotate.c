@@ -22,6 +22,8 @@ int rr(t_list **a, t_list **b)
 {
 	if (ra(a) == -1 || rb(b) == -1)
 		return (-1);
+	(*a) = (*a)->next;
+	(*b) = (*b)->next;
 	ft_putendl_fd("rr", 1);
 	return (0);
 }
