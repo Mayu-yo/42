@@ -137,8 +137,8 @@ int main (int argc, char **argv)
 	else if (argc - 1 == 3)
 		ft_sort_three(&list);
 	else if (4 <= argc - 1 && argc - 1 <= 5)
-		ft_sort_five_or_less (&list, &stack_b, argc);
-	else if (7 <= argc - 1)
+		ft_sort_five_or_less(&list, &stack_b, argc);
+	else if (6 <= argc - 1)
 		ft_sort(&list, &stack_b, argc);
 	// ft_print_list(list, argc);
 	while (argc - 1 > 0)
