@@ -1,7 +1,7 @@
 NAME 			=	push_swap
 SRCS 			=	main.c\
 					ft_arg_check.c\
-					ft_sort.c ft_sort_five_or_less.c\
+					ft_sort.c ft_sort_util.c ft_sort_five_or_less.c\
 					ft_swap.c ft_rotate.c ft_push.c ft_reverse_rotate.c\
 					ft_list.c ft_assign_index.c
 LIBFT			=	./libft/libft.a

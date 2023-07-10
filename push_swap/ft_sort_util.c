@@ -1,50 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_assign_index.c                                  :+:      :+:    :+:   */
+/*   ft_sort_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 12:45:57 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/10 12:51:25 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/07/10 12:49:34 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 13:16:00 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list	*ft_get_next_min(t_list *list, int argc)
+size_t	count_distance(t_list *stack_a, int i)
 {
-	t_list			*tmp;
-	static t_list	*min;
+	int		count;
+	t_list	*tmp;
 
-	tmp = list;
-	if (!min)
-		min = tmp;
-	else
+	count = 0;
+	tmp = stack_a;
+	while (tmp->index != i)
 	{
-		while (min->index != -1)
-			min = min->next;
-	}
-	while (argc - 1)
-	{
-		if (tmp->value < min->value && tmp->index == -1)
-			min = tmp;
 		tmp = tmp->next;
-		argc--;
+		count++;
 	}
-	return (min);
+	return (count);
 }
 
-void	ft_assign_index(t_list **list, int argc)
+void	ft_temporary_relocation(t_list **stack_a, t_list **stack_b, int i)
 {
-	t_list	*min;
-	int		i;
-
-	i = 0;
-	while (i < argc - 1)
+	if (i == 2)
 	{
-		min = ft_get_next_min(*list, argc);
-		min->index = i;
-		i++;
+		pa(stack_a, stack_b);
+		sa(stack_a);
+	}
+	else
+	{
+		while (i > 1)
+		{
+			ra(stack_a);
+			i--;
+		}
+		pa(stack_a, stack_b);
+		while ((*stack_a)->index > (*stack_a)->prev->index)
+			rra(stack_a);
 	}
 }

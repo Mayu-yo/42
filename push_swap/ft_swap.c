@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:49:38 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 12:55:18 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void ft_swap (t_list *node)
+void	ft_swap(t_list *node)
 {
-	t_list tmp;
+	t_list	tmp;
 
 	if (!node || !node->next)
 		return ;
@@ -13,7 +25,7 @@ void ft_swap (t_list *node)
 	node->next->index = tmp.index;
 }
 
-int sa (t_list **a)
+int	sa(t_list **a)
 {
 	if (!a || !(*a) || ft_lstsize(*a) < 2)
 		return (-1);
@@ -22,7 +34,7 @@ int sa (t_list **a)
 	return (0);
 }
 
-int sb (t_list **b)
+int	sb(t_list **b)
 {
 	if (!b || !(*b) || ft_lstsize(*b) < 2)
 		return (-1);
@@ -31,7 +43,7 @@ int sb (t_list **b)
 	return (0);
 }
 
-int ss (t_list **a, t_list **b)
+int	ss(t_list **a, t_list **b)
 {
 	if (sa(a) == -1 || sb(b) == -1)
 		return (-1);

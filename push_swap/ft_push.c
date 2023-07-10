@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:47:47 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 12:47:48 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int pa(t_list **a, t_list **b)
+int	pa(t_list **a, t_list **b)
 {
-	t_list *new;
+	t_list	*new;
 
 	if (!b || !(*b))
 		return (-1);
@@ -24,9 +36,9 @@ int pa(t_list **a, t_list **b)
 	return (0);
 }
 
-int pb(t_list **a, t_list **b)
+int	pb(t_list **a, t_list **b)
 {
-	t_list *new;
+	t_list	*new;
 
 	if (!a || !(*a))
 		return (-1);
