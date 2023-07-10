@@ -15,7 +15,7 @@ size_t count_distance(t_list *stack_a, int i)
 	return (count);
 }
 
-void ft_temporary_relocation(t_list **stack_a, t_list **stack_b, int i)
+static void ft_temporary_relocation(t_list **stack_a, t_list **stack_b, int i)
 {
 	if (i == 2)
 	{

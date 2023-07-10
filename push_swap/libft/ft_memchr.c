@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 14:13:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/20 10:38:43 by mayu             ###   ########.fr       */
+/*   Created: 2023/05/20 13:36:45 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/05/26 14:27:40 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		len;
+	const unsigned char	*p;
 
-	if (s == NULL)
-		return ;
-	len = ft_strlen(s);
-	write(fd, s, len);
+	p = s;
+	while (n > 0)
+	{
+		if (*p == (unsigned char)c)
+			return ((void *)p);
+		p++;
+		n--;
+	}
+	return (NULL);
 }
