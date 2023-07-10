@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/10 04:28:25 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/08 16:05:49 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 
 static char	**free_all(char **ret, int count)
 {

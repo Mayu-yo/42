@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/19 21:49:29 by mayu             ###   ########.fr       */
+/*   Updated: 2023/06/01 18:31:50 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 static int	skip_space(const char *str)
 {
@@ -22,7 +22,7 @@ static int	skip_space(const char *str)
 	return (i);
 }
 
-long	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		i;
 	long	num;
@@ -42,9 +42,9 @@ long	ft_atoi(const char *str)
 	while ('0' <= str[i] && str[i] <= '9')
 	{
 		if (num > ((LONG_MAX - (str[i] - '0')) / 10) && minus == 1)
-			return ((LONG_MAX));
+			return ((int)(LONG_MAX));
 		if (num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && minus == -1)
-			return ((LONG_MIN));
+			return ((int)(LONG_MIN));
 		num = num * 10 + str[i] - '0';
 		i++;
 	}
