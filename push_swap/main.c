@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:50:07 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/10 12:54:08 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:28:01 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_dispatch(t_list *list, int argc)
 	}
 }
 
-int	ft_hontai(char **arg_new, t_list *list, int argc)
+int	ft_execute_sorting(char **arg_new, t_list *list, int argc)
 {
 	if (ft_arg_check(arg_new) == -1)
 	{
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		arg_new = &argv[1];
-	if (ft_hontai(arg_new, list, argc) == -1)
+	if (ft_execute_sorting(arg_new, list, argc) == -1)
 		return (0);
 	return (0);
 }
