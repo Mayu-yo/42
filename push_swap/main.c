@@ -71,6 +71,6 @@ int main (int argc, char **argv)
 		ft_lstdelone(&(list));
 		argc--;
 	}
-	system("leaks -q push_swap");
+	// system("leaks -q push_swap");
 	return (0);
 }

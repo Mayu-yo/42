@@ -45,22 +45,24 @@ int ft_is_integer(char **argv)
 {
 	int i;
 	int j;
-	long val;
 
 	i = 0;
 	while (argv[i])
 	{
 		j = 0;
 		if (argv[i][j] == '-' || argv[i][j] == '+')
-			j++;
-		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]) || j > (INT_MAX / 10))
+			if (!ft_isdigit(argv[i][j + 1]))
 				return (-1);
 			j++;
 		}
-		val = ft_atoi(argv[i]);
-		if (val < INT_MIN || INT_MAX < val)
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]))// || j > 13
+				return (-1);
+			j++;
+		}
+		if (ft_atoi(argv[i]) < INT_MIN || INT_MAX < ft_atoi(argv[i]))
 			return (-1);
 		i++;
 	}
