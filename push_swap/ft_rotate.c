@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:48:13 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 12:48:14 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ra(t_list **head)
+int	ra(t_list **head)
 {
 	if (!(head) || !(*head) || ft_lstsize(*head) < 2)
 		return (-1);
@@ -9,7 +21,7 @@ int ra(t_list **head)
 	return (0);
 }
 
-int rb(t_list **head)
+int	rb(t_list **head)
 {
 	if (!(head) || !(*head) || ft_lstsize(*head) < 2)
 		return (-1);
@@ -18,7 +30,7 @@ int rb(t_list **head)
 	return (0);
 }
 
-int rr(t_list **a, t_list **b)
+int	rr(t_list **a, t_list **b)
 {
 	if (!(a) || !(*a) || ft_lstsize(*a) < 2)
 		return (-1);

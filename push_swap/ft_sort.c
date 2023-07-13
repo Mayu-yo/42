@@ -1,65 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:49:34 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 13:17:08 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-size_t count_distance(t_list *stack_a, int i)
+int	ft_push_to_stacka(t_list **stack_a, t_list **stack_b, int lstsize)
 {
-	int count;
-	t_list *tmp;
-
-	count = 0;
-	tmp = stack_a;
-	while (tmp->index != i)
-	{
-		tmp = tmp->next;
-		count++;
-	}
-	return (count);
-}
-
-static void ft_temporary_relocation(t_list **stack_a, t_list **stack_b, int i)
-{
-	if (i == 2)
-	{
-		pa(stack_a, stack_b);
-		sa(stack_a);
-	}
-	else
-	{
-		while (i > 1)
-		{
-			ra(stack_a);
-			i--;
-		}
-		pa(stack_a, stack_b);
-		while ((*stack_a)->index > (*stack_a)->prev->index)
-			rra(stack_a);
-	}
-}
-
-void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
-{
-	int distance;
-	int i;
+	int	i;
+	int	distance;
 
 	i = 1;
+	distance = count_distance(*stack_b, lstsize);
+	while ((*stack_b)->index != lstsize)
+	{
+		if ((*stack_b)->index == lstsize - i)
+		{
+			pa(stack_a, stack_b);
+			i++;
+		}
+		else
+		{
+			if (distance <= lstsize / 2)
+				rb(stack_b);
+			else
+				rrb(stack_b);
+		}
+	}
+	return (i);
+}
+
+void	ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
+{
+	int	i;
+
 	lstsize = lstsize - 1;
 	while (*stack_b)
 	{
-		distance = count_distance(*stack_b, lstsize);
-		while ((*stack_b)->index != lstsize)
-		{
-			if ((*stack_b)->index == lstsize - i)
-			{
-				pa(stack_a, stack_b);
-				i++;
-			}
-			else
-			{
-				if (distance <= lstsize / 2)
-					rb(stack_b);
-				else
-					rrb(stack_b);
-			}
-		}
+		i = ft_push_to_stacka(stack_a, stack_b, lstsize);
 		if (i > 1)
 		{
 			ft_temporary_relocation(stack_a, stack_b, i);
@@ -72,10 +57,10 @@ void ft_return(t_list **stack_a, t_list **stack_b, int lstsize)
 	}
 }
 
-void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size)
+void	ft_sort(t_list **stack_a, t_list **stack_b, int stack_size)
 {
-	int num;
-	int count;
+	int	num;
+	int	count;
 
 	num = 10 + (stack_size / 25);
 	count = 1;
@@ -87,9 +72,9 @@ void ft_sort(t_list **stack_a, t_list **stack_b, int stack_size)
 	ft_return(stack_a, stack_b, stack_size - 1);
 }
 
-void ft_push_to_stackb(t_list **stack_a, t_list **stack_b, int i, int num)
+void	ft_push_to_stackb(t_list **stack_a, t_list **stack_b, int i, int num)
 {
-	static int count;
+	static int	count;
 
 	while (count < (num * (i + 1)) && *stack_a)
 	{
@@ -104,7 +89,9 @@ void ft_push_to_stackb(t_list **stack_a, t_list **stack_b, int i, int num)
 			if (*stack_a && (*stack_a)->index >= (num * (i + 1)))
 			{
 				rr(stack_a, stack_b);
-			} else {
+			}
+			else
+			{
 				rb(stack_b);
 			}
 			count++;

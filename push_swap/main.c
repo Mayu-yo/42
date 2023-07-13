@@ -1,11 +1,20 @@
-#include "push_swap.h"
-//headerの整理
-//エラーチェック、セグフォ探し
-//norminette, makefile
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:50:07 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/14 08:47:28 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int ft_create_list(t_list **list, int argc, char **argv)
+#include "push_swap.h"
+
+static int	ft_create_list(t_list **list, int argc, char **argv)
 {
-	t_list *new;
+	t_list	*new;
 
 	new = NULL;
 	ft_lstnew(list, ft_atoi(argv[argc - 2]), -1);
@@ -24,40 +33,11 @@ static int ft_create_list(t_list **list, int argc, char **argv)
 	return (0);
 }
 
-int main (int argc, char **argv)
+void	ft_dispatch(t_list *list, int argc)
 {
-	char **arg_new;
-	t_list *list;
-	t_list *stack_b;
+	t_list	*stack_b;
 
-	list = NULL;
 	stack_b = NULL;
-	if (argc < 2)
-		return (0);
-	if (argc == 2){
-		arg_new = ft_split(argv[1], ' ');
-		if (!arg_new)
-			return (0);
-		// argc = ft_count_arg(arg_new);
-		argc = 0;
-		while (arg_new[argc])
-			argc++;
-		argc++;
-	}
-	else
-		arg_new = &argv[1];
-	if (ft_arg_check(arg_new) == -1)
-	{
-		printf("Error\n");
-		return (0);
-	}
-	if (ft_create_list(&list, argc, arg_new) == -1)
-		return (0);
-	ft_assign_index(&list, argc);
-	if (ft_lstsize(list) != argc - 1)
-		return (0);
-	if (ft_is_sorted(list, argc) == -1)
-		return (0);
 	if (argc - 1 == 2)
 		sa(&list);
 	else if (argc - 1 == 3)
@@ -71,6 +51,46 @@ int main (int argc, char **argv)
 		ft_lstdelone(&(list));
 		argc--;
 	}
-	// system("leaks -q push_swap");
+}
+
+int	ft_execute_sorting(char **arg_new, t_list *list, int argc)
+{
+	if (ft_arg_check(arg_new) == -1)
+	{
+		ft_putendl_fd("Error", 1);
+		return (-1);
+	}
+	if (ft_create_list(&list, argc, arg_new) == -1)
+		return (-1);
+	ft_assign_index(&list, argc);
+	if (ft_is_sorted(list, argc) == -1)
+		return (-1);
+	ft_dispatch(list, argc);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	char	**arg_new;
+	t_list	*list;
+
+	list = NULL;
+	arg_new = NULL;
+	if (argc < 2)
+		return (0);
+	if (argc == 2)
+	{
+		arg_new = ft_split(argv[1], ' ');
+		if (!arg_new)
+			return (0);
+		argc = 0;
+		while (arg_new[argc])
+			argc++;
+		argc++;
+	}
+	else
+		arg_new = &argv[1];
+	if (ft_execute_sorting(arg_new, list, argc) == -1)
+		return (0);
 	return (0);
 }

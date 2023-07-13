@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_list.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:46:39 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 12:51:44 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void ft_lstnew(t_list **new, int content, int num)
+void	ft_lstnew(t_list **new, int content, int num)
 {
 	*new = malloc(sizeof(t_list) * 1);
 	if (!(*new))
@@ -11,10 +23,10 @@ void ft_lstnew(t_list **new, int content, int num)
 	(*new)->prev = (*new);
 }
 
-void ft_lstdelone(t_list **node)
+void	ft_lstdelone(t_list **node)
 {
-	t_list *prev_node;
-	t_list *next_node;
+	t_list	*prev_node;
+	t_list	*next_node;
 
 	if (!(*node))
 		return ;
@@ -32,10 +44,10 @@ void ft_lstdelone(t_list **node)
 	*node = next_node;
 }
 
-int ft_lstsize (t_list *head)
+int	ft_lstsize(t_list *head)
 {
-	size_t count;
-	t_list *tmp;
+	size_t	count;
+	t_list	*tmp;
 
 	if (!head)
 		return (0);
@@ -51,7 +63,7 @@ int ft_lstsize (t_list *head)
 	return (count);
 }
 
-void ft_addfront(t_list **head, t_list *new)
+void	ft_addfront(t_list **head, t_list *new)
 {
 	if (head == NULL || new == NULL)
 		return ;

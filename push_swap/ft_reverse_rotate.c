@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_reverse_rotate.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:47:50 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/10 12:51:54 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int rra(t_list **head)
+int	rra(t_list **head)
 {
 	if (!(head) || !(*head) || ft_lstsize(*head) < 2)
 		return (-1);
@@ -9,7 +21,7 @@ int rra(t_list **head)
 	return (0);
 }
 
-int rrb(t_list **head)
+int	rrb(t_list **head)
 {
 	if (!(head) || !(*head) || ft_lstsize(*head) < 2)
 		return (-1);
@@ -18,7 +30,7 @@ int rrb(t_list **head)
 	return (0);
 }
 
-int rrr(t_list **a, t_list **b)
+int	rrr(t_list **a, t_list **b)
 {
 	if (!(a) || !(*a) || ft_lstsize(*a) < 2)
 		return (-1);

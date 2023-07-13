@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_arg_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:45:53 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/14 08:46:42 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ft_arg_check(char **argv)
+int	ft_arg_check(char **argv)
 {
 	if (ft_is_integer(argv) == -1)
 		return (-1);
@@ -9,7 +21,7 @@ int ft_arg_check(char **argv)
 	return (0);
 }
 
-int ft_is_sorted(t_list *list, int argc)
+int	ft_is_sorted(t_list *list, int argc)
 {
 	while (list->next && argc > 2)
 	{
@@ -21,10 +33,10 @@ int ft_is_sorted(t_list *list, int argc)
 	return (-1);
 }
 
-int ft_is_duplicated(char **argv)
+int	ft_is_duplicated(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (argv[j])
@@ -41,7 +53,7 @@ int ft_is_duplicated(char **argv)
 	return (0);
 }
 
-int ft_is_integer(char **argv)
+int	ft_is_integer(char **argv)
 {
 	int i;
 	int j;
