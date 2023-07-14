@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:50:07 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/10 14:28:01 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:55:28 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	main(int argc, char **argv)
 
 	list = NULL;
 	arg_new = NULL;
+	if (ft_is_integer(argv) == -1)
+		return (-1);
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
