@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/01 18:31:50 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/14 08:39:27 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	skip_space(const char *str)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		i;
 	long	num;
@@ -42,9 +42,9 @@ int	ft_atoi(const char *str)
 	while ('0' <= str[i] && str[i] <= '9')
 	{
 		if (num > ((LONG_MAX - (str[i] - '0')) / 10) && minus == 1)
-			return ((int)(LONG_MAX));
+			return ((LONG_MAX));
 		if (num - (1 / 10) > (LONG_MAX - (str[i] - '0')) / 10 && minus == -1)
-			return ((int)(LONG_MIN));
+			return ((LONG_MIN));
 		num = num * 10 + str[i] - '0';
 		i++;
 	}

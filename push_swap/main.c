@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:50:07 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/10 16:55:28 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:52:26 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,35 @@ int	ft_execute_sorting(char **arg_new, t_list *list, int argc)
 	return (0);
 }
 
+static void ft_free(char **list, int argc, int flag)
+{
+	int i;
+	
+	i = 0;
+	if (flag == 1)
+	{
+		while (argc > 1)
+		{
+			free(list[i]);
+			i++;
+			argc--;
+		}
+		free(list);
+	}
+}
+
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q push_swap");
+// }
+
 int	main(int argc, char **argv)
 {
+	int flag;
 	char	**arg_new;
 	t_list	*list;
 
+	flag = 0;
 	list = NULL;
 	arg_new = NULL;
 	if (ft_is_integer(argv) == -1)
@@ -85,14 +109,14 @@ int	main(int argc, char **argv)
 		arg_new = ft_split(argv[1], ' ');
 		if (!arg_new)
 			return (0);
-		argc = 0;
-		while (arg_new[argc])
+		while (arg_new[argc - 2])
 			argc++;
-		argc++;
+		argc--;
+		flag = 1;
 	}
 	else
 		arg_new = &argv[1];
-	if (ft_execute_sorting(arg_new, list, argc) == -1)
-		return (0);
+	ft_execute_sorting(arg_new, list, argc);
+	ft_free(arg_new, argc, flag);
 	return (0);
 }
