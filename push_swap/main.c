@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:50:07 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/14 09:33:06 by mayu             ###   ########.fr       */
+/*   Updated: 2023/07/14 09:40:15 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ static void ft_free(char **list, int argc, int flag)
 	}
 }
 
-__attribute__((destructor))
-static void destructor() {
-    system("leaks -q push_swap");
-}
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q push_swap");
+// }
 
 int	main(int argc, char **argv)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:49:38 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/10 12:55:18 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/14 09:44:53 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ int	sb(t_list **b)
 
 int	ss(t_list **a, t_list **b)
 {
-	if (sa(a) == -1 || sb(b) == -1)
+	if (!a || !(*a) || ft_lstsize(*a) < 2)
 		return (-1);
+	if (!b || !(*b) || ft_lstsize(*b) < 2)
+		return (-1);
+	ft_swap (*a);
+	ft_swap (*b);
 	ft_putendl_fd("ss", 1);
 	return (0);
 }
