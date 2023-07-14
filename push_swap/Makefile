@@ -15,6 +15,7 @@ OBJS			=	${SRCS:.c=.o}
 # .c.o:
 # 	${CC} ${CFLAGS} -c $< -o $@
 
+
 ${NAME}: ${OBJS}
 	${MAKE} -C ${LIBFT_DIR}
 	${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
