@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 void signal_handler(int signal_number)
 {
 	static int	bit;
