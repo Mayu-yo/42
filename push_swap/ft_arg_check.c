@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arg_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:53 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/14 08:46:42 by mayu             ###   ########.fr       */
+/*   Updated: 2023/07/14 12:22:19 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	ft_is_duplicated(char **argv)
 
 int	ft_is_integer(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (argv[i])
@@ -70,7 +70,7 @@ int	ft_is_integer(char **argv)
 		}
 		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]))// || j > 13
+			if (!ft_isdigit(argv[i][j]))
 				return (-1);
 			j++;
 		}

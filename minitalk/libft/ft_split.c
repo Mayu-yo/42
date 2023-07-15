@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:14:39 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/14 14:05:24 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:05:49 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,6 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (NULL);
 	words = count_words(s, c);
-	if (words == 0)
-	{
-		ft_putendl_fd("Error", 1);
-		return (NULL);
-	}
 	ret = malloc((words + 1) * sizeof(char *));
 	if (!ret)
 		return (NULL);

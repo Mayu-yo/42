@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:50:07 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/14 11:52:26 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:25:18 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	ft_execute_sorting(char **arg_new, t_list *list, int argc)
 	return (0);
 }
 
-static void ft_free(char **list, int argc, int flag)
+static void	ft_free(char **list, int argc, int flag)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (flag == 1)
 	{
@@ -86,22 +86,14 @@ static void ft_free(char **list, int argc, int flag)
 	}
 }
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q push_swap");
-// }
-
 int	main(int argc, char **argv)
 {
-	int flag;
+	int		flag;
 	char	**arg_new;
 	t_list	*list;
 
 	flag = 0;
 	list = NULL;
-	arg_new = NULL;
-	if (ft_is_integer(argv) == -1)
-		return (-1);
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
