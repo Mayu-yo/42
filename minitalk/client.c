@@ -1,7 +1,6 @@
-//引数で　PID と　文字列　受け取る
-//
 #include "libft/libft.h"
 #include <signal.h>
+#include <stdio.h>
 
 void send_char(int pid, char str) {
 	int i;
@@ -27,6 +26,39 @@ void send_char(int pid, char str) {
 	}
 }
 
+// static int	skip_space(const char *str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
+// 		i++;
+// 	return (i);
+// }
+int	ft_isdigit(int c)
+{
+	return ('0' <= c && c <= '9');
+}
+
+int	ft_atoi_pid(const char *str)
+{
+	int		i;
+	long	num;
+
+	i = 0;
+	num = 0;
+	while (str[i])
+	{
+		if(!ft_isdigit(str[i]))
+			return (-1);
+		num = num * 10 + str[i] - '0';
+		if (num > ((INT_MAX - (str[i] - '0')) / 10))
+			return (-1);
+		i++;
+	}
+	return (num);
+}
+
 
 int main(int argc, char **argv) {
 	int i;
@@ -35,8 +67,16 @@ int main(int argc, char **argv) {
 
 	i = 0;
 	if (argc != 3)
+	{
+		printf("Usase: ./client [PID] [message]");
 		return (0);
-	pid = atoi(argv[1]);//zisakukannsunikaeru!
+	}
+	pid = ft_atoi_pid(argv[1]);
+	if(pid == -1)
+	{
+		printf("Usase: ./client [PID] [message]");
+		return (0);
+	}
 	while (argv[2][i])
 	{
 		send_char(pid, argv[2][i]);

@@ -24,7 +24,7 @@ int main() {
 	int pid;
 
 	pid = getpid();
-	printf("%d\n", pid);//zisakukannsunikaeru!
+	printf("%d\n", pid);
 	while (1) {
 		signal(SIGUSR1, signal_handler);
 		signal(SIGUSR2, signal_handler);
