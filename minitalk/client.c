@@ -26,15 +26,6 @@ void send_char(int pid, char str) {
 	}
 }
 
-// static int	skip_space(const char *str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-// 		i++;
-// 	return (i);
-// }
 int	ft_isdigit(int c)
 {
 	return ('0' <= c && c <= '9');
