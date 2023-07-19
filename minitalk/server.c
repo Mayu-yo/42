@@ -1,35 +1,41 @@
 #include <signal.h>
-// #include "./printf/ft_printf.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-void signal_handler(int signal_number)
-{
-	static int	bit;
+void signal_handler(int signal, siginfo_t *info, void *context) {
+    static int	bit;
 	static int	i;
 
-	if (signal_number == SIGUSR1)
+	if (signal == SIGUSR1)
 		i |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{
 		printf("%c", i);
+		kill(info->si_pid, SIGUSR1);//失敗処理
 		bit = 0;
 		i = 0;
 	}
 }
 
-
 int main() {
-	int pid;
+	struct sigaction act1;
+	// struct sigaction act2;
 
-	pid = getpid();
-	printf("%d\n", pid);
-	while (1) {
-		signal(SIGUSR1, signal_handler);
-		signal(SIGUSR2, signal_handler);
+	printf("%d\n", getpid());
+	act1.sa_sigaction = signal_handler;
+	// act2.sa_sigaction = signal_handler2;
+	sigemptyset(&act1.sa_mask);
+	// sigemptyset(&act2.sa_mask);
+	act1.sa_flags = SA_SIGINFO;
+	// act2.sa_flags = SA_SIGINFO;
+	act1.sa_flags = 0;
+	// act2.sa_flags = 0;
+	sigaddset(&act1.sa_mask, SIGUSR2);
+	sigaddset(&act1.sa_mask, SIGUSR1);
+	sigaction(SIGUSR1, &act1, NULL);//失敗処理？
+	sigaction(SIGUSR2, &act1, NULL);
+	while (1)
 		pause();
-	}
-
-    return 0;
 }
