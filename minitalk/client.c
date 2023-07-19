@@ -1,44 +1,54 @@
-#include "libft/libft.h"
-#include <signal.h>
-#include <stdio.h>
-//改変atoilibftに入れる
-//printf -> write
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/19 15:40:29 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/19 17:23:00 by mayyamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int flag = 1;
+#include "minitalk.h"
 
-void signal_handler(int signal) {
+int	g_flag = 1;
+
+void	signal_handler(int signal)
+{
 	if (signal == SIGUSR1)
 	{
-		flag = 1;
+		g_flag = 1;
 	}
 	else
 	{
-		printf("error\n");
+		ft_putendl_fd("error\n", 1);
 		exit (0);
 	}
 }
 
-void send_char(int pid, char str) {
-	int i;
+void	send_char(int pid, char str)
+{
+	int	i;
 
 	i = 0;
-	flag = 0;
+	g_flag = 0;
 	while (i < 8)
 	{
 		if ((str & (0x01 << i)) != 0)
 		{
 			if (kill(pid, SIGUSR1) == -1)
 			{
-				printf("error\n");
-				exit (0);
+				ft_putendl_fd("error\n", 1);
+				exit (1);
 			}
 		}
 		else
 		{
 			if (kill(pid, SIGUSR2) == -1)
 			{
-				printf("error\n");
-				exit (0);
+				ft_putendl_fd("error\n", 1);
+				exit (1);
 			}
 		}
 		usleep(50);
@@ -46,57 +56,30 @@ void send_char(int pid, char str) {
 	}
 }
 
-int	ft_isdigit(int c)
+int	main(int argc, char **argv)
 {
-	return ('0' <= c && c <= '9');
-}
-
-int	ft_atoi_pid(const char *str)
-{
-	int		i;
-	long	num;
-
-	i = 0;
-	num = 0;
-	while (str[i])
-	{
-		if(!ft_isdigit(str[i]))
-			return (-1);
-		num = num * 10 + str[i] - '0';
-		if (num > ((INT_MAX - (str[i] - '0')) / 10))
-			return (-1);
-		i++;
-	}
-	return (num);
-}
-
-int main(int argc, char **argv) {
-	int i;
-	int pid;
-	int result;
+	int	i;
+	int	pid;
 
 	i = 0;
 	if (argc != 3)
 	{
-		printf("Usase: ./client [PID] [message]");
+		ft_putendl_fd("Usase: ./client [PID] [message]", 1);
 		return (0);
 	}
 	pid = ft_atoi_pid(argv[1]);
-	if(pid == -1)
+	if (pid == -1)
 	{
-		printf("Usase: ./client [PID] [message]");
+		ft_putendl_fd("Usase: ./client [PID] [message]", 1);
 		return (0);
 	}
 	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while (argv[2][i])
 	{
-		if (flag == 1)
-		{
-			send_char(pid, argv[2][i]);
-			i++;
-		}
+		if (g_flag == 1)
+			send_char(pid, argv[2][i++]);
 	}
 	send_char(pid, '\n');
-    return 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:06:58 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/05 15:10:11 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:38:09 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_putnbr(int n)
 		count += 1;
 	}
 	ft_put_only(num);
-	count += ft_count_len(num, 10);
+	count += ft_count_len_printf(num, 10);
 	return (count);
 }
 
@@ -46,6 +46,6 @@ int	ft_put_unsigned(unsigned int n)
 
 	count = 0;
 	ft_put_only(n);
-	count += ft_count_len(n, 10);
+	count += ft_count_len_printf(n, 10);
 	return (count);
 }

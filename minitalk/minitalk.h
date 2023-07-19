@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count.c                                         :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:05:33 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 16:38:09 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/07/19 15:43:42 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/19 16:41:59 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+# include "libft/libft.h"
+# include "printf/ft_printf.h"
+# include <signal.h>
+# include <stdio.h>
+# include <signal.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-size_t	ft_count_len_printf(long long n, size_t base)
-{
-	int	count;
-
-	count = 0;
-	while (n / base)
-	{
-		n /= base;
-		count++;
-	}
-	return (count + 1);
-}
+#endif

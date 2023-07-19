@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:06:43 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/05 15:12:56 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:38:09 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_puthex(unsigned long n, int uporlow)
 	ret = NULL;
 	if (n < 0)
 		return (-1);
-	hex_len = ft_count_len(n, 16);
+	hex_len = ft_count_len_printf(n, 16);
 	ret = convert_hex(n, uporlow, hex_len, ret);
 	write(1, ret, hex_len);
 	free (ret);

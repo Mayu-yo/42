@@ -13,17 +13,17 @@ OBJS			=	${SRCS:.c=.o}
 
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+	@ ${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+	@ ${LIBC} ${NAME} ${OBJS}
 	
 all: ${NAME}
 
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS}
+	@ ${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean: clean
-	${RM} ${NAME}
+	@ ${RM} ${NAME}
 
 re: fclean all
