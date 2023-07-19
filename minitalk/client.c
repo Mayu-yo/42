@@ -14,13 +14,12 @@ void signal_handler(int signal) {
 	else
 	{
 		printf("error\n");
-		flag = 0;
+		exit (0);
 	}
 }
 
 void send_char(int pid, char str) {
 	int i;
-	int result;
 
 	i = 0;
 	flag = 0;
@@ -28,15 +27,19 @@ void send_char(int pid, char str) {
 	{
 		if ((str & (0x01 << i)) != 0)
 		{
-			result = kill(pid, SIGUSR1);
-			if (result == -1)
+			if (kill(pid, SIGUSR1) == -1)
+			{
+				printf("error\n");
 				exit (0);
+			}
 		}
 		else
 		{
-			result = kill(pid, SIGUSR2);
-			if (result == -1)
+			if (kill(pid, SIGUSR2) == -1)
+			{
+				printf("error\n");
 				exit (0);
+			}
 		}
 		usleep(50);
 		i++;

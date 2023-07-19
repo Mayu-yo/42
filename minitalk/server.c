@@ -13,7 +13,11 @@ void signal_handler(int signal, siginfo_t *info, void *context) {
 	if (bit == 8)
 	{
 		printf("%c", i);
-		kill(info->si_pid, SIGUSR1);//失敗処理
+		if(kill(info->si_pid, SIGUSR1) == -1)
+		{
+			printf("error\n");
+			exit(1);
+		}
 		bit = 0;
 		i = 0;
 	}
