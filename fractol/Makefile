@@ -5,21 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/19 19:42:14 by mayyamad          #+#    #+#              #
-#    Updated: 2023/07/19 19:42:29 by mayyamad         ###   ########.fr        #
+#    Created: 2023/07/19 19:49:06 by mayyamad          #+#    #+#              #
+#    Updated: 2023/07/19 19:49:40 by mayyamad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	# Library Name #
-# NAME	=
-CLIENT	=	client
-SERVER	=	server
-
+NAME		=	fractal
 	# libft Variables #
 LIBFT		=	./libft/libft.a
 LIBFT_DIR	=	./libft
-PRINTF		=	./printf/libftprintf.a
-PRINTF_DIR	=	./printf
 
 	# Mandatory Variables #
 SRC_C	=	client.c
