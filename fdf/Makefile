@@ -6,7 +6,7 @@
 #    By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 19:49:06 by mayyamad          #+#    #+#              #
-#    Updated: 2023/07/20 18:54:58 by mayyamad         ###   ########.fr        #
+#    Updated: 2023/07/23 17:30:36 by mayyamad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,16 @@ NAME		=	fdf
 	# libft Variables #
 LIBFT		=	./libft/libft.a
 LIBFT_DIR	=	./libft
+GNL			=	./gnl/get_next_line_bonus.c ./gnl/get_next_line_bonus_util.c
+GNL_DIR		=	./gnl
 
 	# Mandatory Variables #
 # SRC_C	=	client.c
 # SRC_S	=	server.c
 # INC		=	-I. -I$(LIBFT_DIR) -I$(PRINTF_DIR)
-SRCS			=	main.c
+# INC				=	-I. -I$(GNL_DIR)
+SRCS			=	main.c readmap.c\
+					./gnl/get_next_line_bonus.c ./gnl/get_next_line_bonus_util.c
 OBJS			=	${SRCS:.c=.o}
 
 	# Compiling Variables #
@@ -43,7 +47,7 @@ all: $(NAME)
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 # $(SERVER): $(LIBFT) $(PRINTF)
 # 	@ $(CC)  $(CFLAG) $(SRC_S) $(LIBFT) $(PRINTF) $(INC) -o $(SERVER)
@@ -57,8 +61,8 @@ $(NAME): $(OBJS)
 # $(LIBFT):
 # 	@ $(MAKE) -C $(LIBFT_DIR)
 
-# $(PRINTF):
-# 	@ $(MAKE) -C $(PRINTF_DIR)
+# $(GNL):
+# 	@ $(MAKE) -C $(GNL_DIR)
 
 clean:
 	@ $(RM) $(CLIENT) $(SERVER)
