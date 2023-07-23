@@ -6,7 +6,7 @@
 #    By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 19:42:14 by mayyamad          #+#    #+#              #
-#    Updated: 2023/07/19 19:42:29 by mayyamad         ###   ########.fr        #
+#    Updated: 2023/07/20 20:16:45 by mayyamad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_S	=	server.c
 INC		=	-I. -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 	# Compiling Variables #
-CC			=	gcc
+CC			=	cc
 CFLAG		=	-Wall -Wextra -Werror
 RM			=	rm -f
 

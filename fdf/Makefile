@@ -6,23 +6,26 @@
 #    By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 19:49:06 by mayyamad          #+#    #+#              #
-#    Updated: 2023/07/19 19:49:40 by mayyamad         ###   ########.fr        #
+#    Updated: 2023/07/20 18:54:58 by mayyamad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	# Library Name #
-NAME		=	fractal
+NAME		=	fdf
+
 	# libft Variables #
 LIBFT		=	./libft/libft.a
 LIBFT_DIR	=	./libft
 
 	# Mandatory Variables #
-SRC_C	=	client.c
-SRC_S	=	server.c
-INC		=	-I. -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+# SRC_C	=	client.c
+# SRC_S	=	server.c
+# INC		=	-I. -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+SRCS			=	main.c
+OBJS			=	${SRCS:.c=.o}
 
 	# Compiling Variables #
-CC			=	gcc
+CC			=	cc
 CFLAG		=	-Wall -Wextra -Werror
 RM			=	rm -f
 
@@ -34,24 +37,28 @@ _SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
 _INFO		=	[$(YELLOW)INFO$(RESET)]
 
 
-all: $(SERVER) $(CLIENT)
+all: $(NAME)
 
-# $(NAME): all
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
-$(SERVER): $(LIBFT) $(PRINTF)
-	@ $(CC)  $(CFLAG) $(SRC_S) $(LIBFT) $(PRINTF) $(INC) -o $(SERVER)
-	@printf "$(_SUCCESS) server ready.\n"
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-$(CLIENT): $(LIBFT) $(PRINTF)
-	@ $(CC) $(CFLAG) $(SRC_C) $(LIBFT) $(PRINTF) $(INC) -o $(CLIENT)
-	@printf "$(_SUCCESS) client ready.\n"
+# $(SERVER): $(LIBFT) $(PRINTF)
+# 	@ $(CC)  $(CFLAG) $(SRC_S) $(LIBFT) $(PRINTF) $(INC) -o $(SERVER)
+# 	@printf "$(_SUCCESS) server ready.\n"
+
+# $(CLIENT): $(LIBFT) $(PRINTF)
+# 	@ $(CC) $(CFLAG) $(SRC_C) $(LIBFT) $(PRINTF) $(INC) -o $(CLIENT)
+# 	@printf "$(_SUCCESS) client ready.\n"
 
 
-$(LIBFT):
-	@ $(MAKE) -C $(LIBFT_DIR)
+# $(LIBFT):
+# 	@ $(MAKE) -C $(LIBFT_DIR)
 
-$(PRINTF):
-	@ $(MAKE) -C $(PRINTF_DIR)
+# $(PRINTF):
+# 	@ $(MAKE) -C $(PRINTF_DIR)
 
 clean:
 	@ $(RM) $(CLIENT) $(SERVER)
