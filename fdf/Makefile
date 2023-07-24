@@ -5,26 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/19 19:42:14 by mayyamad          #+#    #+#              #
-#    Updated: 2023/07/20 20:16:45 by mayyamad         ###   ########.fr        #
+#    Created: 2023/07/19 19:49:06 by mayyamad          #+#    #+#              #
+#    Updated: 2023/07/24 20:02:54 by mayyamad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	# Library Name #
-# NAME	=
-CLIENT	=	client
-SERVER	=	server
+NAME		=	fdf
 
 	# libft Variables #
 LIBFT		=	./libft/libft.a
 LIBFT_DIR	=	./libft
-PRINTF		=	./printf/libftprintf.a
-PRINTF_DIR	=	./printf
 
 	# Mandatory Variables #
-SRC_C	=	client.c
-SRC_S	=	server.c
-INC		=	-I. -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+SRCS			=	main.c readmap.c
+OBJS			=	${SRCS:.c=.o}
+INC				=	-I$(LIBFT_DIR)
 
 	# Compiling Variables #
 CC			=	cc
@@ -39,24 +35,17 @@ _SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
 _INFO		=	[$(YELLOW)INFO$(RESET)]
 
 
-all: $(SERVER) $(CLIENT)
+all: $(NAME)
 
-# $(NAME): all
+%.o: %.c
+	$(CC) $(CFLAG) -Imlx -c $< -o $@
 
-$(SERVER): $(LIBFT) $(PRINTF)
-	@ $(CC)  $(CFLAG) $(SRC_S) $(LIBFT) $(PRINTF) $(INC) -o $(SERVER)
-	@printf "$(_SUCCESS) server ready.\n"
-
-$(CLIENT): $(LIBFT) $(PRINTF)
-	@ $(CC) $(CFLAG) $(SRC_C) $(LIBFT) $(PRINTF) $(INC) -o $(CLIENT)
-	@printf "$(_SUCCESS) client ready.\n"
-
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIBFT):
 	@ $(MAKE) -C $(LIBFT_DIR)
 
-$(PRINTF):
-	@ $(MAKE) -C $(PRINTF_DIR)
 
 clean:
 	@ $(RM) $(CLIENT) $(SERVER)

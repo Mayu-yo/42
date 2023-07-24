@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:40:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 17:23:00 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:02:23 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	signal_handler(int signal)
 	}
 	else
 	{
-		ft_putendl_fd("error\n", 1);
+		ft_putendl_fd("error", 2);
 		exit (0);
 	}
 }
@@ -39,7 +39,7 @@ void	send_char(int pid, char str)
 		{
 			if (kill(pid, SIGUSR1) == -1)
 			{
-				ft_putendl_fd("error\n", 1);
+				ft_putendl_fd("error", 2);
 				exit (1);
 			}
 		}
@@ -47,7 +47,7 @@ void	send_char(int pid, char str)
 		{
 			if (kill(pid, SIGUSR2) == -1)
 			{
-				ft_putendl_fd("error\n", 1);
+				ft_putendl_fd("error", 2);
 				exit (1);
 			}
 		}
@@ -64,13 +64,13 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 3)
 	{
-		ft_putendl_fd("Usase: ./client [PID] [message]", 1);
+		ft_putendl_fd("Usase: ./client [PID] [message]", 2);
 		return (0);
 	}
 	pid = ft_atoi_pid(argv[1]);
 	if (pid == -1)
 	{
-		ft_putendl_fd("Usase: ./client [PID] [message]", 1);
+		ft_putendl_fd("Usase: ./client [PID] [message]", 2);
 		return (0);
 	}
 	signal(SIGUSR1, signal_handler);
