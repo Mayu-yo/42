@@ -6,11 +6,11 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 02:40:41 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/13 12:11:24 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:31:11 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "libft.h"
 
 static char	*ft_read_all(int fd, char *line)
 {

@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-//二重配列をmallocして
-
 void read_map_file(char *line, int **coordinate){
 	int x;
 	static int	y;

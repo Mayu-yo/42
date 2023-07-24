@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arr_len.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/31 15:31:36 by Nik               #+#    #+#             */
-/*   Updated: 2019/08/31 15:32:09 by Nik              ###   ########.fr       */
+/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/24 13:53:14 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "array_int.h"
+#include "libft.h"
 
-int		arr_len(int *arr)
+size_t	ft_strlen(const char *str)
 {
-	return (ARR_LEN);
+	size_t	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (*str != '\0')
+	{
+		str++;
+		i++;
+	}
+	return (i);
 }

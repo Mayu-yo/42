@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/06 15:16:23 by vinograd          #+#    #+#             */
-/*   Updated: 2019/05/06 20:23:44 by vinograd         ###   ########.fr       */
+/*   Created: 2023/05/21 14:48:21 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/24 13:54:03 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	char	*res;
-	size_t	len;
+	char		*s;
+	size_t		len1;
+	size_t		len2;
 
-	if (s1 == NULL || s2 == NULL)
+	if (s1 == NULL)
+		len1 = 0;
+	else
+		len1 = ft_strlen(s1);
+	if (s2 == NULL)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	if ((str = (char *)malloc(len + 1)) == NULL)
+	len2 = ft_strlen(s2);
+	s = (char *)malloc(len1 + len2 + 1);
+	if (s == NULL)
 		return (NULL);
-	res = str;
-	while (*s1)
-	{
-		*str = *s1;
-		str++;
-		s1++;
-	}
-	while (*s2)
-	{
-		*str = *s2;
-		str++;
-		s2++;
-	}
-	*str = '\0';
-	return (res);
+	ft_memcpy(s, s1, len1);
+	ft_memcpy(s + len1, s2, len2 + 1);
+	free((void *)s1);
+	return (s);
 }
