@@ -14,11 +14,11 @@ SRCS 			=	ft_toupper.c ft_tolower.c\
 					ft_calloc.c ft_bzero.c\
 					ft_substr.c ft_split.c\
 					get_next_line_bonus.c
-INC				=	-I$(PRINTF_DIR)
+# INC				=	-I$(PRINTF_DIR)
 
-	# printf Variables #
-PRINTF_DIR		=	./printf
-PRINTF			=	./printf/libftprintf.a
+# 	# printf Variables #
+# PRINTF_DIR		=	./printf
+# PRINTF			=	./printf/libftprintf.a
 
 # 	# get_next_line Variables #
 # GNL_DIR			=	./get_next_line
