@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 13:56:49 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/24 13:54:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/05/28 14:28:01 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/06/10 02:49:56 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-char	*ft_strchr(const char *s, int c)
-{
-	const unsigned char	*p;
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
-	if (!s)
-		return (NULL);
-	p = (const unsigned char *)s;
-	while (*p != (unsigned char)c)
-	{
-		if (*p == '\0' && c != '\0')
-			return (NULL);
-		p++;
-	}
-	return ((char *)p);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlen(const char *str);
+
+#endif

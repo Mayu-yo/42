@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 14:28:01 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/24 13:55:51 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/07/23 18:00:24 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 # include <unistd.h>
 # include <strings.h>
 # include <limits.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
+# include "printf/ft_printf.h"
+# include "gnl/get_next_line_bonus.h"
 
 typedef struct s_list
 {
@@ -75,5 +73,6 @@ void	ft_lstclear(t_list **list, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
+int		ft_printf(const char *format, ...);
 
 #endif
