@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmuradia <vmuradia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:05:03 by vmuradia          #+#    #+#             */
-/*   Updated: 2018/12/07 17:12:43 by vmuradia         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:06:25 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	mandelbrot(t_data *data)
 			data->cim = find_imaginary(y, data);
 			n = find_n(data->cre, data->cim, data->max_n);
 			if (n == data->max_n)
-				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0x000000);
+				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x,  y, 0x000000);
 			else
 				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y,
 					(data->color * n / 100));
