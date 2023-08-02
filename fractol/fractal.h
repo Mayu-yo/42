@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   fractal.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2018/12/04 16:09:35 by vmuradia          #+#    #+#             */
+/*   Updated: 2023/08/01 01:43:55 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+# include <unistd.h>
+# include <math.h>
+# include "./libft/libft.h"
+# include "./minilibx/mlx.h"
 
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
+
+#endif

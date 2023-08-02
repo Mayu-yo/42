@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_put_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/06/05 15:07:13 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/06/05 15:10:22 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_putchar(char c)
 {
-	size_t	i;
+	write(1, &c, 1);
+	return (1);
+}
 
-	i = 0;
-	while (*str != '\0')
+int	ft_putstr(char *s)
+{
+	int	len;
+
+	len = 0;
+	if (!s)
 	{
-		str++;
-		i++;
+		write(1, "(null)", 6);
+		return (6);
 	}
-	return (i);
+	while (s[len] != '\0')
+		len++;
+	write(1, s, len);
+	return (len);
+}
+
+int	ft_print_char(int num)
+{
+	int		len;
+	char	c;
+
+	len = 0;
+	c = (char)num;
+	len += ft_putchar(c);
+	return (len);
 }

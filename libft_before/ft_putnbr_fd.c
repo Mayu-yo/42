@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/05/21 14:12:54 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/06/01 18:33:33 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+static long	is_minus(long num, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (*str != '\0')
+	if (num < 0)
 	{
-		str++;
-		i++;
+		write(fd, "-", 1);
+		num = -num;
 	}
-	return (i);
+	return (num);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	c;
+	long	num;
+
+	num = n;
+	num = is_minus(n, fd);
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	c = '0' + (num % 10);
+	write(fd, &c, 1);
 }

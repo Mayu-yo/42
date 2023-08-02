@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmuradia <vmuradia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2018/10/28 10:32:17 by vmuradia          #+#    #+#             */
+/*   Updated: 2018/10/28 10:33:09 by vmuradia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+void		ft_lstrev(t_list **alst)
 {
-	size_t	i;
+	t_list	*last;
+	t_list	*cur;
+	t_list	*next;
 
-	i = 0;
-	while (*str != '\0')
+	last = NULL;
+	cur = *alst;
+	while (cur != NULL)
 	{
-		str++;
-		i++;
+		next = cur->next;
+		cur->next = last;
+		last = cur;
+		cur = next;
 	}
-	return (i);
+	*alst = last;
 }

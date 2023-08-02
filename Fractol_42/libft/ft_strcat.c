@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmuradia <vmuradia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2018/10/23 14:48:52 by vmuradia          #+#    #+#             */
+/*   Updated: 2018/10/26 13:20:49 by vmuradia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strcat(char *restrict s1, const char *restrict s2)
 {
-	size_t	i;
+	int i;
+	int j;
 
 	i = 0;
-	while (*str != '\0')
-	{
-		str++;
+	j = 0;
+	while (s1[i] != '\0')
 		i++;
-	}
-	return (i);
+	while (s2[j] != '\0')
+		s1[i++] = s2[j++];
+	s1[i] = '\0';
+	return (s1);
 }

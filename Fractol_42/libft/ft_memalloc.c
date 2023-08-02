@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmuradia <vmuradia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2018/10/25 09:09:17 by vmuradia          #+#    #+#             */
+/*   Updated: 2018/10/27 13:40:34 by vmuradia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+void	*ft_memalloc(size_t size)
 {
-	size_t	i;
+	char *m;
 
-	i = 0;
-	while (*str != '\0')
+	m = (char *)malloc(size * sizeof(char));
+	if (m == NULL)
 	{
-		str++;
-		i++;
+		return (NULL);
 	}
-	return (i);
+	ft_bzero(m, size);
+	return (m);
 }

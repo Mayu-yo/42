@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/07/19 19:56:17 by mayyamad         ###   ########.fr       */
+/*   Created: 2023/06/05 15:05:33 by mayyamad          #+#    #+#             */
+/*   Updated: 2023/07/19 16:38:09 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (*str != '\0')
-	{
-		str++;
+	while (str[i] != '\0')
 		i++;
-	}
 	return (i);
+}
+
+size_t	ft_count_len_printf(long long n, size_t base)
+{
+	int	count;
+
+	count = 0;
+	while (n / base)
+	{
+		n /= base;
+		count++;
+	}
+	return (count + 1);
 }
