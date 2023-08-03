@@ -2,112 +2,102 @@
 
 #define WIDTH 800
 #define HEIGHT 800
+#define MAX_REPEAT 100
 
-typedef struct s_mlx
+typedef struct s_mouse_pos {
+	int x;
+	int y;
+} t_mouse_pos;
+
+t_mouse_pos g_mouse_pos;
+
+int	close_window(int keycode, t_data *data)
 {
-    void *mlx_ptr;
-    void *win_ptr;
-    void *img_ptr;
-    char *img_data;
-    int bits_per_pixel;
-    int size_line;
-    int endian;
-} t_mlx;
-
-typedef struct s_complex
-{
-    double real;
-    double imag;
-} t_complex;
-
-// void init_mlx(t_mlx *mlx)
-// {
-//     mlx->mlx_ptr = mlx_init();
-//     mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "Mandelbrot Set");
-//     mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
-//     mlx->img_data = mlx_get_data_addr(mlx->img_ptr, &(mlx->bits_per_pixel), &(mlx->size_line), &(mlx->endian));
-// }
-
-t_complex create_complex(double real, double imag)
-{
-    t_complex c;
-    c.real = real;
-    c.imag = imag;
-    return c;
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	exit (0);
 }
 
-int mandelbrot_set_color(int n, int max_n)
+int handle_mouse_move(int x, int y, t_data *data)
 {
-    if (n == max_n)
-        return 0x000000; // Black for points that don't diverge
-    else
-        return (n * 255 / max_n) << 16 | (n * 255 / max_n) << 8 | n * 255 / max_n; // Color gradient based on the iteration count
+	g_mouse_pos.x = x;
+	g_mouse_pos.y = y;
+	draw_mandelbrot(*data, 1.0, g_mouse_pos.x, g_mouse_pos.y); // Redraw the Mandelbrot set whenever the mouse moves
+	return (0);
 }
 
-// int find_n(t_complex c, int max_n)
-int find_n(double a, double b, int max_n)
+void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-    t_complex z = create_complex(0.0, 0.0);
-    int n = 0;
+	char *dst;
 
-    while (n < max_n && (z.real * z.real + z.imag * z.imag) < 4.0)
-    {
-        // double temp = z.real * z.real - z.imag * z.imag + a;
-        z.imag = 2.0 * z.real * z.imag + b;
-        z.real = z.real * z.real - z.imag * z.imag + a;
-        n++;
-    }
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
 
-    // return n;
-	// int n;
-	// double zr;
-	// double zi;
+int is_mandelbrot(double a, double b){
+	int n;
+	double zr;
+	double zi;
+	double temp;
 
-	// n = 1;
-	// zr = 0;
-	// zi = 0;
-	// while (n < max_n){
-	// 	zr = pow(zr, 2) - pow(zi, 2) + a;
-	// 	zi = 2 * zr * zi + b;
-	// 	if (pow(zr, 2) + pow(zi, 2) >= 4)
-	// 		break;
-	// 	n++;
-	// }
+	n = 1;
+	zr = 0;
+	zi = 0;
+	while (n < MAX_REPEAT){
+		temp = pow(zr, 2) - pow(zi, 2) + a;
+		zi = 2 * zr * zi + b;
+		zr = temp;
+		if (pow(zr, 2) + pow(zi, 2) >= 4)
+			break;
+		n++;
+	}
 	return (n);
 }
 
-void draw_mandelbrot(t_mlx *mlx, t_complex min_c, t_complex max_c, int max_n)
+int mandelbrot_set_color(int n)
 {
-    int x, y;
-
-    for (x = 0; x < WIDTH; x++)
-    {
-        for (y = 0; y < HEIGHT; y++)
-        {
-            double a = min_c.real + (max_c.real - min_c.real) * x / WIDTH;
-            double b = min_c.imag + (max_c.imag - min_c.imag) * y / HEIGHT;
-            t_complex c = create_complex(a, b);
-            int n = find_n(c.real, c.imag, max_n);
-            int color = mandelbrot_set_color(n, max_n);
-            *(int *)(mlx->img_data + (y * mlx->size_line + x * mlx->bits_per_pixel / 8)) = color;
-        }
-    }
+    if (n == MAX_REPEAT)
+        return 0x000000;
+    else
+        return (n * 255 / MAX_REPEAT) << 16 | (n * 255 / MAX_REPEAT) << 8 | n * 255 / MAX_REPEAT; // Color gradient based on the iteration count
 }
 
-int main()
-{
-    t_mlx mlx;
-    t_complex min_c = create_complex(-2.0, -1.5); // Minimum complex number of the view
-    t_complex max_c = create_complex(1.0, 1.5);   // Maximum complex number of the view
-    int max_n = 100;                            // Maximum number of iterations
+void draw_mandelbrot(t_data img, double zoom, double center_x, double center_y){
+	double a;
+	double b;
+	int x,y = 0;
+	int n;
 
-    // init_mlx(&mlx);
-	mlx.mlx_ptr = mlx_init();
-    mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "Mandelbrot Set");
-    mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
-    mlx.img_data = mlx_get_data_addr(mlx.img_ptr, &(mlx.bits_per_pixel), &(mlx.size_line), &(mlx.endian));
-    draw_mandelbrot(&mlx, min_c, max_c, max_n);
-    mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img_ptr, 0, 0);
-    mlx_loop(mlx.mlx_ptr);
-    return 0;
+	n = 0;
+	while(x < WIDTH){
+		while(y < HEIGHT){
+			a = -2.0 + ((3.0) * (x - center_x)) / WIDTH * zoom;
+			b = -1.5 + ((3.0) * (y - center_y)) / HEIGHT * zoom;
+			n = is_mandelbrot(a, b);
+				my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
+
+
+int main(void)
+{
+	t_data img;
+
+	img.mlx_ptr = mlx_init();
+	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "Mandelbrot Set");
+	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								&img.endian);
+	draw_mandelbrot(img, 1.0, 0, 0);
+	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
+	mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
+	mlx_hook(img.win_ptr, 2, 0, handle_key_press, &img);
+	mlx_hook(img.win_ptr, 17, 0, close_window, &img);
+	// mlx_hook(img.win_ptr, 6, 0, handle_mouse_move, &img); // Register the mouse move event
+	mlx_loop(img.mlx_ptr);
+	return (0);
 }

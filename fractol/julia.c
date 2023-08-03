@@ -3,20 +3,13 @@
 #define WIDTH 800
 #define HEIGHT 800
 #define MAX_REPEAT 100
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+
 
 int	close_window(int keycode, t_data *data)
 {
-	(void)keycode;
-	(void)data;
-	exit(0);
-	return (0);
+	// (void)keycode;
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	exit (0);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -50,52 +43,45 @@ int is_mandelbrot(double a, double b){
 int mandelbrot_set_color(int n)
 {
     if (n == MAX_REPEAT)
-        return 0x000000; // Black for points that don't diverge
+        return 0x000000;
     else
         return (n * 255 / MAX_REPEAT) << 16 | (n * 255 / MAX_REPEAT) << 8 | n * 255 / MAX_REPEAT; // Color gradient based on the iteration count
 }
 
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+void draw_mandelbrot(t_data img, double zoom){
 	double a;
 	double b;
 	int x,y = 0;
 	int n;
 
 	n = 0;
-	a = -2.0;
-	b = -2.0;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Hello world!");
-	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	while(x < WIDTH){
+		while(y < HEIGHT){
+			a = -2.0 + ((3.0) * x) / WIDTH * zoom;
+			b = -1.5 + ((3.0) * y) / HEIGHT * zoom;
+			n = is_mandelbrot(a, b);
+				my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
+int	main(void)
+{
+	t_data	img;
+	
+	img.mlx_ptr = mlx_init();
+	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "Mandelbrot Set");
+	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	while(a <= 2.0){
-		while(b <= 2.0){
-			n = is_mandelbrot(a, b);
-				my_mlx_pixel_put(&img, (a + 2) * 200, (b + 2) * 200, mandelbrot_set_color(n));
-			b = b + 0.005;
-		}
-		b = -2.0;
-		a = a + 0.005;
-	}
-
-	// while(x < WIDTH){
-	// 	while(y < HEIGHT){
-	// 		a = -2.0 + (3.0) * x / WIDTH;
-	// 		b = -1.5 + (3.0) * y / HEIGHT;
-	// 		n = is_mandelbrot(a, b);
-	// 			my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
-	// 		y++;
-	// 	}
-	// 	y = 0;
-	// 	x++;
-	// }
-	
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_hook(mlx_win, 17, 1L << 17, close_window, &img);
-	mlx_loop(mlx);
+	draw_mandelbrot(img, 1.0);
+	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
+	mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
+	mlx_hook(img.win_ptr, 2, 0, handle_key_press, &img);
+	mlx_hook(img.win_ptr, 17, 0, close_window, &img);
+	mlx_loop(img.mlx_ptr);
+	return 0;
 }
