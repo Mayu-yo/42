@@ -62,23 +62,34 @@ int mandelbrot_set_color(int n)
 }
 
 void draw_mandelbrot(t_data img, double zoom, double center_x, double center_y){
-	double a;
-	double b;
-	int x,y = 0;
+	double a = -2.0;
+	double b = -2.0;
+	double x,y = 0;
 	int n;
 
 	n = 0;
-	while(x < WIDTH){
-		while(y < HEIGHT){
-			a = -2.0 + ((3.0) * (x - center_x)) / WIDTH * zoom;
-			b = -1.5 + ((3.0) * (y - center_y)) / HEIGHT * zoom;
-			n = is_mandelbrot(a, b);
-				my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
-			y++;
-		}
-		y = 0;
-		x++;
-	}
+	// while(x < WIDTH){
+	// 	while(y < HEIGHT){
+	// 		a = -2.0 + ((3.0) * (x - center_x)) / WIDTH * zoom;
+	// 		b = -1.5 + ((3.0) * (y - center_y)) / HEIGHT * zoom;
+	// 		n = is_mandelbrot(a, b);
+	// 			my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
+	// 		y++;
+	// 	}
+	// 	y = 0;
+	// 	x++;
+	// }
+	while (y < HEIGHT) {
+        x = 0;
+        while (x < WIDTH) {
+            a = center_x + (x - WIDTH / 2.0) / WIDTH * 4 / zoom;
+            b = center_y + (y - HEIGHT / 2.0) / HEIGHT * 4 / zoom;
+            n = is_mandelbrot(a, b);
+            my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
+            x++;
+        }
+        y++;
+    }
 }
 
 
