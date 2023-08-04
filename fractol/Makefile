@@ -12,7 +12,8 @@ MLX_LIB		=	$(MLX)/liblmx.a
 HEADERS		=	fractal.h
 
 	# Mandatory Variables #
-SRCS			=	mandelbrot.c handle.c
+# SRCS			=	mandelbrot.c handle.c
+SRCS			=	julia.c
 OBJS			=	${SRCS:.c=.o}
 INC				=	-I$(LIBFT_DIR) -I$(MLX_INC)
 

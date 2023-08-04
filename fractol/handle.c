@@ -5,8 +5,9 @@ int handle_key_press(int keycode, t_data *data)
     if (keycode == 53) //ESC key
     {
         mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		exit (0);
     }
-    exit (0);
+    return (0);
 }
 
 int handle_mouse_scroll(int button, int x, int y, t_data *data)
@@ -15,9 +16,9 @@ int handle_mouse_scroll(int button, int x, int y, t_data *data)
     (void)x;
     (void)y;
 
-    if (button == 5)
+    if (button == 4)
         zoom *= 0.9;
-    else if (button == 4)
+    else if (button == 5)
         zoom *= 1.1;
 
     draw_mandelbrot(*data, zoom, 0, 0);
