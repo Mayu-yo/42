@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     for (int y = 0; y < HEIGHT; y++) {
         for (int x = 0; x < WIDTH; x++) {
             int iter = julia_set(x, y, 100, c);
-            int color = iter * 255 / 100; // カラーマッピング（適宜調整可）
+            int color = iter * 255 / 100;
             int pixel_color = (color << 16) | (color << 8) | color;
             mlx_pixel_put(mlx, win, x, y, pixel_color);
         }
