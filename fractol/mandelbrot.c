@@ -4,20 +4,6 @@
 #define HEIGHT 800
 #define MAX_REPEAT 100
 
-
-int	close_window(int keycode, t_data *data)
-{
-	exit (0);
-}
-
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char *dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 int is_mandelbrot(double a, double b){
 	int n;
 	double zr;
@@ -46,7 +32,7 @@ int mandelbrot_set_color(int n)
         return (n * 255 / MAX_REPEAT) << 16 | (n * 255 / MAX_REPEAT) << 8 | n * 255 / MAX_REPEAT; // Color gradient based on the iteration count
 }
 
-void draw_mandelbrot(t_data img, double zoom, double center_x, double center_y){//center_x,yは消す
+void draw_mandelbrot(t_data img, double zoom){
 	double a = -2.0;
 	double b = -2.0;
 	double x,y = 0;
@@ -56,8 +42,8 @@ void draw_mandelbrot(t_data img, double zoom, double center_x, double center_y){
 	while (y < HEIGHT) {
         x = 0;
         while (x < WIDTH) {
-            a = center_x + (x - WIDTH / 2.0) / WIDTH * 4 / zoom;
-            b = center_y + (y - HEIGHT / 2.0) / HEIGHT * 4 / zoom;
+            a = (x - WIDTH / 2.0) / WIDTH * 4 / zoom;
+            b = (y - HEIGHT / 2.0) / HEIGHT * 4 / zoom;
             n = is_mandelbrot(a, b);
             my_mlx_pixel_put(&img, x, y, mandelbrot_set_color(n));
             x++;
@@ -75,7 +61,7 @@ int main(void)
 	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	draw_mandelbrot(img, 1.0, 0, 0);
+	draw_mandelbrot(img, 1.0);
 	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
 	mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
 	mlx_hook(img.win_ptr, 2, 0, handle_key_press, &img);

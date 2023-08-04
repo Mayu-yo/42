@@ -33,8 +33,8 @@ int main(int argc, char *argv[]) {
     }
 
     t_complex c;
-    c.real = atof(argv[1]);
-    c.imag = atof(argv[2]);
+    c.real = ft_atof(argv[1]);
+    c.imag = ft_atof(argv[2]);
 
     mlx_init();
     void *mlx = mlx_init();

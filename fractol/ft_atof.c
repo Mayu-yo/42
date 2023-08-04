@@ -34,7 +34,7 @@ double ft_atof(char *num){
 // #include <stdio.h>
 // int main (){
 // 	double num;
-// 	num = ft_atof("-0.5345");
+// 	num = ft_atof("10.5345");
 // 	printf("%f\n",num);
 // 	// for (int i = 0; i < 10; i++){
 // 	// 	num = pow((0.1), i);
