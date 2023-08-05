@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:09:35 by vmuradia          #+#    #+#             */
-/*   Updated: 2023/08/04 17:18:06 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:11:50 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_data {
 
 int handle_key_press(int keycode, t_data *data);
 int handle_mouse_scroll(int button, int x, int y, t_data *data);
-void draw_mandelbrot(t_data img, double zoom);
+void draw_mandelbrot(t_data *img, double zoom);
 double ft_atof(char *num);
 int	close_window(int keycode, t_data *data);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
