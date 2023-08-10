@@ -26,6 +26,18 @@ int julia_set(int x, int y, int max_iter, t_complex c) {
     return iter;
 }
 
+void	draw_julia(t_complex c, t_data julia)
+{
+	for (int y = 0; y < HEIGHT; y++) {
+        for (int x = 0; x < WIDTH; x++) {
+            int iter = julia_set(x, y, 100, c);
+            int color = iter * 255 / 100;
+            int pixel_color = (color << 16) | (color << 8) | color;
+            mlx_pixel_put(julia.mlx_ptr, julia.win_ptr, x, y, pixel_color);
+        }
+    }
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Usage: %s <real_part_of_c> <imaginary_part_of_c>\n", argv[0]);
@@ -36,20 +48,12 @@ int main(int argc, char *argv[]) {
     c.real = atof(argv[1]);
     c.imag = atof(argv[2]);
 
+	t_data julia;
     mlx_init();
-    void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, WIDTH, HEIGHT, "Julia Set");
-
-    for (int y = 0; y < HEIGHT; y++) {
-        for (int x = 0; x < WIDTH; x++) {
-            int iter = julia_set(x, y, 100, c);
-            int color = iter * 255 / 100;
-            int pixel_color = (color << 16) | (color << 8) | color;
-            mlx_pixel_put(mlx, win, x, y, pixel_color);
-        }
-    }
-
-    mlx_loop(mlx);
+    julia.mlx_ptr = mlx_init();
+    julia.win_ptr = mlx_new_window(julia.mlx_ptr, WIDTH, HEIGHT, "Julia Set");
+	draw_julia(c, julia);
+    mlx_loop(julia.mlx_ptr);
 
     return 0;
 }
