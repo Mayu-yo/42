@@ -12,8 +12,8 @@ MLX_LIB		=	$(MLX)/liblmx.a
 HEADERS		=	fractal.h
 
 	# Mandatory Variables #
-# SRCS			=	mandelbrot.c handle.c
-SRCS			=	julia.c
+SRCS			=	mandelbrot.c handle.c
+# SRCS			=	julia.c ft_atof.c handle.c
 OBJS			=	${SRCS:.c=.o}
 INC				=	-I$(LIBFT_DIR) -I$(MLX_INC)
 
@@ -36,7 +36,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	@ $(CC) $(CFLAG) $(OBJS) -L$(MLX) -lmlx -L$(LIBFT_DIR) -lft -framework OpenGL -framework AppKit -o $(NAME)
-
 $(LIBFT):
 	@ $(MAKE) -C $(LIBFT_DIR)
 
