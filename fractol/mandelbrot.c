@@ -54,6 +54,7 @@ int main(void)
 {
 	t_data img;
 
+	img.fractal = 1;
 	img.mlx_ptr = mlx_init();
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "Mandelbrot Set");
 	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);

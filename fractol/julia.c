@@ -5,12 +5,7 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-typedef struct s_complex {
-    double real;
-    double imag;
-} t_complex;
-
-int julia_set(int x, int y, int max_iter, t_complex c) {
+int julia_set(int x, int y, int max_iter, t_complex c, double zoom) {
 	double temp;
     int iter = 0;
     t_complex z;
@@ -38,13 +33,27 @@ int julia_set_color(int iter)
 }
 
 void draw_julia(t_data img, t_complex c, double zoom){
-	for (int y = 0; y < HEIGHT; y++) {
-        for (int x = 0; x < WIDTH; x++) {
-            int iter = julia_set(x, y, 100, c);
-            mlx_pixel_put(img.mlx_ptr, img.win_ptr, x, y, julia_set_color(iter));
-			// my_mlx_pixel_put(&img, x, y, julia_set_color(iter));
-        }
-    }
+	// for (int y = 0; y < HEIGHT; y++) {
+    //     for (int x = 0; x < WIDTH; x++) {
+    //         int iter = julia_set(x, y, 100, c, zoom);
+    //         mlx_pixel_put(img.mlx_ptr, img.win_ptr, x, y, julia_set_color(iter));
+	// 		// my_mlx_pixel_put(&img, x, y, julia_set_color(iter));
+    //     }
+    // }
+	int x;
+	int y;
+	int iter;
+
+	while (y < HEIGHT)
+	{
+		while (x < WIDTH)
+		{
+			iter = julia_set(x, y, 100, c, zoom);
+			mlx_pixel_put(img.mlx_ptr, img.win_ptr, x, y, julia_set_color(iter));
+			x++;
+		}
+		y++;
+	}
 }
 
 int main(int argc, char *argv[]) {
@@ -61,14 +70,15 @@ int main(int argc, char *argv[]) {
     // void *mlx = mlx_init();
     // void *win = mlx_new_window(mlx, WIDTH, HEIGHT, "Julia Set");
 	t_data img;
+	img.fractal = 2;
 	img.mlx_ptr = mlx_init();
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "Julia Set");
 	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	draw_julia(img,c, 1.0);
+	draw_julia(img, c, 1.0);
     
-	// mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
+	mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
 	mlx_hook(img.win_ptr, 2, 0, handle_key_press, &img);
 	mlx_hook(img.win_ptr, 17, 0, close_window, &img);
     mlx_loop(img.mlx_ptr);

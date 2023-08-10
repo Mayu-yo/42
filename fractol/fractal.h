@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:09:35 by vmuradia          #+#    #+#             */
-/*   Updated: 2023/08/05 18:11:50 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:17:20 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,16 @@
 # include "./libft/libft.h"
 # include "./minilibx/mlx.h"
 
+typedef struct s_complex {
+    double real;
+    double imag;
+} t_complex;
+
 typedef struct	s_data {
-	void *mlx_ptr;
-    void *win_ptr;
+	int		fractal;
+	void 	*mlx_ptr;
+    void 	*win_ptr;
+	t_complex c;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -34,5 +41,6 @@ void draw_mandelbrot(t_data *img, double zoom);
 double ft_atof(char *num);
 int	close_window(int keycode, t_data *data);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void draw_julia(t_data img, t_complex c, double zoom);
 
 #endif
