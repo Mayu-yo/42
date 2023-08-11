@@ -48,6 +48,8 @@ void draw_julia(t_data img, t_complex c, double zoom){
 	{
 		while (x < WIDTH)
 		{
+			// c.real = 1.5 * (x-WIDTH/2) / (0.3*zoom*WIDTH);
+			// c.imag = (y-HEIGHT/2)/(0.3*zoom*HEIGHT);
 			iter = julia_set(x, y, 100, c, zoom);
 			mlx_pixel_put(img.mlx_ptr, img.win_ptr, x, y, julia_set_color(iter));
 			x++;
