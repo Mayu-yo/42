@@ -1,3 +1,4 @@
+
 #include "fractal.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,7 +37,7 @@ void draw_julia(t_data *img, t_complex c, double zoom){
 	// for (int y = 0; y < HEIGHT; y++) {
     //     for (int x = 0; x < WIDTH; x++) {
     //         int iter = julia_set(x, y, 100, c, zoom);
-    //         mlx_pixel_put(img.mlx_ptr, img.win_ptr, x, y, julia_set_color(iter));
+    //         mlx_pixel_put(img->mlx_ptr, img->win_ptr, x, y, julia_set_color(iter));
 	// 		// my_mlx_pixel_put(&img, x, y, julia_set_color(iter));
     //     }
     // }
@@ -46,6 +47,7 @@ void draw_julia(t_data *img, t_complex c, double zoom){
 
 	while (y < HEIGHT)
 	{
+		x = 0;
 		while (x < WIDTH)
 		{
 			iter = julia_set(x, y, 100, c, zoom);
@@ -71,6 +73,7 @@ int main(int argc, char *argv[]) {
     // void *win = mlx_new_window(mlx, WIDTH, HEIGHT, "Julia Set");
 	t_data img;
 	img.fractal = 2;
+	img.c = c;
 	img.mlx_ptr = mlx_init();
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "Julia Set");
 	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
