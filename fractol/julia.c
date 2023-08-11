@@ -32,7 +32,7 @@ int julia_set_color(int iter)
 	return (pixel_color);
 }
 
-void draw_julia(t_data img, t_complex c, double zoom){
+void draw_julia(t_data *img, t_complex c, double zoom){
 	// for (int y = 0; y < HEIGHT; y++) {
     //     for (int x = 0; x < WIDTH; x++) {
     //         int iter = julia_set(x, y, 100, c, zoom);
@@ -40,9 +40,9 @@ void draw_julia(t_data img, t_complex c, double zoom){
 	// 		// my_mlx_pixel_put(&img, x, y, julia_set_color(iter));
     //     }
     // }
-	int x;
-	int y;
-	int iter;
+	int x = 0;
+	int y = 0;
+	int iter = 0;
 
 	while (y < HEIGHT)
 	{
@@ -51,7 +51,7 @@ void draw_julia(t_data img, t_complex c, double zoom){
 			// c.real = 1.5 * (x-WIDTH/2) / (0.3*zoom*WIDTH);
 			// c.imag = (y-HEIGHT/2)/(0.3*zoom*HEIGHT);
 			iter = julia_set(x, y, 100, c, zoom);
-			mlx_pixel_put(img.mlx_ptr, img.win_ptr, x, y, julia_set_color(iter));
+			mlx_pixel_put(img->mlx_ptr, img->win_ptr, x, y, julia_set_color(iter));
 			x++;
 		}
 		y++;
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	draw_julia(img, c, 1.0);
+	draw_julia(&img, c, 1.0);
     
 	mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
 	mlx_hook(img.win_ptr, 2, 0, handle_key_press, &img);
