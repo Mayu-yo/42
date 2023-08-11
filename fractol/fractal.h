@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractal.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:09:35 by vmuradia          #+#    #+#             */
-/*   Updated: 2023/08/10 16:17:20 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:24:48 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void draw_mandelbrot(t_data *img, double zoom);
 double ft_atof(char *num);
 int	close_window(int keycode, t_data *data);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void draw_julia(t_data img, t_complex c, double zoom);
+void draw_julia(t_data *img, t_complex c, double zoom);
 
 #endif
