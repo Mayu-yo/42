@@ -26,16 +26,24 @@ int mandelbrot_set_color(int n)
 {
     if (n == MAX_REPEAT)
         return 0x000000;
-    else
-        return (n * 255 / MAX_REPEAT) << 16 | (n * 255 / MAX_REPEAT) << 8 | n * 255 / MAX_REPEAT; // Color gradient based on the iteration count
+    else {
+        int red = 0x00 + (int)((0xe0 - 0x00) * (double)n / MAX_REPEAT);
+        int green = 0x19 + (int)((0xff - 0x19) * (double)n / MAX_REPEAT);
+        int blue = 0x42 + (int)((0xfc - 0x42) * (double)n / MAX_REPEAT);
+
+        return (red << 16) | (green << 8) | blue;
+    }
 }
 
 void draw_mandelbrot(t_data *img, double zoom){
 	double a = -2.0;
 	double b = -2.0;
-	double x,y = 0;
+	int x,y = 0;
 	int n;
+	int *img_data;
 
+	img_data = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length,
+										&img->endian);
 	n = 0;
 	while (y < HEIGHT) {
         x = 0;
@@ -43,11 +51,12 @@ void draw_mandelbrot(t_data *img, double zoom){
             a = (x - WIDTH / 2.0) / WIDTH * 4 / zoom;
             b = (y - HEIGHT / 2.0) / HEIGHT * 4 / zoom;
             n = is_mandelbrot(a, b);
-			mlx_pixel_put(img->mlx_ptr, img->win_ptr, x, y, mandelbrot_set_color(n));
+			img_data[y * WIDTH + x] = mandelbrot_set_color(n);
             x++;
         }
         y++;
     }
+	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img, 0, 0);
 }
 
 int main(void)
