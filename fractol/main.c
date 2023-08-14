@@ -1,19 +1,26 @@
-#include "fractal.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/14 22:21:18 by mayu              #+#    #+#             */
+/*   Updated: 2023/08/14 23:01:10 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void error_output(){
-	write(1, "Usage: ./fractal [julia] or [mandelbrot]\n", 42);
+#include "fractal.h"
+
+void	error_output(void)
+{
+	ft_putendl_fd("Usage: ./fractal [julia] real_number imaginary_number or [mandelbrot]\n", 2);
 	exit (0);
 }
 
 int	main(int argc, char **argv)
 {
-	// if (argc != 2)
-	// 	error_output();
-	if (ft_strncmp(argv[1],"julia",5) == 0)
+	if (ft_strncmp(argv[1], "julia", 5) == 0)
 	{
 		julia(argc, argv);
 	}

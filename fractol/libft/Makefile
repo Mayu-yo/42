@@ -1,4 +1,8 @@
+
+	# Library Name #
 NAME 			=	libft.a
+
+	# Mandatory Variables #
 SRCS 			=	ft_toupper.c ft_tolower.c\
 					ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 					ft_strlen.c ft_strchr.c ft_strrchr.c ft_strlcpy.c ft_strlcat.c\
@@ -10,6 +14,7 @@ SRCS 			=	ft_toupper.c ft_tolower.c\
 					ft_calloc.c ft_bzero.c\
 					ft_substr.c ft_split.c
 
+	# Bonus Variables #
 BONUS			=	ft_lstnew.c\
 					ft_lstadd_front.c\
 					ft_lstsize.c\
@@ -20,15 +25,23 @@ BONUS			=	ft_lstnew.c\
 					ft_lstiter.c\
 					ft_lstmap.c
 
+	# Compiling Variables #
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
 LIBC			=	ar -rc
 RM				=	rm -f
+
 ifdef WITH_BONUS
 SRCS		+=	${BONUS}
 endif
 OBJS			=	${SRCS:.c=.o}
 
+	# Colors #
+GREEN		=	\e[38;5;118m
+YELLOW		=	\e[38;5;226m
+RESET		=	\e[0m
+_SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
+_INFO		=	[$(YELLOW)INFO$(RESET)]
 
 
 .c.o:
@@ -36,14 +49,17 @@ OBJS			=	${SRCS:.c=.o}
 
 ${NAME}: ${OBJS}
 	@ ${LIBC} ${NAME} ${OBJS}
+	@ printf "$(_SUCCESS) libft: ${NAME} was created.\n"
 	
 all: ${NAME}
 
 clean:
 	@ ${RM} ${OBJS} ${BONUS:.c=.o}
+	@ printf "$(_INFO) libft: Removed all object files\n"
 
 fclean: clean
 	@ ${RM} ${NAME}
+	@ printf "${_INFO} libft: Removed the executables\n"
 
 re: fclean all
 
