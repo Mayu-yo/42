@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:09:35 by vmuradia          #+#    #+#             */
-/*   Updated: 2023/08/11 16:24:48 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/14 16:40:14 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-int handle_key_press(int keycode, t_data *data);
-int handle_mouse_scroll(int button, int x, int y, t_data *data);
-void draw_mandelbrot(t_data *img, double zoom);
-double ft_atof(char *num);
-int	close_window(int keycode, t_data *data);
-void my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void draw_julia(t_data *img, t_complex c, double zoom);
+int		handle_key_press(int keycode, t_data *data);
+int		handle_mouse_scroll(int button, int x, int y, t_data *data);
+void	draw_mandelbrot(t_data *img, double zoom);
+double	ft_atof(char *num);
+int		close_window(int keycode, t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_julia(t_data *img, t_complex c, double zoom);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/14 16:39:51 by mayu              #+#    #+#             */
+/*   Updated: 2023/08/14 16:39:52 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractal.h"
 
 
@@ -39,11 +51,11 @@ int handle_mouse_scroll(int button, int x, int y, t_data *data)
         zoom *= 1.1;
 
 	// if (data->fractal == 1)
-    	draw_mandelbrot(data, zoom);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
-	// else if (data->fractal == 2)
-		// draw_julia(data, data->c, zoom);
+    	// draw_mandelbrot(data, zoom);
 		// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
+	// else if (data->fractal == 2)
+		draw_julia(data, data->c, zoom);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
     // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 
     return (0);

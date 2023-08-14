@@ -15,7 +15,8 @@ double ft_atof(char *num){
 		minus_flag = -1;
 		i++;
 	}
-	if (num[i] == '.'){
+	if (num[i] == '.')
+	{
 		printf("invalid input");
 		exit(0);
 	}
@@ -32,6 +33,11 @@ double ft_atof(char *num){
 			i++;
 			j++;
 		}
+	}
+	if (('0' > num[i] || num[i] > '9') && num[i] != '\0')
+	{
+		printf("invalid input");
+		exit(0);
 	}
 	return (ret * minus_flag);
 }

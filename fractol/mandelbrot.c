@@ -1,22 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/14 16:39:44 by mayu              #+#    #+#             */
+/*   Updated: 2023/08/14 16:43:15 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractal.h"
 
 #define WIDTH 800
 #define HEIGHT 800
-#define MAX_REPEAT 100
+#define MAX_REPEAT 120
 
-int is_mandelbrot(double a, double b){
-	int n;
-	double zr;
-	double zi;
-	double temp;
+int	is_mandelbrot(double a, double b)
+{
+	int			n;
+	double		temp;
+	t_complex	z;
 
 	n = 0;
-	zr = 0;
-	zi = 0;
-	while (n < MAX_REPEAT && zr * zr + zi * zi < 4.0){
-		temp = (zr * zr) - (zi * zi) + a;
-		zi = 2 * zr * zi + b;
-		zr = temp;
+	z.real = 0;
+	z.imag = 0;
+	while (n < MAX_REPEAT && z.real * z.real + z.imag * z.imag < 4.0)
+	{
+		temp = (z.real * z.real) - (z.imag * z.imag) + a;
+		z.imag = 2 * z.real * z.imag + b;
+		z.real = temp;
 		n++;
 	}
 	return (n);
@@ -24,34 +37,39 @@ int is_mandelbrot(double a, double b){
 
 int mandelbrot_set_color(int n)
 {
+	int	red;
+	int	green;
+	int	blue;
+
     if (n == MAX_REPEAT)
         return 0x000000;
-    else {
-        int red = 0x00 + (int)((0xe0 - 0x00) * (double)n / MAX_REPEAT);
-        int green = 0x19 + (int)((0xff - 0x19) * (double)n / MAX_REPEAT);
-        int blue = 0x42 + (int)((0xfc - 0x42) * (double)n / MAX_REPEAT);
-
+    else
+	{
+        red = 0x00 + (0xe0 - 0x00) * n / MAX_REPEAT;
+        green = 0x19 + (0xff - 0x19) * n / MAX_REPEAT;
+        blue = 0x42 + (0xfc - 0x42) * n / MAX_REPEAT;
         return (red << 16) | (green << 8) | blue;
     }
 }
 
-void draw_mandelbrot(t_data *img, double zoom){
-	double a = -2.0;
-	double b = -2.0;
-	int x,y = 0;
-	int n;
-	int *img_data;
+void draw_mandelbrot(t_data *img, double zoom)
+{
+	t_complex	c;
+	int			x;
+	int			y;
+	int			*img_data;
 
+	y = 0;
 	img_data = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length,
 										&img->endian);
-	n = 0;
-	while (y < HEIGHT) {
+	while (y < HEIGHT)
+	{
         x = 0;
-        while (x < WIDTH) {
-            a = (x - WIDTH / 2.0) / WIDTH * 4 / zoom;
-            b = (y - HEIGHT / 2.0) / HEIGHT * 4 / zoom;
-            n = is_mandelbrot(a, b);
-			img_data[y * WIDTH + x] = mandelbrot_set_color(n);
+        while (x < WIDTH)
+		{
+            c.real = (x - WIDTH / 2.0) / WIDTH * 4 / zoom;
+            c.imag = (y - HEIGHT / 2.0) / HEIGHT * 4 / zoom;
+			img_data[y * WIDTH + x] = mandelbrot_set_color(is_mandelbrot(c.real, c.imag));
             x++;
         }
         y++;
@@ -74,7 +92,5 @@ int main(void)
 	mlx_hook(img.win_ptr, 17, 0, close_window, &img);
 	mlx_hook(img.win_ptr, 4, 0, handle_mouse_scroll, &img);
 	mlx_loop(img.mlx_ptr);
-	// mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
-
 	return (0);
 }
