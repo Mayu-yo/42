@@ -42,6 +42,7 @@ int handle_mouse_scroll(int button, int x, int y, t_data *data)
     	// draw_mandelbrot(data, zoom);
 	// else if (data->fractal == 2)
 		draw_julia(data, data->c, zoom);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
     // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 
     return (0);

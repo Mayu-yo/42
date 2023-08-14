@@ -1,4 +1,5 @@
 #include "fractal.h"
+#include <stdio.h>
 
 double ft_atof(char *num){
 	int minus_flag;
@@ -13,6 +14,10 @@ double ft_atof(char *num){
 	if (num[i] == '-'){
 		minus_flag = -1;
 		i++;
+	}
+	if (num[i] == '.'){
+		printf("invalid input");
+		exit(0);
 	}
 	while ('0' <= num[i] && num[i] <= '9')
 	{
