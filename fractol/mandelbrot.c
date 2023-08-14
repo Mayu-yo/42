@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:39:44 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/14 16:43:15 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/14 17:17:49 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void draw_mandelbrot(t_data *img, double zoom)
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img, 0, 0);
 }
 
-int main(void)
+int mandelbrot(void)
 {
 	t_data img;
 

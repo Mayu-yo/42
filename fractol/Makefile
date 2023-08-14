@@ -13,7 +13,7 @@ HEADERS		=	fractal.h
 
 	# Mandatory Variables #
 # SRCS			=	mandelbrot.c handle.c
-SRCS			=	julia.c ft_atof.c handle.c
+SRCS			=	julia.c ft_atof.c handle.c mandelbrot.c main.c
 OBJS			=	${SRCS:.c=.o}
 INC				=	-I$(LIBFT_DIR) -I$(MLX_INC)
 

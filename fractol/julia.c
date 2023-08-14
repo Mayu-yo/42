@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:39:41 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/14 16:39:42 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/14 17:20:53 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,18 @@ void draw_julia(t_data *img, t_complex c, double zoom)
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img, 0, 0);
 }
 
-int main(int argc, char *argv[])
+int julia(int argc, char *argv[])
 {
     t_complex c;
 	t_data img;
 
-    if (argc != 3)
+    if (argc != 4)
 	{
         printf("Usage: %s <real_part_of_c> <imaginary_part_of_c>\n", argv[0]);
         exit (1);
     }
-    c.real = ft_atof(argv[1]);
-    c.imag = ft_atof(argv[2]);
+    c.real = ft_atof(argv[2]);
+    c.imag = ft_atof(argv[3]);
 	img.fractal = 2;
 	img.c = c;
 	img.mlx_ptr = mlx_init();

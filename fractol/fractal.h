@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:09:35 by vmuradia          #+#    #+#             */
-/*   Updated: 2023/08/14 16:40:14 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/14 17:18:29 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ double	ft_atof(char *num);
 int		close_window(int keycode, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_julia(t_data *img, t_complex c, double zoom);
+int julia(int argc, char *argv[]);
+int mandelbrot(void);
 
 #endif

@@ -1,4 +1,4 @@
-// #include "fractal.h"
+#include "fractal.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,15 +11,15 @@ void error_output(){
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-		error_output();
+	// if (argc != 2)
+	// 	error_output();
 	if (ft_strncmp(argv[1],"julia",5) == 0)
 	{
-		printf("julia");
+		julia(argc, argv);
 	}
-	else if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+	else if (ft_strncmp(argv[1], "mandelbrot", 10) == 0 && argc == 2)
 	{
-		printf("mandelbrot");
+		mandelbrot();
 	}
 	else
 		error_output();
