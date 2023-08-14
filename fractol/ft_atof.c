@@ -6,11 +6,13 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:11:02 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/15 00:37:37 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/15 02:52:14 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+// #include "fractal.h"
+#include "libft/libft.h"
+#include <stdio.h>
 
 static void	error_message(void)
 {
@@ -18,35 +20,73 @@ static void	error_message(void)
 	exit (0);
 }
 
-double	karifunc(size_t i, double ret, char *num)
+double	calc_decimal_point(char *num, int integer, int minus_flag)
 {
-	size_t	j;
-
-	j = 1;
-	while ('0' <= num[i] && num[i] <= '9')
-		ret = ret + ((num[i++] - '0') * pow((0.1), j++));
-	return (ret);
-}
-
-double	ft_atof(char *num)
-{
-	int		minus_flag;
-	size_t	i;
+	int		i;
+	double	digit;
 	double	ret;
 
-	minus_flag = 1;
+	i = 0;
+	digit = 0.1;
+	ret = integer;
+	while ('0' <= num[i] && num[i] <= '9')
+	{
+		ret = ret + ((num[i] - '0') * digit);
+		digit = digit * 0.1;
+		i++;
+	}
+	if (num[i] == '\0')
+		return (ret * minus_flag);
+	else
+		error_message();
+	exit (0);
+}
+
+double	calc_int_part(char *num)
+{
+	size_t	i;
+	double	ret;
+	int		minus_flag;
+
 	i = 0;
 	ret = 0;
+	minus_flag = 1;
 	if (num[i] == '-')
 	{
 		minus_flag = -1;
 		i++;
 	}
 	while ('0' <= num[i] && num[i] <= '9')
-		ret = ret * 10 + num[i++] - '0';
-	if (num[i] == '.' && i > 0)
-		karifunc(i + 1, ret, num);
-	// if (num[i] != '\0')
-	// 	error_message();
-	return (ret * minus_flag);
+	{
+		ret = ret * 10 + num[i] - '0';
+		i++;
+	}
+	if (num[i] == '.' && i > 0 && ('0' <= num[i - 1] && num[i - 1] <= '9'))
+		ret = calc_decimal_point(&num[i + 1], ret, minus_flag);
+	else if (num[i] == '\0')
+		return (ret * minus_flag);
+	else
+		error_message();
+	return (ret);
 }
+
+double	ft_atof(char *num)
+{
+	double	ret;
+
+	ret = 0;
+	ret = calc_int_part(num);
+	return (ret);
+}
+
+// #include <stdio.h>
+// int main (){
+// 	double num;
+// 	num = ft_atof("0.125");
+// 	printf("%f\n",num);
+// 	// for (int i = 0; i < 10; i++){
+// 	// 	num = pow((0.1), i);
+// 	// 	printf("%f\n",num);
+// 	// }
+// 	return 0;
+// }

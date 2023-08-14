@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:21:18 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/14 23:01:10 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/15 02:45:49 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	error_output(void)
 {
-	ft_putendl_fd("Usage: ./fractal [julia] real_number imaginary_number or [mandelbrot]\n", 2);
+	ft_putendl_fd
+		("Usage: ./fractal [julia] real_num imaginary_num or [mandelbrot]\n", 2);
 	exit (0);
 }
 
