@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:21:18 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/15 02:45:49 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:32:27 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	error_output(void)
 
 int	main(int argc, char **argv)
 {
+	if (argc != 2 && argc != 4)
+		error_output();
 	if (ft_strncmp(argv[1], "julia", 5) == 0)
 	{
 		julia(argc, argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:11:02 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:27:02 by mayu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:28:15 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	error_message(void)
 	exit (0);
 }
 
-double	calc_decimal_point(char *num, int integer, int negative)
+double	calc_decimal_point(char *num, double integer)
 {
 	int		i;
 	double	digit;
@@ -36,7 +36,7 @@ double	calc_decimal_point(char *num, int integer, int negative)
 		i++;
 	}
 	if (num[i] == '\0')
-		return (ret * negative);
+		return (ret);
 	else
 		error_message();
 	exit (0);
@@ -58,12 +58,12 @@ double	calc_int_part(char *num, int negative)
 		i++;
 	}
 	if (num[i] == '.' && i > 0 && ('0' <= num[i - 1] && num[i - 1] <= '9'))
-		ret = calc_decimal_point(&num[i + 1], ret, negative);
+		ret = calc_decimal_point(&num[i + 1], ret);
 	else if (num[i] == '\0')
 		return (ret * negative);
 	else
 		error_message();
-	return (ret * negative);//なんで2回入るんだろ
+	return (ret * negative);
 }
 
 double	ft_atof(char *num)
@@ -83,14 +83,14 @@ double	ft_atof(char *num)
 	return (ret);
 }
 
-#include <stdio.h>
-int main (){
-	double num;
-	num = ft_atof("2147483647.125");
-	printf("%f\n",num);
-	// for (int i = 0; i < 10; i++){
-	// 	num = pow((0.1), i);
-	// 	printf("%f\n",num);
-	// }
-	return 0;
-}
+// #include <stdio.h>
+// int main (){
+// 	double num;
+// 	num = ft_atof("1.1d25");
+// 	printf("%f\n",num);
+// 	// for (int i = 0; i < 10; i++){
+// 	// 	num = pow((0.1), i);
+// 	// 	printf("%f\n",num);
+// 	// }
+// 	return 0;
+// }
