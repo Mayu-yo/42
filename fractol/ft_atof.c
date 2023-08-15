@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:11:02 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:28:15 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/08/15 12:44:45 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	error_message(void)
 	exit (0);
 }
 
-double	calc_decimal_point(char *num, double integer)
+static double	calc_decimal_point(char *num, double integer)
 {
 	int		i;
 	double	digit;
@@ -42,18 +42,18 @@ double	calc_decimal_point(char *num, double integer)
 	exit (0);
 }
 
-double	calc_int_part(char *num, int negative)
+static double	calc_int_part(char *num, int negative)
 {
 	size_t	i;
 	double	ret;
 
 	i = 0;
 	ret = 0;
-	
 	while ('0' <= num[i] && num[i] <= '9')
 	{
 		ret = ret * 10 + num[i] - '0';
-		if ((ret > INT_MAX && negative == 1) || (ret - 1 > INT_MAX && negative == -1))
+		if ((ret > INT_MAX && negative == 1)
+			|| (ret - 1 > INT_MAX && negative == -1))
 			error_message();
 		i++;
 	}
@@ -82,15 +82,3 @@ double	ft_atof(char *num)
 		ret = calc_int_part(num, negative);
 	return (ret);
 }
-
-// #include <stdio.h>
-// int main (){
-// 	double num;
-// 	num = ft_atof("1.1d25");
-// 	printf("%f\n",num);
-// 	// for (int i = 0; i < 10; i++){
-// 	// 	num = pow((0.1), i);
-// 	// 	printf("%f\n",num);
-// 	// }
-// 	return 0;
-// }
