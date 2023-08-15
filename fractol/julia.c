@@ -74,6 +74,7 @@ int main(int argc, char *argv[]) {
 	t_data img;
 	img.fractal = 2;
 	img.mlx_ptr = mlx_init();
+	img.c = c;
 	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "Julia Set");
 	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
