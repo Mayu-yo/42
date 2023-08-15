@@ -1,44 +1,96 @@
-#include "fractal.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/14 22:11:02 by mayu              #+#    #+#             */
+/*   Updated: 2023/08/15 11:27:02 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-double ft_atof(char *num){
-	int minus_flag;
-	size_t i;
-	size_t j;
-	double ret;
+// #include "fractal.h"
+#include "libft/libft.h"
+#include <stdio.h>
 
-	minus_flag = 1;
+static void	error_message(void)
+{
+	ft_putendl_fd("invalid input", 2);
+	exit (0);
+}
+
+double	calc_decimal_point(char *num, int integer, int negative)
+{
+	int		i;
+	double	digit;
+	double	ret;
+
 	i = 0;
-	j = 1;
-	ret = 0;
-	if (num[i] == '-'){
-		minus_flag = -1;
+	digit = 0.1;
+	ret = integer;
+	while ('0' <= num[i] && num[i] <= '9')
+	{
+		ret = ret + ((num[i] - '0') * digit);
+		digit = digit * 0.1;
 		i++;
 	}
+	if (num[i] == '\0')
+		return (ret * negative);
+	else
+		error_message();
+	exit (0);
+}
+
+double	calc_int_part(char *num, int negative)
+{
+	size_t	i;
+	double	ret;
+
+	i = 0;
+	ret = 0;
+	
 	while ('0' <= num[i] && num[i] <= '9')
 	{
 		ret = ret * 10 + num[i] - '0';
+		if ((ret > INT_MAX && negative == 1) || (ret - 1 > INT_MAX && negative == -1))
+			error_message();
 		i++;
 	}
-	if (num[i] == '.'){
-		i++;
-		while ('0' <= num[i] && num[i] <= '9')
-		{
-			ret = ret + ((num[i] - '0') * pow((0.1), j));
-			i++;
-			j++;
-		}
-	}
-	return (ret * minus_flag);
+	if (num[i] == '.' && i > 0 && ('0' <= num[i - 1] && num[i - 1] <= '9'))
+		ret = calc_decimal_point(&num[i + 1], ret, negative);
+	else if (num[i] == '\0')
+		return (ret * negative);
+	else
+		error_message();
+	return (ret * negative);//なんで2回入るんだろ
 }
 
-// #include <stdio.h>
-// int main (){
-// 	double num;
-// 	num = ft_atof("10.5345");
-// 	printf("%f\n",num);
-// 	// for (int i = 0; i < 10; i++){
-// 	// 	num = pow((0.1), i);
-// 	// 	printf("%f\n",num);
-// 	// }
-// 	return 0;
-// }
+double	ft_atof(char *num)
+{
+	int		negative;
+	double	ret;
+
+	ret = 0;
+	negative = 1;
+	if (num[0] == '-')
+	{
+		negative = -1;
+		ret = calc_int_part(&num[1], negative);
+	}
+	else
+		ret = calc_int_part(num, negative);
+	return (ret);
+}
+
+#include <stdio.h>
+int main (){
+	double num;
+	num = ft_atof("2147483647.125");
+	printf("%f\n",num);
+	// for (int i = 0; i < 10; i++){
+	// 	num = pow((0.1), i);
+	// 	printf("%f\n",num);
+	// }
+	return 0;
+}
