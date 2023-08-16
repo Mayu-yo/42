@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:21:18 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:40:52 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:16:00 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error_output(void)
 {
 	ft_putendl_fd
 		("Usage: ./fractal [julia] real_num imaginary_num or [mandelbrot]\n", 2);
-	exit (1);
+	exit (0);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:39:41 by mayu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:07:09 by mayyamad         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:16:10 by mayyamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	julia(int argc, char *argv[])
 	if (argc != 4)
 	{
 		ft_putendl_fd("Usage: julia [real_part_of_c] [imaginary_part_of_c]", 2);
-		exit (1);
+		exit (0);
 	}
 	c.real = ft_atof(argv[2]);
 	c.imag = ft_atof(argv[3]);
