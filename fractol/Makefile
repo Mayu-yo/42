@@ -13,7 +13,6 @@ HEADERS		=	fractal.h
 
 	# Mandatory Variables #
 SRCS			=	main.c julia.c mandelbrot.c ft_atof.c handle.c
-# OBJS			=	${SRCS:.c=.o}
 OBJS			=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 INC				=	-I$(LIBFT_DIR) -I$(MLX_INC)
 OBJ_DIR			=	./objects
