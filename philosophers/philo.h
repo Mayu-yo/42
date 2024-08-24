@@ -17,8 +17,8 @@ typedef struct s_philo
 	size_t			start_time;
 	int				dead;
 	int				time_to_die;
-	int	*r_fork;
-	int	*l_fork;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 }	t_philo;
 
 typedef struct s_setting
@@ -47,5 +47,8 @@ void input_check(int argc, char **argv);
 /* time.c */
 size_t	get_current_time(void);
 int	ft_usleep(size_t milliseconds);
+
+/* thread.c */
+void action(void *p_philo, t_setting *settings);
 
 #endif

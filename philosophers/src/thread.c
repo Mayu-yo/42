@@ -5,7 +5,7 @@ void monitoring()
 
 }
 
-void action(void *p_philo)//time_to_deadの情報が必要
+void *action(void *p_philo)//time_to_deadの情報が必要
 {
 	t_philo *philo;
 
@@ -13,20 +13,33 @@ void action(void *p_philo)//time_to_deadの情報が必要
 	//time_to_dead超えたらdeadフラグ建てる
 }
 
+void eat()
+{
+
+}
+
+
+
 void thread_init(t_philo *philos, t_setting *settings)
 {
 	int i;
-	pthread_t monitor;
 
 	i = 0;
-	pthread_mutex_init
+	if (pthread_mutex_init(settings->fork, NULL))
+		error_print("pthread_init failed");
 	philos->start_time = get_current_time();
 	while (i < settings->philo_num)
 	{
-		if (pthread_create(&philos[i], NULL, &action, (&philos[0])))
+		if (pthread_create(&philos[i], NULL, &action, (&philos[i])))
 			error_print("pthread_create failed");
 		i++;
 	}
+}
+
+void thread_destroy(t_philo *philos, t_setting *settings)
+{
+	int i;
+
 	i = 0;
 	while (i < settings->philo_num)
 	{
@@ -34,4 +47,6 @@ void thread_init(t_philo *philos, t_setting *settings)
 			error_print("pthread_join failed");
 		i++;
 	}
+	if (pthread_mutex_destroy(settings->fork))
+		error_print("pthread_mutex_destroy failed");
 }

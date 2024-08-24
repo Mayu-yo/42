@@ -4,8 +4,8 @@ void *init(int argc, char **argv, t_setting *settings, t_philo *philos)
 {
 	alloc(philos, settings);
 	init_data(argc, argv, settings);
-	init_philo(philos, settings);
 	init_fork(settings);
+	init_philo(philos, settings);
 }
 
 void alloc(t_philo *philos, t_setting *settings)
@@ -40,6 +40,19 @@ void init_data(int argc, char **argv, t_setting *settings)
 		settings->must_eat_times = -1;
 }
 
+void init_fork(t_setting *settings)
+{
+	int i;
+
+	i = 1;
+	pthread_mutex_init(settings->fork, NULL);
+	while (i > 0 && i < settings->philo_num)
+	{
+		pthread_mutex_init(settings->fork, NULL);
+		i++;
+	}
+}
+
 void init_philo(t_philo *philos, t_setting *settings)
 {
 	int i;
@@ -52,25 +65,8 @@ void init_philo(t_philo *philos, t_setting *settings)
 		philos[i].start_time = 0;
 		philos[i].dead = 0;
 		philos[i].time_to_die = settings->time_to_die;
-		philos[i].l_fork = i;
-		philos[i].r_fork = i + 1;
-		i++;
-	}
-}
-
-void init_fork(t_setting *settings)
-{
-	int i;
-
-	i = 1;
-	pthread_mutex_init(settings->fork, NULL);
-	// settings->philos[i].l_fork = &settings->fork[settings->philo_num - 1];
-	// settings->philos[i].r_fork = &settings->fork[0];
-	while (i > 0 && i < settings->philo_num)
-	{
-		pthread_mutex_init(settings->fork, NULL);
-		// settings->philos[i].l_fork = &settings->fork[i - 1];
-		// settings->philos[i].r_fork = &settings->fork[i];
+		philos[i].l_fork = &settings->fork[i - 1];
+		philos[i].r_fork = &settings->fork[i];
 		i++;
 	}
 }
