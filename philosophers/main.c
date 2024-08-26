@@ -2,8 +2,8 @@
 
 int main (int argc, char **argv)
 {
-	t_setting 		*settings;
-	t_philo			*philos;
+	t_setting 		settings;
+	t_philo			philos;
 
 	/* ----------------- vscode debug ------------------ */																	
 	argc = 6;
@@ -15,7 +15,10 @@ int main (int argc, char **argv)
 	/* ------------------------------------------------- */
 
 	input_check(argc, argv);
-	init(argc, argv, settings, philos);
+	init(argc, argv, &settings, &philos);
+	printf("init success\n");
+	thread_init(&philos, &settings);
+	thread_destroy(&philos, &settings);
 	
 	return (0);
 }
