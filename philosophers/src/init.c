@@ -20,8 +20,9 @@ void alloc(t_philo *philos, t_setting *settings)
 		free(settings);
 		error_print("malloc error");
 	}
-	philos = malloc(sizeof(t_philo) * settings->philo_num);
-	if (!philos)
+	// philos = malloc(sizeof(t_philo) * settings->philo_num);
+	settings->philos = malloc(sizeof(t_philo) * settings->philo_num);
+	if (!settings->philos)
 	{
 		free(settings->fork);
 		free(settings);

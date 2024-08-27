@@ -12,7 +12,7 @@
 
 typedef struct s_setting
 {
-	// t_philo	*philos;
+	t_philo	*philos;
 	pthread_mutex_t *fork;
 	pthread_mutex_t *print;
 	int	philo_num;
