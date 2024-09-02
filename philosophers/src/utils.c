@@ -34,6 +34,7 @@ void input_check(int argc, char **argv)
 
 void print_message(t_setting *settings, t_philo *philo, char *str)
 {
+	usleep(100);
 	pthread_mutex_lock(settings->print);
 	printf("%d %d ", get_current_time() - philo->start_time, philo->id);
 	printf("%s\n", str);

@@ -1,37 +1,12 @@
 #include "../philo.h"
 
-void *init(int argc, char **argv, t_setting *settings, t_philo *philos)
+t_setting *init_data(int argc, char **argv)
 {
-	// settings = malloc(sizeof(t_setting));
-	// if (!settings)
-	// 	error_print("malloc error");
-	init_data(argc, argv, settings);
-	alloc(philos, settings);
-	init_fork(settings);
-	init_philo(philos, settings);
-	return ((void *)0);
-}
+	t_setting *settings;
 
-void alloc(t_philo *philos, t_setting *settings)
-{
-	settings->fork = malloc(sizeof(pthread_mutex_t) * settings->philo_num + 1);
-	if (!settings->fork)
-	{
-		free(settings);
+	settings = (t_setting *)malloc(sizeof(t_setting));
+	if (!settings)
 		error_print("malloc error");
-	}
-	// philos = malloc(sizeof(t_philo) * settings->philo_num);
-	settings->philos = malloc(sizeof(t_philo) * settings->philo_num);
-	if (!settings->philos)
-	{
-		free(settings->fork);
-		free(settings);
-		error_print("malloc error");
-	}
-}
-
-void init_data(int argc, char **argv, t_setting *settings)
-{
 	settings->philo_num = ft_atoi(argv[1]);
 	settings->time_to_die = ft_atoi(argv[2]);
 	settings->time_to_eat = ft_atoi(argv[3]);
@@ -40,38 +15,71 @@ void init_data(int argc, char **argv, t_setting *settings)
 		settings->must_eat_times = ft_atoi(argv[5]);
 	else
 		settings->must_eat_times = -1;
+	// settings->thread = (pthread_t *)malloc(sizeof(pthread_t) * settings->philo_num);
+	return (settings);
 }
 
-void init_fork(t_setting *settings)
-{
-	int i;
-
-	i = 1;
-	pthread_mutex_init(settings->fork, NULL);
-	while (i > 0 && i < settings->philo_num)
-	{
-		pthread_mutex_init(settings->fork, NULL);
-		i++;
-	}
-}
-
-void init_philo(t_philo *philos, t_setting *settings)
+void init_mutex(t_setting *settings)
 {
 	int i;
 
 	i = 0;
-	philos->settings = settings;
+	settings->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * settings->philo_num);
+	if (!settings->fork)
+	{
+		free(settings);
+		error_print("malloc error");
+	}
+	while (i < settings->philo_num)
+	{
+		pthread_mutex_init(&settings->fork[i], NULL);
+		i++;
+	}
+	settings->print = malloc(sizeof(pthread_mutex_t));
+	if (!settings->print)
+	{
+		free(settings->fork);
+		free(settings);
+		error_print("malloc error");
+	}
+	pthread_mutex_init(settings->print, NULL);
+	settings->dead = malloc(sizeof(pthread_mutex_t));
+	if (!settings->dead)
+	{
+		free(settings->fork);
+		free(settings->print);
+		free(settings);
+		error_print("malloc error");
+	}
+	pthread_mutex_init(settings->dead, NULL);
+}
+
+t_philo *init_philo(t_setting *settings)
+{
+	int i;
+	t_philo *philos;
+
+	i = 0;
+	philos = (t_philo *)malloc(sizeof(t_philo) * settings->philo_num);
+	if (!philos)
+	{
+		free(settings);
+		error_print("malloc error");
+	}
 	while (i < settings->philo_num)
 	{
 		philos[i].id = i;
-		philos[i].thread = malloc(sizeof(pthread_t));
-		// philos[i].settings = settings;
+		philos[i].settings = settings;
 		philos[i].last_meal = 0;
 		philos[i].start_time = 0;
-		philos[i].dead = 0;
+		// philos[i].dead = 0;
 		philos[i].time_to_die = settings->time_to_die;
-		philos[i].l_fork = &settings->fork[i - 1];
-		philos[i].r_fork = &settings->fork[i];
+		philos[i].l_fork = &settings->fork[i];
+		if (i == settings->philo_num - 1)
+			philos[i].r_fork = &settings->fork[0];
+		else
+			philos[i].r_fork = &settings->fork[i + 1];
 		i++;
 	}
+	return (philos);
 }

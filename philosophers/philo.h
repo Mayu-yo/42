@@ -12,9 +12,11 @@
 
 typedef struct s_setting
 {
-	t_philo	*philos;
+	pthread_t		*thread;
+	struct s_philo	*philos;
 	pthread_mutex_t *fork;
 	pthread_mutex_t *print;
+	pthread_mutex_t *dead;
 	int	philo_num;
 	int	time_to_die;
 	int	time_to_eat;
@@ -24,23 +26,21 @@ typedef struct s_setting
 
 typedef struct s_philo
 {
-	t_setting		*settings;
-	pthread_t		*thread;
+	pthread_t		thread;
 	int				id;
 	int				last_meal;
 	int				start_time;
-	int				dead;
+	// int				dead;
 	int				time_to_die;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	t_setting		*settings;
 }	t_philo;
 
 /* init */
-void *init(int argc, char **argv, t_setting *settings, t_philo *philos);
-void alloc(t_philo *philos, t_setting *settings);
-void init_data(int argc, char **argv, t_setting *settings);
-void init_fork(t_setting *settings);
-void init_philo(t_philo *philos, t_setting *settings);
+t_setting *init_data(int argc, char **argv);
+void init_mutex(t_setting *settings);
+t_philo *init_philo(t_setting *settings);
 
 /* util.c */
 void    error_print(char *str);
@@ -59,8 +59,10 @@ void thread_destroy(t_philo *philos, t_setting *settings);
 
 /* action.c */
 void *action(void *p_philo);
+// void *action(t_philo *philo);
 void eat(t_setting *settings, t_philo *philo);
 void take_fork(t_setting *settings, t_philo *philo);
+// int take_fork(t_setting *settings, t_philo *philo);
 void drop_fork(t_philo *philo);
 void sleep_and_think(t_setting *settings, t_philo *philo);
 

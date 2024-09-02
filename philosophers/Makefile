@@ -51,7 +51,8 @@ $(OBJ_DIR)/%.o: %.c
 
 $(NAME) : $(OBJS)
 	@ echo ""
-	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+# @ $(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	@ $(CC) -o $(NAME) $(OBJS)
 	@ mkdir -p ./obj
 	@ echo "$(CHECK) $(BLUE)Compiling Philosophers... $(RESET)"
 
