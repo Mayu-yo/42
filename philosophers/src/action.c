@@ -1,52 +1,18 @@
 #include "../philo.h"
 
-void *is_dead(void *p_philo)
-{
-	t_philo *philo;
-	int time;
-	philo = (t_philo *)p_philo;
-	while (1)
-	{
-		if (philo->settings->dead_flag == true)
-			return (NULL);
-		time = get_current_time() - philo->last_meal;
-		if (time >= philo->time_to_die)
-		{
-			pthread_mutex_lock(philo->settings->print);
-			philo->settings->dead_flag = true;
-			usleep(100);
-			printf("%d %d died\n", get_current_time() - philo->start_time, philo->id);
-			pthread_mutex_unlock(philo->settings->print);
-			return (NULL);
-		}
-		usleep(500);
-	}
-}
-
-void *action(void *p_philo)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)p_philo;
-	philo->last_meal = get_current_time();
-	if (pthread_create(&philo->dead_thread, NULL, is_dead, philo))
-		error_print("pthread_create failed");
-	while(1)
-	{
-		if (eat(philo->settings, philo))
-			return (NULL);
-		if (sleep_and_think(philo->settings, philo))
-			return (NULL);
-	}
-	return (NULL);
-}
 
 int eat(t_setting *settings, t_philo *philo)
 {
 	if (take_fork(settings, philo))
+	{
+		drop_fork(philo);
 		return (1);
+	}
 	if (print_message(settings, philo, "is eating"))
+	{
+		drop_fork(philo);
 		return (1);
+	}
 	ft_usleep(settings->time_to_eat);
 	philo->last_meal = get_current_time();
 	drop_fork(philo);

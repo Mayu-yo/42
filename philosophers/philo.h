@@ -12,11 +12,9 @@
 
 typedef struct s_setting
 {
-	// pthread_t		*thread;
 	struct s_philo	*philos;
 	pthread_mutex_t *fork;
 	pthread_mutex_t *print;
-	pthread_mutex_t *dead;
 	bool			dead_flag;
 	int	philo_num;
 	int	time_to_die;
@@ -44,7 +42,8 @@ void init_mutex(t_setting *settings);
 t_philo *init_philo(t_setting *settings);
 
 /* util.c */
-void    error_print(char *str);
+// void    error_print(char *str);
+void    error_print(char *str, t_setting *settings, t_philo *philos);
 void    check_args(int argc, char **argv);
 void input_check(int argc, char **argv);
 int print_message(t_setting *settings, t_philo *philo, char *str);
@@ -56,17 +55,16 @@ void	ft_usleep(int milliseconds);
 
 /* thread.c */
 void thread_init(t_philo *philos, t_setting *settings);
-void thread_destroy(t_philo *philos, t_setting *settings);
+// void thread_destroy(t_philo *philos, t_setting *settings);
+void ft_exit(t_philo *philo, t_setting *settings);
+void free_all(t_philo *philos, t_setting *settings);
 
 /* action.c */
-// int is_dead(t_philo *philo);
 void *is_dead(void *p_philo);
 void *action(void *p_philo);
 int eat(t_setting *settings, t_philo *philo);
 int take_fork(t_setting *settings, t_philo *philo);
 void drop_fork(t_philo *philo);
 int sleep_and_think(t_setting *settings, t_philo *philo);
-// void philo_sleep(t_setting *settings, t_philo *philo);
-// void think(t_setting *settings, t_philo *philo);
 
 #endif

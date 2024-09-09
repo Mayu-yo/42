@@ -1,12 +1,12 @@
 #include "philo.h"
 
-// 食べ始められない時は？
+// 食べ始められない時は？->今のところ死ぬ
 
 // 一人の時
 // 食べる回数が決まってる時
+
 // 終了処理
 // leakないか確認
-
 // 死なない
 // 死亡監視
 
@@ -30,7 +30,14 @@ int main (int argc, char **argv)
 	init_mutex(settings);
 	philos = init_philo(settings);
 	thread_init(philos, settings);
-	thread_destroy(philos, settings);
+	ft_exit(philos, settings);
+	// free_all(philos, settings);
 
 	return (0);
+}
+
+__attribute__((destructor))
+static void	destructor(void)
+{
+	system("leaks -q philo");
 }

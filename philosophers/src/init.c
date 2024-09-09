@@ -6,7 +6,7 @@ t_setting *init_data(int argc, char **argv)
 
 	settings = (t_setting *)malloc(sizeof(t_setting));
 	if (!settings)
-		error_print("malloc error");
+		error_print("malloc error", NULL, NULL);
 	settings->philo_num = ft_atoi(argv[1]);
 	// if (settings->philo_num < 2)
 		// 死ぬ処理
@@ -29,8 +29,8 @@ void init_mutex(t_setting *settings)
 	settings->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * settings->philo_num);
 	if (!settings->fork)
 	{
-		free(settings);
-		error_print("malloc error");
+		// free(settings);
+		error_print("malloc error", settings, NULL);
 	}
 	while (i < settings->philo_num)
 	{
@@ -38,22 +38,14 @@ void init_mutex(t_setting *settings)
 		i++;
 	}
 	settings->print = malloc(sizeof(pthread_mutex_t));
+	settings->print = NULL;
 	if (!settings->print)
 	{
-		free(settings->fork);
-		free(settings);
-		error_print("malloc error");
+		// free(settings->fork);
+		// free(settings);
+		error_print("malloc error", settings, NULL);
 	}
 	pthread_mutex_init(settings->print, NULL);
-	// settings->dead = malloc(sizeof(pthread_mutex_t));
-	// if (!settings->dead)
-	// {
-	// 	free(settings->fork);
-	// 	free(settings->print);
-	// 	free(settings);
-	// 	error_print("malloc error");
-	// }
-	// pthread_mutex_init(settings->dead, NULL);
 }
 
 t_philo *init_philo(t_setting *settings)
@@ -65,8 +57,8 @@ t_philo *init_philo(t_setting *settings)
 	philos = (t_philo *)malloc(sizeof(t_philo) * settings->philo_num);
 	if (!philos)
 	{
-		free(settings);
-		error_print("malloc error");
+		// free(settings);
+		error_print("malloc error", settings, NULL);
 	}
 	while (i < settings->philo_num)
 	{

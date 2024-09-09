@@ -1,9 +1,40 @@
 #include "../philo.h"
 
-void    error_print(char *str)
+void    error_print(char *str, t_setting *settings, t_philo *philos)
 {
+	if (settings || philos)
+		ft_exit(philos, settings);
 	printf("%s\n", str);
 	exit(1);
+}
+
+
+void ft_exit(t_philo *philo, t_setting *settings)
+{
+	int i;
+
+	i = 0;
+	pthread_mutex_destroy(settings->print);
+		// error_print("pthread_mutex_destroy failed", settings, philo);
+	while (i < settings->philo_num)
+	{
+		pthread_mutex_destroy(&settings->fork[i]);
+			// error_print("pthread_mutex_destroy failed", settings, philo);
+		i++;
+	}
+	free_all(philo, settings);
+}
+
+void free_all(t_philo *philos, t_setting *settings)
+{
+	if (settings->fork)
+		free(settings->fork);
+	if (settings->print)
+		free(settings->print);
+	if (settings)
+		free(settings);
+	if (philos)
+		free(philos);
 }
 
 void    check_args(int argc, char **argv)
@@ -18,7 +49,7 @@ void    check_args(int argc, char **argv)
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
-				error_print("Error: Wrong argument");
+				error_print("Error: Wrong argument", NULL, NULL);
 			j++;
 		}
 		i++;
@@ -28,7 +59,7 @@ void    check_args(int argc, char **argv)
 void input_check(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
-		error_print("Error: Wrong argument");
+		error_print("Error: Wrong argument", NULL, NULL);
 	check_args(argc, argv);
 }
 
