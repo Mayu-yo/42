@@ -6,11 +6,9 @@ void thread_init(t_philo *philos, t_setting *settings)
 	int start_time;
 
 	i = 0;
-	// philos->start_time = get_current_time();
 	start_time = get_current_time();
 	while (i < settings->philo_num)
 	{
-		// if (pthread_create(&philos[i].thread, NULL, (void *)action, &philos[i]))
 		philos[i].start_time = start_time;
 		if (pthread_create(&philos[i].thread, NULL, action, &philos[i]))
 			error_print("pthread_create failed");
@@ -27,15 +25,18 @@ void thread_destroy(t_philo *philos, t_setting *settings)
 	{
 		if (pthread_join(philos[i].thread, NULL))
 			error_print("pthread_join failed");
+		if (pthread_join(philos[i].dead_thread, NULL))
+			error_print("pthread_join failed");
 		i++;
 	}
 	if (pthread_mutex_destroy(settings->print))
-		error_print("pthread_mutex_destroy failed");
+		error_print("pthread_mutex_destroy failed 1");
 	i = 0;
 	while (i < settings->philo_num)
 	{
 		if (pthread_mutex_destroy(&settings->fork[i]))
-			error_print("pthread_mutex_destroy failed");
+			// error_print("pthread_mutex_destroy failed 2");
+			printf("pthread_mutex_destroy failed id: %d\n", i);
 		i++;
 	}
 	free(settings->fork);

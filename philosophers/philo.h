@@ -12,11 +12,12 @@
 
 typedef struct s_setting
 {
-	pthread_t		*thread;
+	// pthread_t		*thread;
 	struct s_philo	*philos;
 	pthread_mutex_t *fork;
 	pthread_mutex_t *print;
 	pthread_mutex_t *dead;
+	bool			dead_flag;
 	int	philo_num;
 	int	time_to_die;
 	int	time_to_eat;
@@ -27,10 +28,10 @@ typedef struct s_setting
 typedef struct s_philo
 {
 	pthread_t		thread;
+	pthread_t		dead_thread;
 	int				id;
 	int				last_meal;
 	int				start_time;
-	// int				dead;
 	int				time_to_die;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -46,24 +47,26 @@ t_philo *init_philo(t_setting *settings);
 void    error_print(char *str);
 void    check_args(int argc, char **argv);
 void input_check(int argc, char **argv);
-void print_message(t_setting *settings, t_philo *philo, char *str);
+int print_message(t_setting *settings, t_philo *philo, char *str);
 
 
 /* time.c */
 int	get_current_time(void);
-int	ft_usleep(int milliseconds);
+void	ft_usleep(int milliseconds);
 
 /* thread.c */
 void thread_init(t_philo *philos, t_setting *settings);
 void thread_destroy(t_philo *philos, t_setting *settings);
 
 /* action.c */
+// int is_dead(t_philo *philo);
+void *is_dead(void *p_philo);
 void *action(void *p_philo);
-// void *action(t_philo *philo);
-void eat(t_setting *settings, t_philo *philo);
-void take_fork(t_setting *settings, t_philo *philo);
-// int take_fork(t_setting *settings, t_philo *philo);
+int eat(t_setting *settings, t_philo *philo);
+int take_fork(t_setting *settings, t_philo *philo);
 void drop_fork(t_philo *philo);
-void sleep_and_think(t_setting *settings, t_philo *philo);
+int sleep_and_think(t_setting *settings, t_philo *philo);
+// void philo_sleep(t_setting *settings, t_philo *philo);
+// void think(t_setting *settings, t_philo *philo);
 
 #endif

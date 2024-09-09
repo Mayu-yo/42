@@ -32,13 +32,16 @@ void input_check(int argc, char **argv)
 	check_args(argc, argv);
 }
 
-void print_message(t_setting *settings, t_philo *philo, char *str)
+int print_message(t_setting *settings, t_philo *philo, char *str)
 {
-	usleep(100);
+	usleep(1);
+	if (philo->settings->dead_flag == true)
+		return (1);
 	pthread_mutex_lock(settings->print);
 	printf("%d %d ", get_current_time() - philo->start_time, philo->id);
 	printf("%s\n", str);
 	pthread_mutex_unlock(settings->print);
+	return (0);
 }
 
 static int	skip_space(const char *str)

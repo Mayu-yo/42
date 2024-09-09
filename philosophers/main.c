@@ -1,10 +1,14 @@
 #include "philo.h"
 
-// void test(t_philo *philo, t_setting *settings)
-// {
-// 	philo->start_time = get_current_time();
-// 	action(philo);
-// }
+// 食べ始められない時は？
+
+// 一人の時
+// 食べる回数が決まってる時
+// 終了処理
+// leakないか確認
+
+// 死なない
+// 死亡監視
 
 int main (int argc, char **argv)
 {
@@ -14,7 +18,7 @@ int main (int argc, char **argv)
 	/* ----------------- vscode debug ------------------ */																	
 	argc = 6;
 	argv[1] = "5";
-	argv[2] = "800";
+	argv[2] = "600";
 	argv[3] = "200";
 	argv[4] = "200";
 	argv[5] = "7";
@@ -25,7 +29,6 @@ int main (int argc, char **argv)
 	settings = init_data(argc, argv);
 	init_mutex(settings);
 	philos = init_philo(settings);
-	// test(philos, settings);
 	thread_init(philos, settings);
 	thread_destroy(philos, settings);
 

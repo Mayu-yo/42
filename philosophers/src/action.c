@@ -1,60 +1,60 @@
 #include "../philo.h"
 
-int is_dead(t_philo *philo)
+void *is_dead(void *p_philo)
 {
+	t_philo *philo;
 	int time;
-	
-	pthread_mutex_lock(philo->settings->dead);
-	time = get_current_time() - philo->last_meal;
-	if (time >= philo->time_to_die)
+	philo = (t_philo *)p_philo;
+	while (1)
 	{
-		// philo->settings->dead = 1;
-		print_message(philo->settings, philo, "died");
-		pthread_mutex_unlock(philo->settings->dead);
-		return (1);
+		if (philo->settings->dead_flag == true)
+			return (NULL);
+		time = get_current_time() - philo->last_meal;
+		if (time >= philo->time_to_die)
+		{
+			pthread_mutex_lock(philo->settings->print);
+			philo->settings->dead_flag = true;
+			usleep(100);
+			printf("%d %d died\n", get_current_time() - philo->start_time, philo->id);
+			pthread_mutex_unlock(philo->settings->print);
+			return (NULL);
+		}
+		usleep(500);
 	}
-	pthread_mutex_unlock(philo->settings->dead);
-	return (0);
 }
 
-void *action(void *p_philo)//time_to_deadの情報が必要
+void *action(void *p_philo)
 {
 	t_philo *philo;
 
 	philo = (t_philo *)p_philo;
-	philo->last_meal = get_current_time();//
-	//time_to_dead超えたらdeadフラグ建てる
-	while (!is_dead(philo))
+	philo->last_meal = get_current_time();
+	if (pthread_create(&philo->dead_thread, NULL, is_dead, philo))
+		error_print("pthread_create failed");
+	while(1)
 	{
-		
-		// if (get_current_time() - philo->last_meal > philo->time_to_die)
-		// {
-		// 	philo->dead = 1;
-		// 	print_message(philo->settings, philo, "died");
-		// 	break ;
-		// }
-		// printf("philo id: %d", philo->id);
-		// printf("action\n");
-		eat(philo->settings, philo);
-		sleep_and_think(philo->settings, philo);
+		if (eat(philo->settings, philo))
+			return (NULL);
+		if (sleep_and_think(philo->settings, philo))
+			return (NULL);
 	}
 	return (NULL);
 }
 
-void eat(t_setting *settings, t_philo *philo)
+int eat(t_setting *settings, t_philo *philo)
 {
-	// printf("philo id: %d", philo->id);
-	// printf("eat\n");
-	take_fork(settings, philo);
-	print_message(settings, philo, "is eating");
+	if (take_fork(settings, philo))
+		return (1);
+	if (print_message(settings, philo, "is eating"))
+		return (1);
 	ft_usleep(settings->time_to_eat);
 	philo->last_meal = get_current_time();
 	drop_fork(philo);
+	return (0);
 }
 
-void take_fork(t_setting *settings, t_philo *philo)
+int take_fork(t_setting *settings, t_philo *philo)
 {
-	// printf("philo id: takefork%d\n", philo->id);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->l_fork);
@@ -65,7 +65,10 @@ void take_fork(t_setting *settings, t_philo *philo)
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(philo->l_fork);
 	}
-	print_message(settings, philo, "has taken a fork");
+	philo->last_meal = get_current_time();
+	if (print_message(settings, philo, "has taken a fork"))
+		return (1);
+	return (0);
 }
 
 void drop_fork(t_philo *philo)
@@ -74,9 +77,12 @@ void drop_fork(t_philo *philo)
 	pthread_mutex_unlock(philo->l_fork);
 }
 
-void sleep_and_think(t_setting *settings, t_philo *philo)
+int sleep_and_think(t_setting *settings, t_philo *philo)
 {
-	print_message(settings, philo, "is sleeping");
+	if (print_message(settings, philo, "is sleeping"))
+		return (1);
 	ft_usleep(settings->time_to_sleep);
-	print_message(settings, philo, "is thinking");
+	if (print_message(settings, philo, "is thinking"))
+		return (1);
+	return (0);
 }
