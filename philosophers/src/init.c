@@ -6,10 +6,8 @@ t_setting *init_data(int argc, char **argv)
 
 	settings = (t_setting *)malloc(sizeof(t_setting));
 	if (!settings)
-		error_print("malloc error", NULL, NULL);
+		return (NULL);
 	settings->philo_num = ft_atoi(argv[1]);
-	// if (settings->philo_num < 2)
-		// 死ぬ処理
 	settings->time_to_die = ft_atoi(argv[2]);
 	settings->time_to_eat = ft_atoi(argv[3]);
 	settings->time_to_sleep = ft_atoi(argv[4]);
@@ -21,31 +19,24 @@ t_setting *init_data(int argc, char **argv)
 	return (settings);
 }
 
-void init_mutex(t_setting *settings)
+int init_mutex(t_setting *settings)
 {
 	int i;
 
 	i = 0;
 	settings->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * settings->philo_num);
 	if (!settings->fork)
-	{
-		// free(settings);
-		error_print("malloc error", settings, NULL);
-	}
+		return (error_exit("malloc failed", settings, NULL));
 	while (i < settings->philo_num)
 	{
 		pthread_mutex_init(&settings->fork[i], NULL);
 		i++;
 	}
 	settings->print = malloc(sizeof(pthread_mutex_t));
-	settings->print = NULL;
 	if (!settings->print)
-	{
-		// free(settings->fork);
-		// free(settings);
-		error_print("malloc error", settings, NULL);
-	}
+		return (error_exit("malloc failed", settings, NULL));
 	pthread_mutex_init(settings->print, NULL);
+	return (0);
 }
 
 t_philo *init_philo(t_setting *settings)
@@ -57,8 +48,8 @@ t_philo *init_philo(t_setting *settings)
 	philos = (t_philo *)malloc(sizeof(t_philo) * settings->philo_num);
 	if (!philos)
 	{
-		// free(settings);
-		error_print("malloc error", settings, NULL);
+		free_all(philos, settings);
+		return (NULL);
 	}
 	while (i < settings->philo_num)
 	{
@@ -67,6 +58,7 @@ t_philo *init_philo(t_setting *settings)
 		philos[i].last_meal = get_current_time();
 		philos[i].start_time = 0;
 		philos[i].time_to_die = settings->time_to_die;
+		// philos[i].eat_count = 0;
 		philos[i].l_fork = &settings->fork[i];
 		if (i == settings->philo_num - 1)
 			philos[i].r_fork = &settings->fork[0];

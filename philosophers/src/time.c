@@ -6,7 +6,7 @@ int	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		error_print("gettimeofday error", NULL, NULL);
+		return (error_exit("gettimeofday error", NULL, NULL));
 	ret_time = time.tv_sec * 1000 + time.tv_usec / 1000;
 	return (ret_time);
 }

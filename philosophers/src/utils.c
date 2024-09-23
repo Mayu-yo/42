@@ -1,11 +1,11 @@
 #include "../philo.h"
 
-void    error_print(char *str, t_setting *settings, t_philo *philos)
+int    error_exit(char *str, t_setting *settings, t_philo *philos)
 {
 	if (settings || philos)
-		ft_exit(philos, settings);
+		free_all(philos, settings);
 	printf("%s\n", str);
-	exit(1);
+	return(1);
 }
 
 
@@ -15,17 +15,15 @@ void ft_exit(t_philo *philo, t_setting *settings)
 
 	i = 0;
 	pthread_mutex_destroy(settings->print);
-		// error_print("pthread_mutex_destroy failed", settings, philo);
 	while (i < settings->philo_num)
 	{
 		pthread_mutex_destroy(&settings->fork[i]);
-			// error_print("pthread_mutex_destroy failed", settings, philo);
 		i++;
 	}
 	free_all(philo, settings);
 }
 
-void free_all(t_philo *philos, t_setting *settings)
+void *free_all(t_philo *philos, t_setting *settings)
 {
 	if (settings->fork)
 		free(settings->fork);
@@ -35,9 +33,10 @@ void free_all(t_philo *philos, t_setting *settings)
 		free(settings);
 	if (philos)
 		free(philos);
+	return (NULL);
 }
 
-void    check_args(int argc, char **argv)
+int    check_args(int argc, char **argv)
 {
 	int i;
 	int j;
@@ -49,26 +48,33 @@ void    check_args(int argc, char **argv)
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
-				error_print("Error: Wrong argument", NULL, NULL);
+				return (error_exit("Error: Wrong argument", NULL, NULL));
 			j++;
 		}
 		i++;
 	}
+	return (0);
 }
 
-void input_check(int argc, char **argv)
+int input_check(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
-		error_print("Error: Wrong argument", NULL, NULL);
-	check_args(argc, argv);
+		return (error_exit("Error: Wrong argument", NULL, NULL));
+	if (check_args(argc, argv))
+		return (1);
+	return (0);
 }
 
 int print_message(t_setting *settings, t_philo *philo, char *str)
 {
-	usleep(1);
-	if (philo->settings->dead_flag == true)
-		return (1);
+	usleep(10);
 	pthread_mutex_lock(settings->print);
+	if (philo->settings->dead_flag == true)
+	{
+		pthread_mutex_unlock(settings->print);
+		return (1);
+	}
+	// printf("philo->start_time :%d\n", philo->start_time);
 	printf("%d %d ", get_current_time() - philo->start_time, philo->id);
 	printf("%s\n", str);
 	pthread_mutex_unlock(settings->print);

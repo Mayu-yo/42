@@ -1,10 +1,8 @@
 #include "philo.h"
 
-// 食べ始められない時は？->今のところ死ぬ
-
-// 一人の時
 // 食べる回数が決まってる時
 
+// 一人の時
 // 終了処理
 // leakないか確認
 // 死なない
@@ -25,19 +23,22 @@ int main (int argc, char **argv)
 	/* ------------------------------------------------- */
 
 	
-	input_check(argc, argv);
+	if (input_check(argc, argv))
+		return (1);
 	settings = init_data(argc, argv);
-	init_mutex(settings);
+	if (init_mutex(settings))
+		return (1);
 	philos = init_philo(settings);
-	thread_init(philos, settings);
+	if (!philos)
+		return (1);
+	if (thread_init(philos, settings))
+		return (1);
 	ft_exit(philos, settings);
-	// free_all(philos, settings);
 
 	return (0);
 }
 
-__attribute__((destructor))
-static void	destructor(void)
+__attribute__((destructor)) static void destructor()
 {
 	system("leaks -q philo");
 }

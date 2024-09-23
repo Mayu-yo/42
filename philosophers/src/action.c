@@ -14,13 +14,18 @@ int eat(t_setting *settings, t_philo *philo)
 		return (1);
 	}
 	ft_usleep(settings->time_to_eat);
+	pthread_mutex_lock(philo->settings->print);
 	philo->last_meal = get_current_time();
+	pthread_mutex_unlock(philo->settings->print);
 	drop_fork(philo);
+	// philo->eat_count++;
 	return (0);
 }
 
 int take_fork(t_setting *settings, t_philo *philo)
 {
+	if (settings->philo_num == 1)
+		return (1);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->l_fork);
@@ -31,7 +36,9 @@ int take_fork(t_setting *settings, t_philo *philo)
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(philo->l_fork);
 	}
+	pthread_mutex_lock(philo->settings->print);
 	philo->last_meal = get_current_time();
+	pthread_mutex_unlock(philo->settings->print);
 	if (print_message(settings, philo, "has taken a fork"))
 		return (1);
 	return (0);

@@ -29,6 +29,7 @@ typedef struct s_philo
 	pthread_t		dead_thread;
 	int				id;
 	int				last_meal;
+	// int				eat_count;
 	int				start_time;
 	int				time_to_die;
 	pthread_mutex_t	*r_fork;
@@ -38,14 +39,14 @@ typedef struct s_philo
 
 /* init */
 t_setting *init_data(int argc, char **argv);
-void init_mutex(t_setting *settings);
+int init_mutex(t_setting *settings);
 t_philo *init_philo(t_setting *settings);
 
 /* util.c */
 // void    error_print(char *str);
-void    error_print(char *str, t_setting *settings, t_philo *philos);
-void    check_args(int argc, char **argv);
-void input_check(int argc, char **argv);
+int    error_exit(char *str, t_setting *settings, t_philo *philos);
+int    check_args(int argc, char **argv);
+int input_check(int argc, char **argv);
 int print_message(t_setting *settings, t_philo *philo, char *str);
 
 
@@ -54,10 +55,10 @@ int	get_current_time(void);
 void	ft_usleep(int milliseconds);
 
 /* thread.c */
-void thread_init(t_philo *philos, t_setting *settings);
+int thread_init(t_philo *philos, t_setting *settings);
 // void thread_destroy(t_philo *philos, t_setting *settings);
 void ft_exit(t_philo *philo, t_setting *settings);
-void free_all(t_philo *philos, t_setting *settings);
+void *free_all(t_philo *philos, t_setting *settings);
 
 /* action.c */
 void *is_dead(void *p_philo);

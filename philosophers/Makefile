@@ -4,19 +4,12 @@ NAME		= philo
 
 	# Compiling Variables #
 CC			= cc
-# CFLAGS		= -Wall -Werror -Wextra -MMD -MP -g -pthread
 CFLAGS		= -Wall -Werror -Wextra -g
 RM			= rm -f
 
-# ifeq ($(MAKECMDGOALS), thread)
-# 	CFLAGS += -fsanitize=thread
-# endif
+# CFLAGS += -fsanitize=thread
+# CFLAGS += -fsanitize=address
 
-# ifeq ($(MAKECMDGOALS), debug)
-# 	CFLAGS += -fsanitize=address
-# endif
-
-# SRC_DIR	= src
 SRC			= main.c \
 				src/action.c \
 				src/init.c \
@@ -25,10 +18,6 @@ SRC			= main.c \
 				src/time.c
 
 SRCS		= $(SRC:%.c=%.o)
-
-OBJ_DIR		= ./obj
-# OBJS		= $(addprefix $(OBJ_DIR)/, $(SRCS))
-# OBJECTS = $(CFILES:.c=.o)
 OBJS = $(SRC:.c=.o)
 
 INC_DIR	= includes
@@ -51,15 +40,8 @@ $(OBJ_DIR)/%.o: %.c
 
 $(NAME) : $(OBJS)
 	@ echo ""
-# @ $(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@ $(CC) -o $(NAME) $(OBJS)
-	@ mkdir -p ./obj
+	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@ echo "$(CHECK) $(BLUE)Compiling Philosophers... $(RESET)"
-
-# $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
-# 	@ mkdir -p $(@D)
-# 	@ $(CC) $(CFLAGS) -o $@ -c $<
-# 	@ printf "$(GENERATE) $(YELLOW)Generating $@... %-50.50s\r$(RESET)"
 
 clean:
 	@ $(RM) -r ./src/*.o ./*.o
@@ -71,9 +53,5 @@ fclean:
 	@ printf "$(REMOVE) $(BLUE)Remove $(NAME) object files and $(NAME).$(RESET)\n"
 
 re: fclean all
-
-debug: re
-
-thread: re
 
 .PHONY : all clean fclean re debug thread
