@@ -16,9 +16,9 @@ int eat(t_setting *settings, t_philo *philo)
 	ft_usleep(settings->time_to_eat);
 	pthread_mutex_lock(philo->settings->print);
 	philo->last_meal = get_current_time();
+	philo->eat_count++;
 	pthread_mutex_unlock(philo->settings->print);
 	drop_fork(philo);
-	// philo->eat_count++;
 	return (0);
 }
 

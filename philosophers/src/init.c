@@ -58,7 +58,7 @@ t_philo *init_philo(t_setting *settings)
 		philos[i].last_meal = get_current_time();
 		philos[i].start_time = 0;
 		philos[i].time_to_die = settings->time_to_die;
-		// philos[i].eat_count = 0;
+		philos[i].eat_count = 0;
 		philos[i].l_fork = &settings->fork[i];
 		if (i == settings->philo_num - 1)
 			philos[i].r_fork = &settings->fork[0];

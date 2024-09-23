@@ -7,7 +7,7 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -g
 RM			= rm -f
 
-# CFLAGS += -fsanitize=thread
+CFLAGS += -fsanitize=thread
 # CFLAGS += -fsanitize=address
 
 SRC			= main.c \

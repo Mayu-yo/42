@@ -16,7 +16,7 @@ int main (int argc, char **argv)
 	/* ----------------- vscode debug ------------------ */																	
 	argc = 6;
 	argv[1] = "5";
-	argv[2] = "600";
+	argv[2] = "800";
 	argv[3] = "200";
 	argv[4] = "200";
 	argv[5] = "7";

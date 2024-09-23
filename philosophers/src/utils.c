@@ -74,7 +74,6 @@ int print_message(t_setting *settings, t_philo *philo, char *str)
 		pthread_mutex_unlock(settings->print);
 		return (1);
 	}
-	// printf("philo->start_time :%d\n", philo->start_time);
 	printf("%d %d ", get_current_time() - philo->start_time, philo->id);
 	printf("%s\n", str);
 	pthread_mutex_unlock(settings->print);

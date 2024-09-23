@@ -29,7 +29,7 @@ typedef struct s_philo
 	pthread_t		dead_thread;
 	int				id;
 	int				last_meal;
-	// int				eat_count;
+	int				eat_count;
 	int				start_time;
 	int				time_to_die;
 	pthread_mutex_t	*r_fork;

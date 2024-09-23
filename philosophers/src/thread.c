@@ -40,8 +40,8 @@ void *is_dead(void *p_philo)
 			return (NULL);
 		}
 		time = get_current_time() - philo->last_meal;
-		// if (time >= philo->time_to_die || philo->settings->must_eat_times == philo->eat_count)
-		if (time >= philo->time_to_die)
+		if (time >= philo->time_to_die || philo->settings->must_eat_times == philo->eat_count)
+		// if (time >= philo->time_to_die)
 		{
 			philo->settings->dead_flag = true;
 			usleep(100);
