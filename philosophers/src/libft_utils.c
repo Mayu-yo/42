@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayyamad <mayyamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 13:14:29 by mayyamad          #+#    #+#             */
-/*   Updated: 2023/06/01 18:31:50 by mayyamad         ###   ########.fr       */
+/*   Created: 2024/09/25 22:34:08 by mayu              #+#    #+#             */
+/*   Updated: 2024/09/25 22:34:17 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
 static int	skip_space(const char *str)
 {
@@ -49,4 +49,9 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (num * minus);
+}
+
+int	ft_isdigit(int c)
+{
+	return ('0' <= c && c <= '9');
 }

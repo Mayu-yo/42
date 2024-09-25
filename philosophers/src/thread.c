@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   thread.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 22:24:51 by mayu              #+#    #+#             */
+/*   Updated: 2024/09/25 22:26:58 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philo.h"
 
-int thread_init(t_philo *philos, t_setting *settings)
+int	thread_init(t_philo *philos, t_setting *settings)
 {
-	int i;
-	int start_time;
+	int	i;
+	int	start_time;
 
 	i = 0;
 	start_time = get_current_time();
@@ -26,10 +38,11 @@ int thread_init(t_philo *philos, t_setting *settings)
 	return (0);
 }
 
-void *is_dead(void *p_philo)
+void	*is_dead(void *p_philo)
 {
-	t_philo *philo;
-	int time;
+	t_philo	*philo;
+	int		time;
+	
 	philo = (t_philo *)p_philo;
 	while (1)
 	{
@@ -41,7 +54,6 @@ void *is_dead(void *p_philo)
 		}
 		time = get_current_time() - philo->last_meal;
 		if (time >= philo->time_to_die || philo->settings->must_eat_times == philo->eat_count)
-		// if (time >= philo->time_to_die)
 		{
 			philo->settings->dead_flag = true;
 			usleep(100);
@@ -54,9 +66,9 @@ void *is_dead(void *p_philo)
 	}
 }
 
-void *action(void *p_philo)
+void	*action(void *p_philo)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)p_philo;
 	philo->last_meal = get_current_time();

@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   action.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 22:22:34 by mayu              #+#    #+#             */
+/*   Updated: 2024/09/25 22:24:24 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philo.h"
 
-
-int eat(t_setting *settings, t_philo *philo)
+int	eat(t_setting *settings, t_philo *philo)
 {
 	if (take_fork(settings, philo))
 	{
@@ -22,7 +33,7 @@ int eat(t_setting *settings, t_philo *philo)
 	return (0);
 }
 
-int take_fork(t_setting *settings, t_philo *philo)
+int	take_fork(t_setting *settings, t_philo *philo)
 {
 	if (settings->philo_num == 1)
 		return (1);
@@ -44,13 +55,13 @@ int take_fork(t_setting *settings, t_philo *philo)
 	return (0);
 }
 
-void drop_fork(t_philo *philo)
+void	drop_fork(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
 
-int sleep_and_think(t_setting *settings, t_philo *philo)
+int	sleep_and_think(t_setting *settings, t_philo *philo)
 {
 	if (print_message(settings, philo, "is sleeping"))
 		return (1);

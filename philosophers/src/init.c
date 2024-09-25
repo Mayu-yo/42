@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 22:22:45 by mayu              #+#    #+#             */
+/*   Updated: 2024/09/25 22:36:28 by mayu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philo.h"
 
-t_setting *init_data(int argc, char **argv)
+t_setting	*init_data(int argc, char **argv)
 {
-	t_setting *settings;
+	t_setting	*settings;
 
 	settings = (t_setting *)malloc(sizeof(t_setting));
 	if (!settings)
@@ -19,12 +31,13 @@ t_setting *init_data(int argc, char **argv)
 	return (settings);
 }
 
-int init_mutex(t_setting *settings)
+int	init_mutex(t_setting *settings)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	settings->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * settings->philo_num);
+	settings->fork = (pthread_mutex_t *)
+		malloc(sizeof(pthread_mutex_t) * settings->philo_num);
 	if (!settings->fork)
 		return (error_exit("malloc failed", settings, NULL));
 	while (i < settings->philo_num)
@@ -39,15 +52,16 @@ int init_mutex(t_setting *settings)
 	return (0);
 }
 
-t_philo *init_philo(t_setting *settings)
+t_philo	*init_philo(t_setting *settings)
 {
-	int i;
-	t_philo *philos;
+	int		i;
+	t_philo	*philos;
 
 	i = 0;
 	philos = (t_philo *)malloc(sizeof(t_philo) * settings->philo_num);
 	if (!philos)
 	{
+		// return (free_all(philos, settings));
 		free_all(philos, settings);
 		return (NULL);
 	}
