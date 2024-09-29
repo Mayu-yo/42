@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:22:45 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:36:28 by mayu             ###   ########.fr       */
+/*   Updated: 2024/09/25 22:37:03 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,7 @@ t_philo	*init_philo(t_setting *settings)
 	i = 0;
 	philos = (t_philo *)malloc(sizeof(t_philo) * settings->philo_num);
 	if (!philos)
-	{
-		// return (free_all(philos, settings));
-		free_all(philos, settings);
-		return (NULL);
-	}
+		return (free_all(philos, settings));
 	while (i < settings->philo_num)
 	{
 		philos[i].id = i;

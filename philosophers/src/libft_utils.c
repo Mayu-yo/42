@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:34:08 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:34:17 by mayu             ###   ########.fr       */
+/*   Updated: 2024/09/29 15:16:14 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 static int	skip_space(const char *str)
 {
