@@ -1,0 +1,27 @@
+/* XPM */
+static char *_pastel_star[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c None",        /* Transparent */
+". c #FFD1DC",     /* Pastel Pink */
+"X c #B5EAD7",     /* Pastel Mint */
+"o c #FDFD96",     /* Pastel Yellow */
+"+ c #C7CEEA",     /* Pastel Lavender */
+/* pixels */
+"        +        ",
+"       +o+       ",
+"      +ooo+      ",
+"     +ooooo+     ",
+"  ..+ooooooo+..  ",
+" ..X+ooooooo+X.. ",
+"..XX+ooooooo+XX..",
+"..XX+ooooooo+XX..",
+" ..X+ooooooo+X.. ",
+"  ..+ooooooo+..  ",
+"     +ooooo+     ",
+"      +ooo+      ",
+"       +o+       ",
+"        +        ",
+"                 ",
+"                 "
+};

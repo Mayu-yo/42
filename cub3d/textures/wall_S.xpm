@@ -1,0 +1,27 @@
+/* XPM */
+static char *_pastel_flower[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c None",        /* Transparent */
+". c #FFD1DC",     /* Pastel Pink */
+"X c #FDFD96",     /* Pastel Yellow */
+"o c #B5EAD7",     /* Pastel Mint */
+"+ c #C7CEEA",     /* Pastel Lavender */
+/* pixels */
+"        X        ",
+"       XoX       ",
+"      .XoX.      ",
+"     .oXXXo.     ",
+"    .XXoXoXX.    ",
+"   ..XXoooXX..   ",
+"  ..XXXoXoXXX..  ",
+" ..XXXXXoXXXXX.. ",
+"  ..XXXoXoXXX..  ",
+"   ..XXoooXX..   ",
+"    .XXoXoXX.    ",
+"     .oXXXo.     ",
+"      .XoX.      ",
+"       XoX       ",
+"        X        ",
+"                 "
+};

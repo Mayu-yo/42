@@ -1,10 +1,13 @@
 
 	# Library Name #
-NAME		=	cub3d
+NAME		=	cub3D
 
 	# libft Variables #
-LIBFT		=	./libft/libft.a
+LIBFT		=	$(LIBFT_DIR)/libft.a
 LIBFT_DIR	=	./libft
+
+	# GNL Variables #
+GNL_DIR		=	./gnl
 
 	# Minilibx Variables #
 MLX			=	./minilibx
@@ -12,7 +15,13 @@ MLX_LIB		=	$(MLX)/liblmx.a
 HEADERS		=	cub3d.h
 
 	# Mandatory Variables #
-SRCS			=	main.c
+SRCS			=	main.c \
+					parse_cub.c \
+					check_map.c \
+					check_map_utils.c \
+					utils.c \
+					gnl/get_next_line.c \
+					gnl/get_next_line_utils.c
 OBJS			=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 INC				=	-I$(LIBFT_DIR) -I$(MLX)
 
@@ -36,14 +45,15 @@ _INFO		=	[$(YELLOW)INFO$(RESET)]
 all: mkdir $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
-	@ $(CC) $(CFLAGS) -L$(MLX) $(MLX_FLAGS) $(OBJS) -o $(NAME)
+	@ $(CC) $(CFLAGS) -L$(LIBFT_DIR) -lft -L$(MLX) $(MLX_FLAGS) $(OBJS) -o $(NAME)
 	@ printf "$(_SUCCESS) $(NAME) was created.\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INC) -o $@ -c $^
 
 mkdir:
 	@ mkdir -p $(OBJ_DIR)
+	@ mkdir -p $(OBJ_DIR)/gnl
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
@@ -68,4 +78,3 @@ fclean:
 re: fclean all
 
 .PHONY: all clean fclean re
-
