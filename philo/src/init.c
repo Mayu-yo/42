@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:22:45 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:37:03 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/14 12:52:48 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_setting	*init_data(int argc, char **argv)
 	else
 		settings->must_eat_times = -1;
 	settings->dead_flag = false;
+	settings->eat_count = 0;
 	return (settings);
 }
 

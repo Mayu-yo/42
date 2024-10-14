@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:45:15 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:48:07 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/14 12:50:06 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_setting
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat_times;
+	int				eat_count;
 }	t_setting;
 
 typedef struct s_philo
@@ -78,12 +79,12 @@ int			sleep_and_think(t_setting *settings, t_philo *philo);
 
 /* libft_utils.c */
 static int	skip_space(const char *str);
-int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
 
 /* philo_utils.c */
-int	check_args(int argc, char **argv);
-int	input_check(int argc, char **argv);
-int	print_message(t_setting *settings, t_philo *philo, char *str);
+int			check_args(int argc, char **argv);
+int			input_check(int argc, char **argv);
+int			print_message(t_setting *settings, t_philo *philo, char *str);
 
 #endif

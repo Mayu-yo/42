@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:23:29 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:34:00 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/14 12:32:59 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	print_message(t_setting *settings, t_philo *philo, char *str)
 		pthread_mutex_unlock(settings->print);
 		return (1);
 	}
-	printf("%d %d ", get_current_time() - philo->start_time, philo->id);
+	printf("%d %d ", get_current_time() - philo->start_time, philo->id + 1);
 	printf("%s\n", str);
 	pthread_mutex_unlock(settings->print);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:24:51 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:42:48 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/14 12:57:48 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*is_dead(void *p_philo)
 			return (pthread_mutex_unlock(philo->settings->print), NULL);
 		time = get_current_time() - philo->last_meal;
 		if (time >= philo->time_to_die
-			|| philo->settings->must_eat_times == philo->eat_count)
+			|| philo->settings->eat_count == philo->settings->philo_num)
 		{
 			philo->settings->dead_flag = true;
 			usleep(100);

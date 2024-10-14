@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:22:34 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/25 22:24:24 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/14 12:58:31 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	eat(t_setting *settings, t_philo *philo)
 	pthread_mutex_lock(philo->settings->print);
 	philo->last_meal = get_current_time();
 	philo->eat_count++;
+	if (philo->eat_count == settings->must_eat_times)
+		settings->eat_count++;
 	pthread_mutex_unlock(philo->settings->print);
 	drop_fork(philo);
 	return (0);
