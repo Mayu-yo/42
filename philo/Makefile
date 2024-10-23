@@ -7,8 +7,8 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -g
 RM			= rm -f
 
-CFLAGS += -fsanitize=address
-# CFLAGS += -fsanitize=thread
+# CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=thread
 
 	# Source Files #
 SRCS_NAME		= main.c \

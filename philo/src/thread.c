@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:24:51 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/14 12:57:48 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/23 09:18:43 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*is_dead(void *p_philo)
 			philo->settings->dead_flag = true;
 			usleep(100);
 			printf("%d %d died\n",
-				get_current_time() - philo->start_time, philo->id);
+				get_current_time() - philo->start_time, philo->id + 1);
 			pthread_mutex_unlock(philo->settings->print);
 			return (NULL);
 		}
@@ -73,6 +73,8 @@ void	*action(void *p_philo)
 	philo->last_meal = get_current_time();
 	if (pthread_create(&philo->dead_thread, NULL, is_dead, philo))
 		return (free_all(philo, philo->settings));
+	if (philo->id % 2)
+		usleep(philo->settings->time_to_eat / 2);
 	while (1)
 	{
 		if (eat(philo->settings, philo))

@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:23:32 by mayu              #+#    #+#             */
-/*   Updated: 2024/09/29 15:28:14 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/22 20:24:29 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,3 @@ int	main(int argc, char **argv)
 	ft_exit(philos, settings);
 	return (0);
 }
-
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q philo");
-// }
