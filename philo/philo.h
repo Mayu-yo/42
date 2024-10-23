@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:45:15 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/14 12:50:06 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/23 20:46:32 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 typedef struct s_setting
 {
-	struct s_philo	*philos;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
 	bool			dead_flag;
@@ -43,7 +42,8 @@ typedef struct s_philo
 	int				last_meal;
 	int				eat_count;
 	int				start_time;
-	int				time_to_die;
+	int				time_to_wait;
+	int				think_delay;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	t_setting		*settings;
@@ -76,6 +76,7 @@ int			eat(t_setting *settings, t_philo *philo);
 int			take_fork(t_setting *settings, t_philo *philo);
 void		drop_fork(t_philo *philo);
 int			sleep_and_think(t_setting *settings, t_philo *philo);
+void		calc_delay(t_philo *philo);
 
 /* libft_utils.c */
 static int	skip_space(const char *str);

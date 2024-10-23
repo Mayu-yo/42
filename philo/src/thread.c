@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:24:51 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/23 09:18:43 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/23 20:38:50 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	*is_dead(void *p_philo)
 		if (philo->settings->dead_flag)
 			return (pthread_mutex_unlock(philo->settings->print), NULL);
 		time = get_current_time() - philo->last_meal;
-		if (time >= philo->time_to_die
+		if (time >= philo->settings->time_to_die
 			|| philo->settings->eat_count == philo->settings->philo_num)
 		{
 			philo->settings->dead_flag = true;
@@ -73,8 +73,7 @@ void	*action(void *p_philo)
 	philo->last_meal = get_current_time();
 	if (pthread_create(&philo->dead_thread, NULL, is_dead, philo))
 		return (free_all(philo, philo->settings));
-	if (philo->id % 2)
-		usleep(philo->settings->time_to_eat / 2);
+	ft_usleep(philo->time_to_wait);
 	while (1)
 	{
 		if (eat(philo->settings, philo))

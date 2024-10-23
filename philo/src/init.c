@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:22:45 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/14 12:52:48 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/23 20:49:25 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,27 @@ int	init_mutex(t_setting *settings)
 	return (0);
 }
 
+void	calc_delay(t_philo *philo)
+{
+	int	i;
+	int	eating_time;
+	int	philo_num;
+	int	sleeping_time;
+
+	i = 0;
+	eating_time = philo->settings->time_to_eat;
+	philo_num = philo->settings->philo_num;
+	sleeping_time = philo->settings->time_to_sleep;
+	while (i < philo_num)
+	{
+		if (philo[i].id % 2)
+			philo[i].time_to_wait = eating_time / 2;
+		if (eating_time >= sleeping_time)
+			philo[i].think_delay += eating_time - sleeping_time + 1;
+		i++;
+	}
+}
+
 t_philo	*init_philo(t_setting *settings)
 {
 	int		i;
@@ -68,7 +89,8 @@ t_philo	*init_philo(t_setting *settings)
 		philos[i].settings = settings;
 		philos[i].last_meal = get_current_time();
 		philos[i].start_time = 0;
-		philos[i].time_to_die = settings->time_to_die;
+		philos[i].time_to_wait = 0;
+		philos[i].think_delay = 0;
 		philos[i].eat_count = 0;
 		philos[i].l_fork = &settings->fork[i];
 		if (i == settings->philo_num - 1)
@@ -77,5 +99,6 @@ t_philo	*init_philo(t_setting *settings)
 			philos[i].r_fork = &settings->fork[i + 1];
 		i++;
 	}
+	calc_delay(philos);
 	return (philos);
 }

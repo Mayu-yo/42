@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:22:34 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/23 09:19:00 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/23 20:30:44 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	take_fork(t_setting *settings, t_philo *philo)
 	}
 	else
 	{
-		usleep(settings->time_to_eat / 4);
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(philo->l_fork);
 	}
@@ -70,5 +69,7 @@ int	sleep_and_think(t_setting *settings, t_philo *philo)
 	ft_usleep(settings->time_to_sleep);
 	if (print_message(settings, philo, "is thinking"))
 		return (1);
+	if (philo->think_delay)
+		ft_usleep(philo->think_delay);
 	return (0);
 }
