@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:22:34 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/23 20:30:44 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/24 09:32:47 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ int	eat(t_setting *settings, t_philo *philo)
 		return (1);
 	}
 	ft_usleep(settings->time_to_eat);
-	pthread_mutex_lock(philo->settings->print);
-	philo->eat_count++;
-	if (philo->eat_count == settings->must_eat_times)
-		settings->eat_count++;
-	pthread_mutex_unlock(philo->settings->print);
 	drop_fork(philo);
 	return (0);
 }
