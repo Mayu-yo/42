@@ -6,7 +6,7 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:24:51 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/24 09:50:23 by mayu             ###   ########.fr       */
+/*   Updated: 2024/10/26 09:57:47 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,12 @@ void	*is_dead(void *p_philo)
 		if (philo->settings->dead_flag)
 			return (pthread_mutex_unlock(philo->settings->print), NULL);
 		time = get_current_time() - philo->last_meal;
-		if (time >= philo->settings->time_to_die
-			|| philo->settings->eat_count == philo->settings->philo_num)
+		if (time >= philo->settings->time_to_die)
 		{
 			philo->settings->dead_flag = true;
 			usleep(100);
-			if (time >= philo->settings->time_to_die)
-				printf("%d %d died\n",
-					get_current_time() - philo->start_time, philo->id + 1);
+			printf("%d %d died\n",
+				get_current_time() - philo->start_time, philo->id + 1);
 			pthread_mutex_unlock(philo->settings->print);
 			return (NULL);
 		}
@@ -83,6 +81,8 @@ void	*action(void *p_philo)
 		philo->eat_count++;
 		if (philo->eat_count == philo->settings->must_eat_times)
 			philo->settings->eat_count++;
+		if (philo->settings->eat_count == philo->settings->philo_num)
+			philo->settings->dead_flag = true;
 		pthread_mutex_unlock(philo->settings->print);
 		if (sleep_and_think(philo->settings, philo))
 			return (NULL);
