@@ -6,15 +6,14 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:35:47 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/07 16:35:58 by mayu             ###   ########.fr       */
+/*   Updated: 2024/11/04 22:20:15 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-// void free_all(/*全部持ってる構造体*/)
+// void free_all(t_all_settings *settings)
 // {
-
 // }
 
 void error_message(char *msg)
@@ -53,4 +52,19 @@ int	check_file_exist(char *file)
 	}
 	close(fd);
 	return (0);
+}
+
+void init_all(t_all_settings *settings)
+{
+	settings->walls = ft_calloc(1, sizeof(t_walls));
+	settings->walls->no = ft_calloc(1, sizeof(t_img));
+	settings->walls->so = ft_calloc(1, sizeof(t_img));
+	settings->walls->we = ft_calloc(1, sizeof(t_img));
+	settings->walls->ea = ft_calloc(1, sizeof(t_img));
+	settings->key = ft_calloc(1, sizeof(t_key));
+	settings->player = ft_calloc(1, sizeof(t_player));
+	settings->room = ft_calloc(1, sizeof(t_room));
+	settings->room->ceiling = ft_calloc(1, sizeof(t_color));
+	settings->room->floor = ft_calloc(1, sizeof(t_color));
+	settings->map = NULL;
 }

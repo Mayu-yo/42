@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ekamada <ekamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:00:13 by mayyamad          #+#    #+#             */
-/*   Updated: 2024/11/04 21:53:29 by mayu             ###   ########.fr       */
+/*   Created: 2023/02/14 13:40:54 by ekamada           #+#    #+#             */
+/*   Updated: 2023/06/03 15:31:25 by ekamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	srclen;
-	size_t	i;
+	size_t	count;
 
-	srclen = 0;
-	if (!src)
-		return (0);
-	while (src[srclen] != '\0')
-		srclen++;
 	if (dstsize == 0)
-		return (srclen);
-	i = 0;
-	while (i < dstsize - 1 && src[i] != '\0')
+		return (ft_strlen(src));
+	count = ft_strlen(src);
+	while (dstsize > 1 && *src)
 	{
-		dst[i] = src[i];
-		i++;
+		*dst++ = *src++;
+		dstsize--;
 	}
-	dst[i] = '\0';
-	return (srclen);
+	*dst = 0;
+	return (count);
 }
+
+// int main()
+// {
+
+// 	char src[] = "coucou";
+// 	char dest[10]; memset(dest, 'A', 10);
+// 	ft_strlcpy(dest, src, 0);
+// 	printf("%s", dest);
+// }

@@ -20,6 +20,7 @@ SRCS			=	main.c \
 					check_map.c \
 					check_map_utils.c \
 					utils.c \
+					handle_mlx.c \
 					gnl/get_next_line.c \
 					gnl/get_next_line_utils.c
 OBJS			=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -45,7 +46,8 @@ _INFO		=	[$(YELLOW)INFO$(RESET)]
 all: mkdir $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
-	@ $(CC) $(CFLAGS) -L$(LIBFT_DIR) -lft -L$(MLX) $(MLX_FLAGS) $(OBJS) -o $(NAME)
+# @ $(CC) $(CFLAGS) -L$(LIBFT_DIR) -lft -L$(MLX) $(MLX_FLAGS) $(OBJS) -o $(NAME)
+	@ gcc $(CFLAGS) -L$(LIBFT_DIR) -lft -L$(MLX) $(MLX_FLAGS) $(OBJS) -g -o $(NAME)
 	@ printf "$(_SUCCESS) $(NAME) was created.\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

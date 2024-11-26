@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emukamada <emukamada@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2024/11/04 21:50:40 by mayu             ###   ########.fr       */
+/*   Created: 2023/05/17 19:44:53 by ekamada           #+#    #+#             */
+/*   Updated: 2023/10/16 11:43:51 by emukamada        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strdup(const char *str)
 {
-	size_t	i;
+	int		i;
+	char	*cpy;
 
-	i = 0;
 	if (!str)
-		return (0);
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
+		return (NULL);
+	i = ft_strlen(str);
+	cpy = ft_calloc(i + 1, sizeof(char));
+	if (cpy == NULL)
+		return (NULL);
+	ft_strlcpy(cpy, str, i + 1);
+	return (cpy);
 }

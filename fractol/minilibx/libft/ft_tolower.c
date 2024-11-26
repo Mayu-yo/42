@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2024/11/04 21:50:40 by mayu             ###   ########.fr       */
+/*   Created: 2023/05/17 19:44:59 by ekamada           #+#    #+#             */
+/*   Updated: 2023/08/30 07:29:49 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_tolower(int c)
 {
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
+	if (c <= 'Z' && c >= 'A')
+		c += 32;
+	return (c);
 }
+
+// int main()
+// {
+// 	char a[50] = "hEy PeopLE!!*:)";
+// 	printf("%s", ft_tolower(a));
+// }

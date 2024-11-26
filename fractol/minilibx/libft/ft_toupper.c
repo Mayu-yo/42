@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:01:16 by mayyamad          #+#    #+#             */
-/*   Updated: 2024/11/04 21:50:40 by mayu             ###   ########.fr       */
+/*   Created: 2023/05/17 19:45:01 by ekamada           #+#    #+#             */
+/*   Updated: 2023/08/30 07:29:38 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_toupper(int c)
 {
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
+	if (c <= 'z' && c >= 'a')
+		c -= 32;
+	return (c);
 }
+
+/*
+int main()
+{
+	char a[50] = "hEy PeopLE!!*:)";
+	printf("%s", ft_toupper(a));
+}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emukamada <emukamada@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 15:06:45 by mayyamad          #+#    #+#             */
-/*   Updated: 2024/11/04 23:15:32 by mayu             ###   ########.fr       */
+/*   Created: 2023/02/15 09:55:13 by ekamada           #+#    #+#             */
+/*   Updated: 2023/10/19 21:36:37 by emukamada        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,27 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	i;
-	int				ret;
+	int				t;
+	int				u;
+	unsigned char	*s1_;
+	unsigned char	*s2_;
 
-	i = 0;
-	ret = 0;
-	if (!s1 || !s2)
-		return (-1);
-	if (ft_strlen(s1) != n)
-		return (-1);
-	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	t = 0;
+	u = 0;
+	s1_ = (unsigned char *)s1;
+	s2_ = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while ((s1_[u] != '\0' || s2_[u] != '\0') && (n > 0))
 	{
-		ret = (unsigned char)s1[i] - (unsigned char)s2[i];
-		if (ret != 0)
-			return (ret);
-		i++;
+		if (s1_[u] == s2_[u])
+			u ++;
+		else
+		{
+			t = s1_[u] - s2_[u];
+			return (t);
+		}
+		n--;
 	}
-	return (0);
+	return (t);
 }
