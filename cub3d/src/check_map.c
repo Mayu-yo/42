@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:39:55 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/14 16:58:34 by mayu             ###   ########.fr       */
+/*   Updated: 2024/11/26 23:50:04 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 void check_map_sub(char **map, int height)
 {

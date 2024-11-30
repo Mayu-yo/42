@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:37:35 by mayu              #+#    #+#             */
-/*   Updated: 2024/11/04 23:17:41 by mayu             ###   ########.fr       */
+/*   Updated: 2024/11/30 15:05:56 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 void parse_texture(char *line, t_all_settings *settings)
 {
@@ -21,7 +21,6 @@ void parse_texture(char *line, t_all_settings *settings)
 	i = 0;
 	while (split[i])
 		i++;
-	printf("%s\n", split[1]);
 	if (i != 2)
 		error_message("Invalid texture");
 	if (ft_strncmp(split[0], "NO", 2) == 0)
@@ -32,48 +31,52 @@ void parse_texture(char *line, t_all_settings *settings)
 		settings->walls->we->img = ft_strdup(split[1]);
 	else if (ft_strncmp(split[0], "EA", 2) == 0)
 		settings->walls->ea->img = ft_strdup(split[1]);
-	// printf("Texture: %s\n", line);
+}
+
+void check_color_format(char *line)
+{
+	int i;
+	char **split;
+	
+	i = 0;
+	split = ft_split(line, ',');
+	while (split[i])
+	{
+		if (ft_atoi(split[i]) < 0 || ft_atoi(split[i]) > 255)
+			error_message("Invalid color");
+		i++;
+	}
+	if (i != 3)
+		error_message("Invalid color");
 }
 
 void parse_color(char *line, t_all_settings *settings)
 {
-	char	**split;
 	int		i;
-	int		j;
+	char	**split;
 	t_color	*room_ptr;
 	
+	i = 0;
 	room_ptr = NULL;
 	split = ft_split(line, ' ');
-	i = 0;
 	while (split[i])
 		i++;
 	if (i != 2)
 		error_message("Invalid color");
-	j = 0;
-	while (split[1][j])
-	{
-		if (!ft_isdigit(split[1][j]) && split[1][j] != ',')
-			error_message("Invalid color");
-		j++;
-	}
+	check_color_format(split[1]);
 	if (ft_strncmp(split[0], "F", 1) == 0)
 		room_ptr = settings->room->floor;
 	else if (ft_strncmp(split[0], "C", 1) == 0)
 		room_ptr = settings->room->ceiling;
 	room_ptr->r = ft_atoi(split[1]);
-	
-	
-		settings->room->floor->r = ft_atoi(&split[1][0]);
-		settings->room->floor->g = ft_atoi(&split[1][1]);
-		settings->room->floor->b = ft_atoi(&split[1][2]);
-
-	// printf("Color: %s\n", line);
+	settings->room->floor->r = ft_atoi(&split[1][0]);
+	settings->room->floor->g = ft_atoi(&split[1][1]);
+	settings->room->floor->b = ft_atoi(&split[1][2]);
+	//free split
 }
 
 void parse_line(char *line, char **tmp_map, t_all_settings *settings)
 {
-	printf("line: %s\n", line);
-	printf("%d\n", ft_strncmp(line, "NO ", 3));
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		parse_texture(line, settings);
 	else if (ft_strncmp(line, "SO ", 3) == 0)
@@ -101,7 +104,6 @@ int	parse_cub(char *file, t_all_settings *settings)
 	char	*tmp_map;
 
 	tmp_map = NULL;
-	printf("file: %s\n", file);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		error_message("Invalid file");

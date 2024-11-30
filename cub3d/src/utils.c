@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:35:47 by mayu              #+#    #+#             */
-/*   Updated: 2024/11/04 22:20:15 by mayu             ###   ########.fr       */
+/*   Updated: 2024/11/26 23:49:53 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 // void free_all(t_all_settings *settings)
 // {

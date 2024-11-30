@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:04:09 by mayu              #+#    #+#             */
-/*   Updated: 2024/11/04 21:26:15 by mayu             ###   ########.fr       */
+/*   Updated: 2024/11/30 18:44:22 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 #define WIDTH 800
 #define HEIGHT 800
@@ -29,11 +29,18 @@ void mlx_setup(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-void mlx_main(t_data *data)
+// void mlx_main(t_data *data)
+// {
+// 	void *img = data->img;
+// 	data->img = mlx_new_image(data->mlx, 800, 600);
+// 	// data->img = mlx_xpm_file_to_image(data->mlx, "./textures/wall_E.xpm", &data->width, &data->height);
+// 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+// 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+// }
+
+void draw(t_data *data)
 {
-	data->img = mlx_new_image(data->mlx, 800, 600);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	
 }
 
 int main(int argc, char **argv)
@@ -53,20 +60,15 @@ int main(int argc, char **argv)
 		return (1);
 	if (check_file_exist(argv[1]))
 		return (1);
+	init_all(settings);
 	parse_cub(argv[1], settings);
 	format_map(settings);
 	check_map(settings);
-	// printf("NO: %s\n", settings->walls->no->img);
-	// printf("SO: %s\n", settings->walls->so);
-	// printf("WE: %s\n", settings->walls->we);
-	// printf("EA: %s\n", settings->walls->ea);
-	printf("F: r:%d g:%d b:%d \n", settings->room->floor->r, settings->room->floor->g, settings->room->floor->b);
-	printf("C: r:%d g:%d b:%d \n", settings->room->ceiling->r, settings->room->ceiling->g, settings->room->ceiling->b);
-	while (*settings->map)
-	{
-		printf("%s\n", *settings->map);
-		settings->map++;
-	}
+	// while (*settings->map)
+	// {
+	// 	printf("%s\n", *settings->map);
+	// 	settings->map++;
+	// }
 	mlx_setup(data);
 	mlx_main(data);
 	return (0);

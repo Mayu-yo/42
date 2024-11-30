@@ -6,11 +6,11 @@
 /*   By: mayu <mayu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:39:51 by mayu              #+#    #+#             */
-/*   Updated: 2024/10/14 16:59:09 by mayu             ###   ########.fr       */
+/*   Updated: 2024/11/30 15:39:18 by mayu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 int	close_window(int keycode, t_data *data)
 {
@@ -59,6 +59,7 @@ int	handle_key_press(int keycode, t_data *data)
 int	handle_mouse_move(int x, int y, t_data *data)
 {
 	(void)data;
+	
 	printf("x: %d, y: %d\n", x, y);
 	return (0);
 }
