@@ -13,7 +13,6 @@ std::string	getInput(std::string explanation) {
 		{
 			std::cout << "EOF detected." << std::endl;
 			return ("EXIT");
-			// exit(1);
 		}
 		else
 		{

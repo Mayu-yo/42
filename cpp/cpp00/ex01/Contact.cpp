@@ -37,7 +37,10 @@ void	Contact::printContact(const Contact &contact) {
 
 void	Contact::printDetail(const Contact &contact) {
 	if (contact._index == -1)
+	{
+		std::cout << "No contact." << std::endl;
 		return ;
+	}
 	std::cout << "First name: " << contact._firstName << std::endl;
 	std::cout << "Last name: " << contact._lastName << std::endl;
 	std::cout << "Nickname: " << contact._nickname << std::endl;

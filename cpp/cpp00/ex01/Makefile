@@ -11,8 +11,6 @@ RESET		=	\e[0m
 _SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
 _INFO		=	[$(YELLOW)INFO$(RESET)]
 
-OBJDIR = .objFiles
-
 SRCS = Contact.cpp PhoneBook.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 

@@ -39,11 +39,9 @@ void	PhoneBook::searchContact() {
 	while (1)
 	{
 		_input = getInput("Please enter the index of the contact you want to see.");
-		printf("input: %s\n", _input.c_str());
 		if (_input.length() == 1 && _input[0] >= '1' && _input[0] <= '8')
 		{
-			_index = std::stoi(_input);
-			printf("index: %d\n", _index);
+			_index = _input[0] - '0';
 			_contacts[_index - 1].printDetail(_contacts[_index - 1]);
 			break;
 		}

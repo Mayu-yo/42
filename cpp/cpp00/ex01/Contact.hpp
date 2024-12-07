@@ -23,6 +23,6 @@ class Contact
 		void    fillin(int _index);
 		void	printContact(const Contact &contact);
 		void	printDetail(const Contact &contact);
-	};
+};
 
 #endif
