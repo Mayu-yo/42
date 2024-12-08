@@ -1,5 +1,5 @@
 
-NAME	= megaphone
+NAME	= Account
 	
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -11,24 +11,30 @@ RESET		=	\e[0m
 _SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
 _INFO		=	[$(YELLOW)INFO$(RESET)]
 
-SRCS = megaphone
-OBJ			= $(SRCS:=.o)
+SRCS = tests Account
+HEADER		= Account.hpp
+OBJDIR = .objFiles
+OBJ			= $(addprefix $(OBJDIR)/, $(SRCS:=.o))
 
 .PHONY: all clean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ) $(HEADER)
+	@ $(CC) $(OBJ) -o $(NAME)
 	@printf "$(_SUCCESS) $(NAME) was created.\n"
 
+$(OBJDIR)/%.o: %.cpp $(HEADER)
+	@mkdir -p $(dir $@)
+	@$(CC) $(FLAGS) -c $< -o $@
+
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJDIR)
 	@ printf "$(_INFO) object files removed.\n"
 
 fclean:
 	@$(RM) $(NAME)
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJDIR)
 	@ printf "$(_INFO) $(NAME) removed.\n"
 
 re: clean all

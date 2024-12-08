@@ -4,8 +4,6 @@ HumanB::HumanB(std::string name) : _name(name), _weapon(NULL) {}
 
 HumanB::~HumanB()
 {
-	if (this->_weapon)
-		delete this->_weapon;
 }
 
 void HumanB::attack()
@@ -18,7 +16,5 @@ void HumanB::attack()
 
 void HumanB::setWeapon(Weapon &weapon)
 {
-	if (this->_weapon)
-		delete this->_weapon;
-	this->_weapon = new Weapon(weapon.getType());
+	this->_weapon = &weapon;
 }

@@ -1,34 +1,34 @@
-#include "sed.hpp"
+#include "Sed.hpp"
 
 Sed::Sed(std::string filename, std::string s1, std::string s2) : _filename(filename), _before_string(s1), _after_string(s2)
 {
+	_filename = filename;
+	_before_string = s1;
+	_after_string = s2;
 }
 
 Sed::~Sed(void)
 {
 }
 
-int Sed::replace(void)
-{
+int Sed::replace() {
+	size_t pos = 0;
+	std::string line;
+	std::string new_filename;
+
 	std::ifstream ifs(_filename);
-	if (!ifs.is_open())
-	{
+	if (!ifs) {
 		std::cerr << "Error: could not open file" << std::endl;
 		return 1;
 	}
-	std::string line;
-	std::string new_filename = _filename + ".replace";
+	new_filename = _filename + ".replace";
 	std::ofstream ofs(new_filename);
-	if (!ofs.is_open())
-	{
+	if (!ofs) {
 		std::cerr << "Error: could not create file" << std::endl;
 		return 1;
 	}
-	while (std::getline(ifs, line))
-	{
-		size_t pos = 0;
-		while ((pos = line.find(_before_string, pos)) != std::string::npos)
-		{
+	while (std::getline(ifs, line)) {
+		while ((pos = line.find(_before_string,pos)) != std::string::npos) {
 			line.replace(pos, _before_string.length(), _after_string);
 			pos += _after_string.length();
 		}
