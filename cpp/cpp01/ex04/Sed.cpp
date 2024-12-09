@@ -15,14 +15,16 @@ int Sed::replace() {
 	size_t pos = 0;
 	std::string line;
 	std::string new_filename;
+	std::ifstream ifs;
+	std::ofstream ofs;
 
-	std::ifstream ifs(_filename);
+	ifs.open(_filename);
 	if (!ifs) {
 		std::cerr << "Error: could not open file" << std::endl;
 		return 1;
 	}
 	new_filename = _filename + ".replace";
-	std::ofstream ofs(new_filename);
+	ofs.open(new_filename);
 	if (!ofs) {
 		std::cerr << "Error: could not create file" << std::endl;
 		return 1;
@@ -33,6 +35,7 @@ int Sed::replace() {
 			pos += _after_string.length();
 		}
 		ofs << line << std::endl;
+		pos = 0;
 	}
 	ifs.close();
 	ofs.close();
