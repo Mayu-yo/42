@@ -1,6 +1,6 @@
 #include "Sed.hpp"
 
-Sed::Sed(std::string filename, std::string s1, std::string s2) : _filename(filename), _before_string(s1), _after_string(s2)
+Sed::Sed(std::string filename, std::string s1, std::string s2)
 {
 	_filename = filename;
 	_before_string = s1;
@@ -18,13 +18,13 @@ int Sed::replace() {
 	std::ifstream ifs;
 	std::ofstream ofs;
 
-	ifs.open(_filename);
+	ifs.open(_filename.c_str());
 	if (!ifs) {
 		std::cerr << "Error: could not open file" << std::endl;
 		return 1;
 	}
 	new_filename = _filename + ".replace";
-	ofs.open(new_filename);
+	ofs.open(new_filename.c_str());
 	if (!ofs) {
 		std::cerr << "Error: could not create file" << std::endl;
 		return 1;

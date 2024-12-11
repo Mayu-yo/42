@@ -12,7 +12,7 @@ class Sed
 		int replace(void);
 
 	private:
-		std::string _filename;
+		std::string _filename; 
 		std::string _before_string;
 		std::string _after_string;
 };
