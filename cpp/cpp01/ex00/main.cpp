@@ -3,6 +3,8 @@
 int main( void ) {
     Zombie zombi1("zom");
     Zombie *zombi2 = newZombie("moz");
+    if (!zombi2)
+        return 1;
     zombi2->announce();
     delete zombi2;
 
