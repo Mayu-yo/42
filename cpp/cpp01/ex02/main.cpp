@@ -7,7 +7,7 @@ int main() {
 
 	string = "HI THIS IS BRAIN";
 	std::cout << " - address - " << std::endl;
-	std::cout << "stringr: " << &string << std::endl;
+	std::cout << "string: " << &string << std::endl;
 	std::cout << "stringPTR: " << stringPTR << std::endl;
 	std::cout << "stringREF: " << &stringREF << std::endl;
 

@@ -31,8 +31,8 @@ int Sed::replace() {
 	}
 	while (std::getline(ifs, line)) {
 		while ((pos = line.find(_before_string,pos)) != std::string::npos) {
-			line.replace(pos, _before_string.length(), _after_string);
-			pos += _after_string.length();
+			line.erase(pos, _before_string.length());
+			line.insert(pos, _after_string);
 		}
 		ofs << line << std::endl;
 		pos = 0;

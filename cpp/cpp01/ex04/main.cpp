@@ -4,7 +4,7 @@ int main(int ac, char **av)
 {
 	if (ac != 4)
 	{
-		std::cerr << "Usage: ./replace filename s1 s2" << std::endl;
+		std::cerr << "Usage: ./Sed filename s1 s2" << std::endl;
 		return 1;
 	}
 	if (av[2][0] == '\0' || av[3][0] == '\0')
