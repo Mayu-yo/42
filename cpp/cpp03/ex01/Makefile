@@ -1,5 +1,5 @@
 
-NAME	= Fixed
+NAME	= Claptrap
 	
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -11,8 +11,8 @@ RESET		=	\e[0m
 _SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
 _INFO		=	[$(YELLOW)INFO$(RESET)]
 
-SRCS = main Fixed
-HEADER		= Fixed.hpp
+SRCS = main ClapTrap ScavTrap
+HEADER		= ClapTrap.hpp ScavTrap.hpp
 OBJDIR = .objFiles
 OBJ			= $(addprefix $(OBJDIR)/, $(SRCS:=.o))
 
