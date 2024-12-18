@@ -1,27 +1,28 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main( void ) {
-	ClapTrap a;
-	ClapTrap b("b");
-	ScavTrap c;
-	ScavTrap d("d");
+	ClapTrap clapTrap("ClapTrap");
+	ScavTrap scavTrap("ScavTrap");
+	FragTrap fragTrap("FragTrap");
 
-	a.attack("b");	
-	b.takeDamage(5);
-	b.beRepaired(3);
-	b.attack("a");
-	a.takeDamage(5);
-	b.attack("a");
-	a.takeDamage(5);
-	c.attack("d");
-	d.takeDamage(5);
-	d.attack("c");
-	c.takeDamage(5);
-	d.guardGate();
-	c.attack("d");
-	d.takeDamage(5);
-	c.guardGate();
+	std::cout << "- Start -" << std::endl;
+	std::cout << "ClapTrap's Turn." << std::endl;
+	clapTrap.attack("ScavTrap");
+	scavTrap.takeDamage(10);
+	scavTrap.beRepaired(5);
+	scavTrap.guardGate();
+	std::cout << "ScavTrap's Turn." << std::endl;
+	scavTrap.attack("FragTrap");
+	fragTrap.takeDamage(10);
+	fragTrap.beRepaired(5);
+	fragTrap.highFivesGuys();
+	std::cout << "FragTrap's Turn." << std::endl;
+	fragTrap.attack("ClapTrap");
+	clapTrap.takeDamage(10);
+	clapTrap.beRepaired(5);
+	std::cout << "- End -" << std::endl;
 
 	return 0;
 }

@@ -11,8 +11,8 @@ RESET		=	\e[0m
 _SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
 _INFO		=	[$(YELLOW)INFO$(RESET)]
 
-SRCS = main ClapTrap ScavTrap
-HEADER		= ClapTrap.hpp ScavTrap.hpp
+SRCS = main ClapTrap ScavTrap FragTrap
+HEADER		= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 OBJDIR = .objFiles
 OBJ			= $(addprefix $(OBJDIR)/, $(SRCS:=.o))
 

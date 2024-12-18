@@ -6,7 +6,7 @@ ClapTrap::ClapTrap(void)
 	this->_hitPoints = 10;
 	this->_energyPoints = 10;
 	this->_attackDamage = 0;
-	std::cout << "ClapTrap " << this->_name << " is born" << std::endl;
+	std::cout << "ClapTrap " << this->_name << " constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -15,7 +15,7 @@ ClapTrap::ClapTrap(std::string name)
 	this->_hitPoints = 10;
 	this->_energyPoints = 10;
 	this->_attackDamage = 0;
-	std::cout << "ClapTrap " << this->_name << " is born" << std::endl;
+	std::cout << "ClapTrap " << this->_name << " constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &rhs)
