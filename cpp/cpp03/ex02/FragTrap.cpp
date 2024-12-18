@@ -17,11 +17,18 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	std::cout << "FragTrap constructor called." << std::endl;
 }
 
-// FragTrap::FragTrap(const FragTrap &rhs)
-// {
-// 	*this = rhs;
-// 	std::cout << "copy constructor called" << std::endl;
-// }
+FragTrap::FragTrap(const FragTrap &rhs)
+{
+	*this = rhs;
+	std::cout << "FragTrap copy constructor called" << std::endl;
+}
+
+FragTrap &FragTrap::operator=(FragTrap const &rhs)
+{
+	ClapTrap::operator=(rhs);
+	std::cout << "FragTrap assignation operator called" << std::endl;
+	return *this;
+}
 
 FragTrap::~FragTrap(void)
 {
