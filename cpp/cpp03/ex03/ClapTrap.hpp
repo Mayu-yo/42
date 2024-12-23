@@ -10,16 +10,14 @@ class ClapTrap
 		ClapTrap(std::string name);
 		ClapTrap(ClapTrap const &src);
 		ClapTrap &operator=(ClapTrap const &rhs);
-		~ClapTrap(void);
+		virtual ~ClapTrap(void);
 
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-	private:
+	protected:
 		std::string _name;
-		bool isDead(const std::string& type);
-		bool isOutOfEnergy(const std::string& type);
 		unsigned int _hitPoints;
 		unsigned int _energyPoints;
 		unsigned int _attackDamage;

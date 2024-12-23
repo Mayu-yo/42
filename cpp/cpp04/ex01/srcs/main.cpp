@@ -4,10 +4,16 @@
 
 int main()
 {
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-delete j;//should not create a leak
-delete i;
-
-return 0;
+	const Animal* animals[] = {new Dog(), new Dog(), new Cat(), new Cat()};
+	for (int i = 0; i < 4; i++)
+	{
+		animals[i]->makeSound();
+		delete animals[i];
+	}
+	return 0;
 }
+
+// __attribute__((destructor)) void end(void)
+// {
+// 	system("leaks -q Animal");
+// }
