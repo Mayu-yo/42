@@ -7,6 +7,25 @@ Cat::Cat(void) : Animal("Cat") {
 		std::cout << "Failed to allocate memory for brain" << std::endl;
 }
 
+Cat::Cat(const Cat &rhs) : Animal(rhs) {
+	this->_brain = new Brain(*rhs._brain);
+	if (!this->_brain)
+		std::cout << "Failed to allocate memory for brain" << std::endl;
+	std::cout << "Cat copy constructor called" << std::endl;
+}
+
+Cat &Cat::operator=(const Cat &rhs) {
+	if (this != &rhs) {
+		Animal::operator=(rhs);
+		delete this->_brain;
+		this->_brain = new Brain(*rhs._brain);
+		if (!this->_brain)
+			std::cout << "Failed to allocate memory for brain" << std::endl;
+	}
+	std::cout << "Cat assignation operator called" << std::endl;
+	return *this;
+}
+
 Cat::~Cat(void) {
 	delete this->_brain;
 	std::cout << "Cat destructor called" << std::endl;

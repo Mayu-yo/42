@@ -9,26 +9,37 @@ int main()
     const Animal* meta = new Animal();
     const Animal* j = new Dog();
     const Animal* i = new Cat();
+    
+    std::cout << "--------------" << std::endl;
 
+    // std::cout << animal->getType() << " " << std::endl;
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
+    
+    std::cout << "--------------" << std::endl;
 
-    i->makeSound();
-    j->makeSound(); 
+    i->makeSound(); //will output the cat sound!
+    j->makeSound();
     meta->makeSound();
+
+    std::cout << "--------------" << std::endl;
 
     delete meta;
     delete j;
     delete i;
 
-    /* Wrong test */
-    const WrongAnimal* k = new WrongCat();
+    std::cout << "--- Wrong Test ---" << std::endl;
 
-    std::cout << k->getType() << " " << std::endl;
+    const WrongAnimal* wrong = new WrongCat();
 
-    k->makeSound(); // 猫の鳴き声を出力するはずなのに、動物の鳴き声が出力される
+    std::cout << wrong->getType() << " " << std::endl;
 
-    delete k;
+    // 猫の鳴き声を出力するはずなのに、動物の鳴き声が出力される
+    wrong->makeSound(); 
+
+    std::cout << "--------------" << std::endl;
+
+    delete wrong;
 
     return 0;
 }
