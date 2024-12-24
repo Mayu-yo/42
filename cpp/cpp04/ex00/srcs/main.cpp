@@ -31,11 +31,13 @@ int main()
     std::cout << "--- Wrong Test ---" << std::endl;
 
     const WrongAnimal* wrong = new WrongCat();
+    WrongCat wrong2 = WrongCat();
 
     std::cout << wrong->getType() << " " << std::endl;
 
     // 猫の鳴き声を出力するはずなのに、動物の鳴き声が出力される
     wrong->makeSound(); 
+    wrong2.makeSound();
 
     std::cout << "--------------" << std::endl;
 
