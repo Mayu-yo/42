@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-class WrongAnimal //結局これはなにを実装すれば良いの
+class WrongAnimal
 {
 protected:
 	std::string _type;

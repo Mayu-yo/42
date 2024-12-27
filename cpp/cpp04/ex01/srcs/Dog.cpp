@@ -7,6 +7,13 @@ Dog::Dog(void) : Animal("Dog") {
 	std::cout << "Dog constructor called" << std::endl;
 }
 
+Dog::Dog(std::string type) : Animal(type) {
+	this->_brain = new Brain();
+	if (!this->_brain)
+		std::cout << "Failed to allocate memory for brain" << std::endl;
+	std::cout << "Dog constructor called" << std::endl;
+}
+
 Dog::Dog(const Dog &rhs) : Animal(rhs) {
 	this->_brain = new Brain(*rhs._brain);
 	if (!this->_brain)

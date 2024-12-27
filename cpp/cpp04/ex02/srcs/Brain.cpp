@@ -5,7 +5,10 @@ Brain::Brain(void) {
 }
 
 Brain::Brain(const Brain &rhs) {
-	*this = rhs;
+	// *this = rhs;
+	for (int i = 0; i < 100; i++) {
+		ideas[i] = rhs.ideas[i];
+	}
 	std::cout << "Brain copy constructor called" << std::endl;
 }
 

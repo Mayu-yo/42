@@ -13,9 +13,6 @@ public:
 	Brain(const Brain &rhs);
 	Brain &operator=(Brain const &rhs);
 	~Brain(void);
-
-	// std::string getIdea(int i) const;
-	// void setIdea(int i, std::string idea);
 };
 
 #endif
