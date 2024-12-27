@@ -7,13 +7,6 @@ Cat::Cat(void) : Animal("Cat") {
 		std::cout << "Failed to allocate memory for brain" << std::endl;
 }
 
-Cat::Cat(std::string type) : Animal(type) {
-	std::cout << "Cat constructor called" << std::endl;
-	this->_brain = new Brain();
-	if (!this->_brain)
-		std::cout << "Failed to allocate memory for brain" << std::endl;
-}
-
 Cat::Cat(const Cat &rhs) : Animal(rhs) {
 	this->_brain = new Brain(*rhs._brain);
 	if (!this->_brain)

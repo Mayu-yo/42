@@ -9,7 +9,6 @@ class Cat : public AAnimal
 public:
 	Cat(void);
 	~Cat(void);
-	Cat(std::string type);
 	Cat(const Cat &rhs);
 	Cat &operator=(const Cat &rhs);
 

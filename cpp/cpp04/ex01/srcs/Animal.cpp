@@ -10,12 +10,13 @@ Animal::Animal(std::string type) {
 }
 
 Animal::Animal(const Animal &rhs) {
-	*this = rhs;
+	_type = rhs._type;
 	std::cout << "Animal copy constructor called" << std::endl;
 }
 
 Animal &Animal::operator=(Animal const &rhs) {
-	_type = rhs._type;
+	if (this != &rhs)
+		_type = rhs._type;
 	std::cout << "Animal assignation operator called" << std::endl;
 	return *this;
 }

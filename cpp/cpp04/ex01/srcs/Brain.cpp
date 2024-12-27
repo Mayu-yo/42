@@ -5,7 +5,6 @@ Brain::Brain(void) {
 }
 
 Brain::Brain(const Brain &rhs) {
-	// *this = rhs;
 	for (int i = 0; i < 100; i++) {
 		ideas[i] = rhs.ideas[i];
 	}
@@ -13,8 +12,10 @@ Brain::Brain(const Brain &rhs) {
 }
 
 Brain &Brain::operator=(Brain const &rhs) {
-	for (int i = 0; i < 100; i++) {
-		ideas[i] = rhs.ideas[i];
+	if (this != &rhs) {
+		for (int i = 0; i < 100; i++) {
+			ideas[i] = rhs.ideas[i];
+		}
 	}
 	std::cout << "Brain assignation operator called" << std::endl;
 	return *this;
