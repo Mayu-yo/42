@@ -13,7 +13,7 @@ _INFO		=	[$(YELLOW)INFO$(RESET)]
 SRCS = $(wildcard srcs/*.cpp)
 HEADERS = $(wildcard includes/*.hpp)
 OBJDIR = objs
-OBJS = $(patsubst srcs/%.cpp, objs/%.o, $(SRCS)) #ここ後で変更かも
+OBJS = $(patsubst srcs/%.cpp, objs/%.o, $(SRCS)) 
 INC = -I./includes/
 
 
@@ -21,7 +21,7 @@ all : $(NAME)
 
 $(NAME): $(OBJS)
 	@ $(CXX) $(CXXFLAGS) -o $@ $^
-	@printf "$(_SUCCESS) $(NAME) was created.\n"
+	@echo "$(_SUCCESS) $(NAME) was created.\n"
 
 objs/%.o: srcs/%.cpp
 	@ mkdir -p objs
@@ -29,11 +29,11 @@ objs/%.o: srcs/%.cpp
 
 clean :
 	@ $(RM) $(OBJDIR)
-	@ printf "$(_INFO) object files removed.\n"
+	@ echo "$(_INFO) object files removed.\n"
 
 fclean : clean
 	@ $(RM) $(NAME)
-	@ printf "$(_INFO) object files removed.\n"
+	@ echo "$(_INFO) object files removed.\n"
 
 
 re : fclean all
